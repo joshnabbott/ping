@@ -1,0 +1,74 @@
+body { background-color: #fff; color: #444; }
+
+body, p, ol, ul, td {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size:   13px;
+  line-height: 18px;
+}
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+a { color: #000; text-decoration: none; }
+a:visited { text-decoration: underline; }
+a:hover { color: #eee; background-color:#333; }
+
+#title { float: left; }
+nav { float: left; margin: 10px 0 0 15px; }
+nav a { margin: 0 20px 15px 0; }
+.icon { 
+  display: block; float: left; 
+  height: 20px; 
+  padding: 5px 5px 3px 26px; 
+  background: #ddd url(/images/people.png) 3px 4px no-repeat;
+  color: #444;
+  font-size: 1.2em; font-weight: bold;
+  border-radius: 5px;
+}
+.icon:hover, .icon.active { background-color: #AAA; color: #333; }
+.icon.people {}
+.icon.groups {background-position: 3px -48px; padding-left: 36px;}
+
+#main { clear: both; margin-top: 15px; }
+
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+
+#notice {
+  color: green;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  margin-bottom: 0px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}

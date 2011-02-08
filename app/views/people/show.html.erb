@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>First name:</b>
+  <%= @person.first_name %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @person.title %>
+</p>
+
+<p>
+  <b>Username:</b>
+  <%= @person.username %>
+</p>
+
+<p>
+  <b>Bio:</b>
+  <%= @person.bio %>
+</p>
+
+<p>
+  <b>Groups:</b>
+  <% @person.group.each do |g| %>
+    <%= g.name %>
+  <% end %>
+</p>
+
+
+<%= link_to 'Edit', edit_person_path(@person) %> |
+<%= link_to 'Back', people_path %>

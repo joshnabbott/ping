@@ -1,0 +1,30 @@
+<% form_for :search, @search, :html => {:method => :get} do |f| %>
+  <%= f.label :bio_contains %>
+  <%= f.text_field :bio_contains %>
+  <%= f.submit %>
+<% end %>
+
+<table>
+  <tr>
+    <th>First name</th>
+    <th>Title</th>
+    <th>Username</th>
+    <th>Bio</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @people.each do |person| %>
+  <tr>
+    <td><%= person.first_name %></td>
+    <td><%= person.title %></td>
+    <td><%= person.username %></td>
+    <td><%= person.bio %></td>
+    <td><%= link_to 'Show', person %></td>
+    <td><%= link_to 'Edit', edit_person_path(person) %></td>
+    <td><%= link_to 'Destroy', person, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+<%= link_to 'New Person', new_person_path %>
