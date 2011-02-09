@@ -6,7 +6,8 @@
 
 <table>
   <tr>
-    <th>First name</th>
+    <th>First</th>
+    <th>Last</th>
     <th>Title</th>
     <th>Username</th>
     <th>Bio</th>
@@ -18,6 +19,7 @@
 <% @people.each do |person| %>
   <tr>
     <td><%= person.first_name %></td>
+    <td><%= person.last_name %></td>
     <td><%= person.title %></td>
     <td><%= person.username %></td>
     <td><%= person.bio %></td>
