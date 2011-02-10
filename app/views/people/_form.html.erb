@@ -10,27 +10,7 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
-  </div>
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username %>
-  </div>
-  <div class="field">
-    <%= f.label :bio %><br />
-    <%= f.text_area :bio %>
-  </div>
+  <%= render :partial => "shared/form_generator", :locals => {:object => @person, :f => f} %>
   <div class="field">
     <% @groups.each do |g| %>
       <%= check_box_tag "person[group_ids][]", g.id, @person.group.include?(g) %>
