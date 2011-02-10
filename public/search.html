@@ -1,0 +1,32 @@
+<!DOCTYPE html> 
+<html>
+<head> 
+<title>Factory People</title> 
+
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" /> 
+
+<style type="text/css" media="screen"> 
+	body { background-color: #fff; font: 16px Helvetica, Arial; color: #333; }
+</style> 
+</head> 
+
+<body> 
+
+<script src="/javascripts/jquery-1.5.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(function() {
+		$.getJSON('/groups.json', function(groups){
+			var $P = $('<ul id="people"></ul>');
+			$(groups).each(function(){
+				var $p = $('<ul></ul>');
+				$(this.person).each(function(){
+					$p.append('<li>'+this.first_name+'</li>');
+				})
+				$P.append('<li>'+this.name+'</li>').append($p);
+			})
+			$('body').prepend($P);
+		});
+	});
+</script>
+</body>
+</html>

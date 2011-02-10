@@ -8,8 +8,6 @@ Factorypeople::Application.routes.draw do
     :groups
   end
 
-  get "home/index"
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
