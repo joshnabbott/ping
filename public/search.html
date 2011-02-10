@@ -1,56 +1,54 @@
 <!DOCTYPE html> 
 <html>
 <head> 
-<title>Factory People</title> 
+	<title>Factory People</title>
 
-<meta http-equiv="Content-type" content="text/html; charset=utf-8" /> 
-
-<style type="text/css" media="screen"> 
-	body { background-color: #fff; font: 16px Helvetica, Arial; color: #333; }
-</style> 
-</head> 
+	<style type="text/css"> 
+		body { background-color: #fff; font: 16px Helvetica, Arial; color: #333; }
+	</style> 
+</head>
 
 <body> 
 
-<h2>People by Group</h2>
+	<h2>No Javascript</h2>
 
-<script src="/javascripts/jquery-1.5.min.js" type="text/javascript"></script>
-<script type="text/javascript">
-	// use jQuery to wait for the document to be ready
-	$(function() {
+	<script src="/javascripts/jquery-1.5.min.js"></script>
+	<script type="text/javascript">
+		// use jQuery to wait for the document to be ready
+		$(function() {
 
-		// start up a JSON request for groups
-		$.getJSON('/groups.json', function(groups){
-			// CALLBACK to JSON request
-			// we have groups from the server
+			// start up a JSON request for groups
+			$.getJSON('/groups.json', function(groups){
+				// CALLBACK to JSON request
+				// we have groups from the server
 
-			// create a list container
-			var $P = $('<ul id="people"></ul>');
+				// create a list container
+				var $P = $('<ul id="people"></ul>');
 
-			// loop through each group
-			$(groups).each(function(){
+				// loop through each group
+				$(groups).each(function(){
 
-				// create a container for the people list
-				var $p = $('<ul></ul>');
+					// create a container for the people list
+					var $p = $('<ul></ul>');
 
-				// loop through the people in each group
-				$(this.person).each(function(){
+					// loop through the people in each group
+					$(this.person).each(function(){
 
-					// create a list item for each person and put it in the list
-					$p.append('<li>'+this.first_name+' '+this.last_name+'</li>');
-					
+						// create a list item for each person and put it in the list
+						$p.append('<li>'+this.first_name+' '+this.last_name+'</li>');
+
+					})
+					// done looping through the people in this group
+
+					// put the group name in the big list and nest its list of people
+					$P.append('<li>'+this.name+'</li>').append($p);
 				})
-				// done looping through the people in this group
+				// okay, done looping through the group list
 
-				// put the group name in the big list and nest its list of people
-				$P.append('<li>'+this.name+'</li>').append($p);
-			})
-			// okay, done looping through the group list
-
-			// put the big list in the body after the H2
-			$('h2').after($P);
+				// put the big list in the body after the H2
+				$('h2').text('People by Group').after($P);
+			});
 		});
-	});
-</script>
+	</script>
 </body>
 </html>
