@@ -1,55 +1,65 @@
 <!DOCTYPE html> 
 <html>
 <head> 
-	<title>Factory People</title>
+  <title>Factory People</title>
 
-	<style type="text/css"> 
-		body { background-color: #fff; font: 16px Helvetica, Arial; color: #333; }
-		#people > li {font-weight: bold; text-decoration: underline}
-	</style> 
+  <style type="text/css"> 
+    body { background-color: #fff; font: 16px Helvetica, Arial; color: #333; }
+    ul { list-style: none; }
+    #search_people, #results {float: left;}
+    #people > li {font-weight: bold; text-decoration: underline}
+  </style> 
 </head>
 
 <body> 
 
-	<h2>No Javascript</h2>
+  <!-- <h2>No Javascript</h2> -->
 
-	<script src="/javascripts/jquery-1.5.min.js"></script>
-	<script type="text/javascript">
-		// use jQuery to wait for the document to be ready
-		$(function() {
+  <input type="search" id="search_people" placeholder="Find people" autocomplete="off" />
+  <ul id="results"></ul>
 
-			// start up a JSON request for groups
-			$.getJSON('/groups.json', function(groups){
-				// CALLBACK to JSON request
-				// we have groups from the server
+  <script src="/javascripts/jquery-1.5.min.js"></script>
+  <script type="text/javascript">
 
-				// create a list container
-				var $P = $('<ul id="people"></ul>');
+    var peeps, groups, $tree;
+    
+    $(function() {
 
-				// loop through each group
-				$(groups).each(function(){
+      $tree = $('<ul id="people"></ul>');
 
-					// create a container for the people list
-					var $p = $('<ul></ul>');
+      $.getJSON('/people.json', function(data){
+        peeps = data;
+      })
 
-					// loop through the people in each group
-					$(this.person).each(function(){
+      $.getJSON('/groups.json', function(data){
+        groups = data;
+        $(groups).each(function(){
+          var $p = $('<ul></ul>');
+          $(this.person).each(function(){
+            $p.append('<li>'+this.first_name+' '+this.last_name+'</li>');
+          });
+          $tree.append('<li>'+this.name+'</li>').append($p);
+        });
+      });
 
-						// create a list item for each person and put it in the list
-						$p.append('<li>'+this.first_name+' '+this.last_name+'</li>');
+      $('#search_people').keyup(function(e){
+          $('#results').empty();
+        var $S = $(this),
+            val = $S.val().toLowerCase();
 
-					})
-					// done looping through the people in this group
+        if(val.length > 2){
+          $(peeps).each(function(){
+            var F = (typeof this.first_name == 'string') ? this.first_name : '',
+                L = (typeof this.last_name == 'string') ? this.last_name : '';
 
-					// put the group name in the big list and nest its list of people
-					$P.append('<li>'+this.name+'</li>').append($p);
-				})
-				// okay, done looping through the group list
+            if(F.toLowerCase().indexOf(val) >= 0 || L.toLowerCase().indexOf(val) >= 0) {
+              $('#results').append('<li>'+F+' '+L+'</li>');
+            }
+          });
+        }
+      });
 
-				// put the big list in the body after the H2
-				$('h2').text('People by Group').after($P);
-			});
-		});
-	</script>
+    });
+  </script>
 </body>
 </html>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110210200755) do
+ActiveRecord::Schema.define(:version => 20110213222751) do
 
   create_table "groups", :force => true do |t|
     t.string   "name"
@@ -75,11 +75,20 @@ ActiveRecord::Schema.define(:version => 20110210200755) do
     t.string   "building_card"
     t.string   "garage_card"
     t.string   "fed_ex_account"
+    t.integer  "user_id"
   end
 
   create_table "people_groups", :id => false, :force => true do |t|
     t.integer "person_id"
     t.integer "group_id"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "name"
+    t.string   "password_hash"
+    t.string   "password_salt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

@@ -8,10 +8,26 @@
 </head>
 <body>
   <h1 id="title"><a href="/">Factory</a></h1>
+
+  <div id="user_nav">
+    <% if current_user %>
+      Logged in as <%= current_user.name %>.
+      <%= link_to "Log out", log_out_path %>
+    <% else %>
+      <%= link_to "Sign up", sign_up_path %> or
+      <%= link_to "log in", log_in_path %>
+    <% end %>
+  </div>
+
   <nav>
     <%= link_to "People", people_path, {:class => "people icon"} %>
     <%= link_to "Groups", groups_path, {:class => "groups icon"} %>
   </nav>
+
+  <% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, :id => "flash_#{name}" %>
+  <% end %>
+
   <section id="main">
     <%= yield %>
   </section>

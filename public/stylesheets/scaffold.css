@@ -17,6 +17,9 @@ a:visited { text-decoration: underline; }
 a:hover { color: #eee; background-color:#333; }
 
 #title { float: left; }
+
+#user_nav {float:right}
+
 nav { float: left; margin: 10px 0 0 15px; }
 nav a { margin: 0 20px 15px 0; }
 .icon { 

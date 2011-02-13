@@ -7,6 +7,7 @@ gem 'meta_search'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
+gem "bcrypt-ruby", :require => "bcrypt"
 
 # Use unicorn as the web server
 # gem 'unicorn'
