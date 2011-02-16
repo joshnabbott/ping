@@ -20,7 +20,7 @@
       <%= f.text_area column.name.to_sym  %>  
     <% elsif column.type == :datetime %>
       <% if column.name =~ /_at$/ %>
-        <%= 'Cannot edit.' %>
+        <%= object["#{column.name}"] %>
       <% else %> 
         <%= f.datetime_select column.name.to_sym  %>
       <% end %>
