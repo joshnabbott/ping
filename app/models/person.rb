@@ -7,7 +7,7 @@ class Person < ActiveRecord::Base
   validates :first_name,  :presence => true
 
   def as_json(options={})
-    super(:only => [:first_name, :last_name, :id],
+    super(:only => [:first_name, :last_name, :job_title, :work_email_address, :work_phone_number, :id],
       :include => {
         :group => {:only => [:name, :id]}
       }

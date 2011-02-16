@@ -6,7 +6,7 @@ class Group < ActiveRecord::Base
   def as_json(options={})
   	super(:only => [:name],
   		:include => {
-	  		:person => {:only => [:first_name, :last_name, :title, :id]}
+	  		:person => {:only => [:first_name, :last_name, :job_title, :work_email_address, :work_phone_number, :id]}
   		}
   	)
   end
