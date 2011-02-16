@@ -37,6 +37,11 @@ nav a { margin: 0 20px 15px 0; }
 
 #main { clear: both; margin-top: 15px; }
 
+table {margin: 15px 0;}
+th {background: #CCC;}
+td {padding: 3px;}
+
+
 div.field, div.actions {
   margin-bottom: 10px;
 }
