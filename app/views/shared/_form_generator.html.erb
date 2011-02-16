@@ -7,7 +7,7 @@
       
     <% if column.type == :integer || column.type == :float || column.type == :string %>  
       <% if column.name =~ /_id$/ # is this a id/foreign key field %>  
-        <% column_class = column.name.classify %>     
+        <% column_class = column.name.gsub('_id','').classify.constantize %>
         <% if column_class %>  
           <%= collection_select(object.class.name.underscore.to_sym, column.name.to_sym, column_class.all, :id, :name, :prompt => true) %>
         <% else %>  
