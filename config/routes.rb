@@ -16,6 +16,7 @@ Factorypeople::Application.routes.draw do
   resources :people do
     :groups
   end
+  match 'people/:id/vcard' => 'people#vcard'
 
   resources :users
   resources :sessions

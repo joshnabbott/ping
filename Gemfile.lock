@@ -72,6 +72,7 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.24)
+    vpim (0.695)
 
 PLATFORMS
   ruby
@@ -81,3 +82,4 @@ DEPENDENCIES
   meta_search
   rails (= 3.0.3)
   sqlite3-ruby
+  vpim

@@ -86,4 +86,35 @@ class PeopleController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+
+  def vcard
+    @person = Person.find_by_id(params[:id])
+   
+    card = Vpim::Vcard::Maker.make2 do |maker|
+   
+      maker.add_name do |name|
+            name.given = @person.first_name
+            name.family = @person.last_name
+      end
+   
+      # maker.add_addr do |addr|
+      #       addr.preferred = true
+      #       addr.location = 'work'
+      #       addr.street = '243 Felixstowe Road'
+      #       addr.locality = 'Ipswich'
+      #       addr.country = 'United Kingdom'
+      # end
+
+      maker.nickname = @person.nick_name
+      maker.title = @person.job_title
+
+      maker.add_tel(@person.work_phone_number)
+      maker.add_email(@person.work_email_address) { |e| e.location = 'work' }
+
+    end
+   
+    send_data card.to_s, :filename => @person.username+'.vcf'
+  end
+
 end
