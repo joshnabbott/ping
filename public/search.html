@@ -14,11 +14,17 @@
     #groups { float: left; width: 230px; margin: 250px 0 0; padding: 0 0 0 5px; }
       #groups li { cursor: pointer; }
     #results { float: right; width: 350px; padding: 7px 10px; background: #eee; color: #333; border-radius: 5px; }
-      #results li { padding: 10px 0; border-bottom: 1px solid #aaa; border-top: 1px solid #fff; }
+      #results li { position: relative; padding: 10px 0; border-bottom: 1px solid #aaa; border-top: 1px solid #fff; }
         #results li:last-of-type { border-bottom: none; }
         #results li:first-of-type { border-top: none; }
         #results li a { padding: 3px; text-decoration: none; font-weight: bold; color: #000; background: #ccc; border-radius: 3px; }
           #results li a:hover { background: #ddd; color: #666; }
+        #results li .vcard {
+          position: absolute; bottom: 5px; right: 0;
+          width: 24px; height: 18px;
+          background: url(/images/vcard.png) top left no-repeat;
+          text-indent: -99999px; cursor: pointer;
+        }
         #results .details { margin-top: 5px; font-size: 12px; }
 
 
@@ -38,6 +44,7 @@
     <li>
       <a href="people/{{id}}">{{first_name}} {{last_name}}</a> {{job_title}}
       <div class="details">{{work_email_address}} / {{work_phone_number}}</div>
+      <span class="vcard">download vcard</span>
     </li>
   </script>
 
@@ -83,7 +90,8 @@
               || L.toLowerCase().indexOf(val) >= 0
               || full.toLowerCase().indexOf(val) >= 0
             ) {
-              $('#results').append(_.template(template, this));
+              var result = $(_.template(template, this)).data('id', this.id);
+              $('#results').append(result);
             }
           });
           if($('#results li').length > 0) $('#results').show();
@@ -121,6 +129,11 @@
           });
         });
         if($('#results li').length > 0) $('#results').show();
+      });
+
+      $('#results li .vcard').live('click', function(){
+        var personId = $(this).parent('li').data('id');
+        window.location = '/people/'+personId+'/vcard';
       });
 
     });
