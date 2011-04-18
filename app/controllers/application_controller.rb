@@ -3,6 +3,16 @@ class ApplicationController < ActionController::Base
   
   helper_method :current_user
 
+  def admin?
+    session[:admin_user]
+  end
+
+  helper_method :admin?
+
+  def admin_required
+    redirect_to '/auth/admin' unless admin?
+  end
+
   private
 
   def current_user

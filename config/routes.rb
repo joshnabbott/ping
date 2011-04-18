@@ -20,5 +20,7 @@ Factorypeople::Application.routes.draw do
 
   resources :users
   resources :sessions
+  
+  match '/auth/google/callback', :to => 'sessions#authenticate_admin'
 
 end

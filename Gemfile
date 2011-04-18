@@ -10,8 +10,7 @@ gem 'vpim'
 gem 'sqlite3-ruby', :require => 'sqlite3'
 gem "bcrypt-ruby", :require => "bcrypt"
 
-# Use unicorn as the web server
-# gem 'unicorn'
+gem 'omniauth'
 
 # Deploy with Capistrano
 # gem 'capistrano'
