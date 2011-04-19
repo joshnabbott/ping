@@ -1,26 +1,22 @@
 Factorypeople::Application.routes.draw do
 
-  get "log_out" => "sessions#destroy", :as => "log_out"
-  get "log_in" => "sessions#new", :as => "log_in"
-  get "sign_up" => "users#new", :as => "sign_up"
-
-  # root :to => "users#new"
+  devise_for :users
 
   root :to => "home#index"
   match 'admin' => "home#index"
   
   resources :groups do
-    :people
+    resources :people
   end
 
   resources :people do
-    :groups
+    member do
+      get :vcard
+    end
+    resources :groups
   end
-  match 'people/:id/vcard' => 'people#vcard'
 
   resources :users
   resources :sessions
-  
-  match '/auth/google/callback', :to => 'sessions#authenticate_admin'
 
 end

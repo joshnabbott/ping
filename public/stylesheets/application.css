@@ -1,0 +1,33 @@
+#title { float: left; }
+
+#user_nav {float:right}
+
+nav { float: left; margin: 10px 0 0 15px; }
+nav a { margin: 0 20px 15px 0; }
+.icon { 
+  display: block; float: left; 
+  height: 20px; 
+  padding: 5px 5px 3px 26px; 
+  background: #ddd url(/images/people.png) 3px 4px no-repeat;
+  color: #444;
+  font-size: 1.2em; font-weight: bold;
+  border-radius: 5px;
+}
+.icon:hover, .icon.active { background-color: #AAA; color: #333; }
+.icon.people {}
+.icon.groups {background-position: 3px -48px; padding-left: 36px;}
+
+#main { clear: both; margin-top: 15px; }
+
+/* Flutie - These are styles to make the page look nice */    
+
+body { background-color: #dadada; }    
+
+.content {      
+	background: #fff;      
+	padding: 40px;      
+	margin: 40px auto;      
+	width: 880px;      
+	-moz-border-radius: 24px;      
+	-webkit-border-radius: 24px;    
+}

@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: groups
+#
+#  id         :integer         not null, primary key
+#  name       :string(255)
+#  person_id  :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class Group < ActiveRecord::Base
 	ActiveRecord::Base.include_root_in_json = false
   validates :name,  :presence => true

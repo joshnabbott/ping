@@ -1,25 +1,71 @@
-<%= form_for(@person) do |f| %>
-  <% if @person.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@person.errors.count, "error") %> prohibited this person from being saved:</h2>
+<% semantic_form_for @person do |form| %>
 
-      <ul>
-      <% @person.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+  <% form.inputs :name => "General" do %>
+    <%= form.input :nick_name %>
+    <%= form.input :bio %>
+    <%= form.input :personal_email_address %>
+    <%= form.input :home_phone_number %>
+    <%= form.input :home_fax_number %>
+    <%= form.input :home_mobile_number %>
+    <%= form.input :home_address %>
+    <%= form.input :home_city %>
+    <%= form.input :home_state %>
+    <%= form.input :home_zip %>
+    <%= form.input :home_country, :as => :string %>
+    <%= form.input :emergency_contact_name %>
+    <%= form.input :emergency_contact_number %>
+    <%= form.input :emergency_contact_relation %>    
   <% end %>
-  <%= render :partial => "shared/form_generator", :locals => {:object => @person, :f => f} %>
-  <div class="field">
-    <% @groups.each do |g| %>
-      <%= check_box_tag "person[group_ids][]", g.id, @person.group.include?(g) %>
-      <%= g.name %>
-      <br />
-    <% end %>
-  </div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <% form.inputs :name => "HR" do %>
+    <%= form.input :first_name %>
+    <%= form.input :middle_name %>
+    <%= form.input :last_name %>
+    <%= form.input :title %>
+    <%= form.input :gender %>
+    <%= form.input :department %>
+    <%= form.input :job_title %>
+    <%= form.input :hire_date %>
+    <%= form.input :hire_date_vacation_adjustment %>
+    <%= form.input :departure_date %>
+    <%= form.input :birthday %>
+    <%= form.input :pay_type %>
+    <%= form.input :work_email_address %>
+    <%= form.input :work_phone_number %>
+    <%= form.input :work_fax_number %>
+    <%= form.input :work_mobile_number %>
+    <%= form.input :work_extension %>
+    <%= form.input :work_address %>
+    <%= form.input :work_city %>
+    <%= form.input :work_state %>
+    <%= form.input :work_zip %>
+    <%= form.input :work_country, :as => :string %>
+  <% end %>
+
+  <% form.inputs :name => "Facilities" do %>
+    <%= form.input :seating_floor %>
+    <%= form.input :seating_number %>
+    <%= form.input :building_card %>
+    <%= form.input :garage_card %>
+    <%= form.input :fed_ex_account, :label => 'FedEx Account' %>
+  <% end %>
+
+  <% form.inputs :name => "IT" do %>
+    <%= form.input :username %>
+    <%= form.input :status %>
+    <%= form.input :type %>
+    <%= form.input :email_account_active %>
+    <%= form.input :chat_aim, :label => 'AIM' %>
+    <%= form.input :chat_skype, :label => 'Skype' %>
+    <%= form.input :chat_gtalk, :label => 'Google Talk' %>
+  <% end %>
+  
+  <% form.inputs :name => "Groups" do %>
+    <%= form.input :groups, :as => :check_boxes, :collection => @groups %>
+  <% end %>
+  
+  <% form.buttons do %>
+    <%= form.commit_button %>
+  <% end %>
+  
 <% end %>
