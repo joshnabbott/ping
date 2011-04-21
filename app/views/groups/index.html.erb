@@ -8,12 +8,18 @@
     <th></th>
   </tr>
 
-<% @groups.each do |group| %>
-  <tr>
-    <td><%= group.name %></td>
-    <td><%= link_to 'Show', group %></td>
-    <td><%= link_to 'Edit', edit_group_path(group) %></td>
-    <td><%= link_to 'Destroy', group, :confirm => 'Are you sure?', :method => :delete %></td>
+<% unless @groups.empty? %>
+  <% @groups.each do |group| %>
+    <tr>
+      <td><%= group.name %></td>
+      <td><%= link_to 'Details', group %></td>
+      <td><%= link_to 'Edit', edit_group_path(group) %></td>
+      <td><%= link_to 'Destroy', group, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+<% else %>
+  <tr colspan="4">
+    <td>No groups found</td>
   </tr>
 <% end %>
 </table>

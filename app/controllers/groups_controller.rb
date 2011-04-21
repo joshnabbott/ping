@@ -1,4 +1,7 @@
 class GroupsController < ApplicationController
+
+  before_filter :authenticate_credential!
+
   # GET /groups
   # GET /groups.xml
   def index

@@ -2,30 +2,32 @@
 <html>
 <head>
   <title>Factory People</title>
-  <%= stylesheet_link_tag 'application', 'flutie', :cache => true %>
+  <%= stylesheet_link_tag 'flutie', 'application', :cache => true %>
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
 </head>
 <body>
-  <h1 id="title"><a href="/">Factory</a></h1>
+  <h1 id="title" class="bubble"><a href="/">Factory</a></h1>
 
-  <div id="user_nav">
-    <% if current_user %>
-      Logged in as <%= current_user.name %>.
-      <%= link_to "Log out", destroy_user_session_path %>
+  <div id="user_nav" class="bubble">
+    <% if current_credential %>
+      Logged in as <%= current_credential.username %>.
+      <%= link_to "Log out", destroy_credential_session_path %>
     <% else %>
-      <%= link_to "Log in", new_user_session_path %>
+      <%= link_to "Log in", new_credential_session_path %>
     <% end %>
   </div>
 
-  <nav>
+  <nav class="bubble">
     <%= link_to "People", people_path, {:class => "people icon"} %>
     <%= link_to "Groups", groups_path, {:class => "groups icon"} %>
   </nav>
-
-  <% flash.each do |name, msg| %>
-    <%= content_tag :div, msg, :id => "flash_#{name}" %>
-  <% end %>
+  
+  <section id="flash">
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, :id => "flash_#{name}", :class => name %>
+    <% end %>
+  </section>
 
   <section id="main" class="content">
     <%= yield %>

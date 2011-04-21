@@ -9,10 +9,18 @@
 #  updated_at :datetime
 #
 
-class Group < ActiveRecord::Base
-	ActiveRecord::Base.include_root_in_json = false
-  validates :name,  :presence => true
-  has_and_belongs_to_many :person
+class Group
+  
+  include MongoMapper::Document
+  
+  key :name, String,  :required => true, 
+                      :unique   => true
+  
+  def members
+    Person.where(:group_ids => self.id)
+  end
+  
+  ActiveRecord::Base.include_root_in_json = false
 
   def as_json(options={})
   	super(:only => [:name],

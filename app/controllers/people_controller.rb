@@ -1,9 +1,11 @@
 class PeopleController < ApplicationController
+  
+   before_filter :authenticate_credential!
+  
   # GET /people
   # GET /people.xml
   def index
-    @search = Person.search(params[:search])
-    @people = @search.all
+    @people = Person.all
 
     respond_to do |format|
       format.html # index.html.erb

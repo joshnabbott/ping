@@ -7,8 +7,8 @@
 
 <p>
   <b>People:<br /></b>
-  <% @group.person.each do |p| %>
-    <%= p.username %>
+  <% @group.members.each do |p| %>
+    <%= p.default_username %>
     <br />
   <% end %>
 </p>

@@ -1,6 +1,6 @@
 Factorypeople::Application.routes.draw do
 
-  devise_for :users
+  devise_for :credentials
 
   root :to => "home#index"
   match 'admin' => "home#index"
@@ -15,8 +15,5 @@ Factorypeople::Application.routes.draw do
     end
     resources :groups
   end
-
-  resources :users
-  resources :sessions
 
 end

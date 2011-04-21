@@ -17,8 +17,8 @@
 </p>
 
 <p>
-  <b>Username:</b>
-  <%= @person.username %>
+  <b>Default Username:</b>
+  <%= @person.default_username %>
 </p>
 
 <p>
@@ -28,7 +28,7 @@
 
 <p>
   <b>Groups:</b>
-  <% @person.group.each do |g| %>
+  <% @person.groups.each do |g| %>
     <%= g.name %>
   <% end %>
 </p>

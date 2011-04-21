@@ -15,18 +15,23 @@
     <th></th>
     <th></th>
   </tr>
-
-<% @people.each do |person| %>
-  <tr>
-    <td><%= person.first_name %></td>
-    <td><%= person.last_name %></td>
-    <td><%= person.title %></td>
-    <td><%= person.username %></td>
-    <td><%= person.bio %></td>
-    <td><%= link_to 'Details', person %></td>
-    <td><%= link_to 'Edit', edit_person_path(person) %></td>
-    <td><%= link_to 'Destroy', person, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+<% unless @people.empty? %>
+    <% @people.each do |person| %>
+      <tr>
+        <td><%= person.first_name %></td>
+        <td><%= person.last_name %></td>
+        <td><%= person.title %></td>
+        <td><%= person.default_username %></td>
+        <td><%= person.bio %></td>
+        <td><%= link_to 'Details', person %></td>
+        <td><%= link_to 'Edit', edit_person_path(person) %></td>
+        <td><%= link_to 'Destroy', person, :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+    <% end %>
+  <% else %>
+      <tr colspan="8">
+        <td>No people found</td>
+      </tr>
 <% end %>
 </table>
 <%= link_to 'New Person', new_person_path %>
