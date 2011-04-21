@@ -5,7 +5,7 @@
 #  id                            :integer         not null, primary key
 #  first_name                    :string(255)
 #  title                         :string(255)
-#  username                      :string(255)
+#  default_username              :string(255)
 #  bio                           :text
 #  created_at                    :datetime
 #  updated_at                    :datetime

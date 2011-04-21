@@ -4,20 +4,17 @@ gem 'rails',                        '3.0.6'
 gem 'meta_search'
 gem 'vpim'
 
+gem 'mysql2'
 gem 'sqlite3-ruby',                               :require => 'sqlite3'
+gem 'fastercsv'
 
 gem 'haml-rails'
 gem 'formtastic',                   "~> 1.2.3"
 gem "flutie",                       "~> 1.1"
 
-gem 'mongo_mapper'
-gem 'bson_ext'
-gem 'fastercsv'
-gem 'mm-multi-parameter-attributes'
-gem 'orm_adapter',                                :git => 'https://github.com/icaruswings/orm_adapter.git'
 gem 'devise',                       '1.3.0'
-gem 'mm-devise',                                  :git => 'https://github.com/pollingj/mm-devise.git'
 gem 'devise_aes_encryptable'
+gem 'cancan'
 
 group :development, :test do
   gem 'auto_annotate',              '0.1'

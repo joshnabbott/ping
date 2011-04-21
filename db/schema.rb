@@ -10,7 +10,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110418224756) do
+ActiveRecord::Schema.define(:version => 20110421213034) do
+
+  create_table "credentials", :force => true do |t|
+    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                         :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "password_salt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "username"
+    t.integer  "person_id"
+  end
+
+  add_index "credentials", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "groups", :force => true do |t|
     t.string   "name"
@@ -27,7 +46,7 @@ ActiveRecord::Schema.define(:version => 20110418224756) do
   create_table "people", :force => true do |t|
     t.string   "first_name"
     t.string   "title"
-    t.string   "username"
+    t.string   "default_username"
     t.text     "bio"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -83,23 +102,5 @@ ActiveRecord::Schema.define(:version => 20110418224756) do
     t.integer "person_id"
     t.integer "group_id"
   end
-
-  create_table "users", :force => true do |t|
-    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.string   "password_salt"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "username"
-  end
-
-  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end

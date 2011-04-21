@@ -9,17 +9,13 @@
 #  updated_at :datetime
 #
 
-class Group
+class Group < ActiveRecord::Base
   
-  include MongoMapper::Document
+  validates :name,  :presence   => true,
+                    :uniqueness => true
   
-  key :name, String,  :required => true, 
-                      :unique   => true
-  
-  def members
-    Person.where(:group_ids => self.id)
-  end
-  
+  has_and_belongs_to_many :people
+
   ActiveRecord::Base.include_root_in_json = false
 
   def as_json(options={})

@@ -26,8 +26,7 @@ namespace :import do
       person = Person.create!(  :first_name           => first_name,
                                 :last_name            => last_name,
                                 :job_title            => job_title,
-                                :username             => username,
-                                :gender               => gender,
+                                :gender               => gender.downcase,
                                 :work_email_address   => email,
                                 :work_phone_number    => work_direct,
                                 :work_extension       => work_extension,
@@ -42,11 +41,11 @@ namespace :import do
                                 :chat_aim             => aim,
                                 :chat_skype           => skype,
                                 :department           => department,
-                                :default_username     => username )
+                                :default_username     => username,
+                                :pay_type             => 'salaried',
+                                :home_country         => 'USA' )
                                 
-        person.create_credential!(:username => username, :password => 'password', :password_confirmation => 'password')
-      
-    
+        person.create_credential(:username => username, :password => 'password', :password_confirmation => 'password')
     
     end
   end
