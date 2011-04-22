@@ -102,7 +102,6 @@ class PeopleController < ApplicationController
     end
    
     send_data card.to_s, :filename => @person.username + '.vcf'
-    authorize! :vcard, @person
   end
 
 end

@@ -10,6 +10,12 @@ module HtmlSelectorsHelpers
 
     when /the page/
       "html > body"
+    when /the (#{Factory.factories.values.map(&:human_name) * '|'}) with the (.*) "([^"]*)/
+      debugger
+      human_name  = $1
+      attribute   = $2
+      value       = $3
+      "##{dom_id(human_name.classify.constantize.where(attribute.to_sym => value).first)}"
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
@@ -28,7 +34,6 @@ module HtmlSelectorsHelpers
     # web steps:
     when /"(.+)"/
       $1
-
     else
       raise "Can't find mapping from \"#{locator}\" to a selector.\n" +
         "Now, go and add a mapping in #{__FILE__}"
@@ -36,4 +41,5 @@ module HtmlSelectorsHelpers
   end
 end
 
+World(ActionController::RecordIdentifier)
 World(HtmlSelectorsHelpers)

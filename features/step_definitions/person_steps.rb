@@ -1,5 +1,4 @@
 When /^I delete the (\d+)(?:st|nd|rd|th) person$/ do |pos|
-  visit people_path
   within("table tr:nth-child(#{pos.to_i+1})") do
     click_link "Destroy"
   end

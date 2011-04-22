@@ -4,6 +4,7 @@ Feature: Manage people
 
   Background:
     Given I am authenticated
+    And I am in the "IT" group
   
   Scenario: Register a new person
     Given I am on the new person page
@@ -68,6 +69,9 @@ Feature: Manage people
     And I should see "john.q.smith"
 
   Scenario: Delete a person
-    Given I go to the people page
-    And I follow "Destroy"
-    Then I should see "No people found"
+    Given the following people exist:
+      | Default Username  |
+      | joe.smith        |
+    Given I am on the people page
+    And I delete the 2nd person
+    Then I should not see "joe.smith"

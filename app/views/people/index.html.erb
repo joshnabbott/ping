@@ -17,7 +17,7 @@
   </tr>
 <% unless @people.empty? %>
     <% @people.each do |person| %>
-      <tr>
+      <tr id="<%= dom_id(person) %>">
         <td><%= person.first_name %></td>
         <td><%= person.last_name %></td>
         <td><%= person.title %></td>

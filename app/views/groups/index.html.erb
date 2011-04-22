@@ -10,7 +10,7 @@
 
 <% unless @groups.empty? %>
   <% @groups.each do |group| %>
-    <tr>
+    <tr id="<%= dom_id(group) %>">
       <td><%= group.name %></td>
       <td><%= link_to 'Details', group %></td>
       <td><%= link_to 'Edit', edit_group_path(group) %></td>

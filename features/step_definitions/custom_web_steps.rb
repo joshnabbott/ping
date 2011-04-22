@@ -1,12 +1,17 @@
 Given /^I am authenticated$/ do
   username = 'testuser'
   password = 'password'
-  Factory(:credential, :username => username, :password => password, :password_confirmation => password)
+  @credential = Factory(:credential, :username => username, :password => password, :password_confirmation => password)
 
   Given %{I go to the login page}
   And %{I fill in "credential_username" with "#{username}"}
   And %{I fill in "credential_password" with "#{password}"}
   And %{I press "Sign in"}
+end
+
+Given /^I am in the "([^"]*)" group$/ do |group_name|
+  group = Group.find_or_create_by_name(group_name)
+  @credential.person.groups << group
 end
 
 #Then /^(?:|I )should see "([^"]*)"$/ do |text|

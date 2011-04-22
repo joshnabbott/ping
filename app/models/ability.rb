@@ -3,7 +3,7 @@ class Ability
 
   def initialize(credential)
 
-     can :manage, :all
+    can :manage, :all if Rails.env.development?
 
     person = credential.person
 
@@ -11,8 +11,9 @@ class Ability
     can :view, :home
 
     # User can manage their own public profile
-    can :manage_public_profile, Person, :id => person.id
+    can :manage_public_profile, Person, :id => credential.person.id
 
+    # IT can manage groups, IT/Facilities profiles
     if person.group_names.include?('IT')
       can :manage,                    Person
       can :manage_it_profile,         Person
@@ -20,6 +21,7 @@ class Ability
       can :manage,                    Group
     end
 
+    # HR can manage HR profiles
     if person.group_names.include?('HR')
       can :manage,                    Person
       can :manage_hr_profile,         Person
