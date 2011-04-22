@@ -1,0 +1,68 @@
+- semantic_form_for @person do |form|
+
+  - if can? :manage_public_profile, Person
+    = form.inputs :name => "Public Profile" do
+      = form.input :nick_name, :label => 'Nickname'
+      = form.input :bio
+      = form.input :personal_email_address
+      = form.input :home_phone_number
+      = form.input :home_fax_number
+      = form.input :home_mobile_number
+      = form.input :home_address
+      = form.input :home_city
+      = form.input :home_state
+      = form.input :home_zip
+      = form.input :home_country, :as => :select, :collection => Person::COUNTRIES, :include_blank => false
+      = form.input :emergency_contact_name
+      = form.input :emergency_contact_number
+      = form.input :emergency_contact_relation
+
+  - if can? :manage_hr_profile, Person
+    = form.inputs :name => "HR" do
+      = form.input :first_name
+      = form.input :middle_name
+      = form.input :last_name
+      = form.input :title
+      = form.input :gender, :as => :select, :collection => Person.genders_for_select, :include_blank => false
+      = form.input :department, :as => :select, :collection => Person::DEPARTMENTS, :include_blank => false
+      = form.input :job_title
+      = form.input :hire_date,  :as => :date
+      = form.input :hire_date_vacation_adjustment,  :as => :date
+      = form.input :departure_date,  :as => :date
+      = form.input :birthday,  :as => :date
+      = form.input :pay_type, :as => :select, :collection => Person.pay_types_for_select, :include_blank => false
+      = form.input :work_email_address
+      = form.input :work_phone_number
+      = form.input :work_fax_number
+      = form.input :work_mobile_number
+      = form.input :work_extension
+      = form.input :work_address
+      = form.input :work_city
+      = form.input :work_state
+      = form.input :work_zip
+      = form.input :work_country, :as => :select, :collection => Person::COUNTRIES, :include_blank => false
+
+  - if can? :manage_facilities_profile, Person
+    = form.inputs :name => "Facilities" do
+      = form.input :seating_floor
+      = form.input :seating_number
+      = form.input :building_card
+      = form.input :garage_card
+      = form.input :fed_ex_account, :label => 'FedEx Account'
+
+  - if can? :manage_it_profile, Person
+    = form.inputs :name => "IT" do
+      = form.input :default_username
+      = form.input :status
+      = form.input :type
+      = form.input :email_account_active, :as => :boolean
+      = form.input :chat_aim, :label => 'AIM'
+      = form.input :chat_skype, :label => 'Skype'
+      = form.input :chat_gtalk, :label => 'Google Talk'
+
+  - if can? :manage, Group
+    = form.inputs :name => "Groups" do
+      = form.input :groups, :as => :check_boxes, :collection => @groups, :label => ''
+  
+  = form.buttons do
+    = form.commit_button

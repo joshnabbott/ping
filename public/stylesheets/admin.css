@@ -1,0 +1,207 @@
+/*
+ * New Admin Stylesheet
+*/
+
+
+/* Defaults */
+
+body {
+  color: #333;
+}
+
+/* --- Utility classes --- */
+.force_break {
+  clear: both;
+}
+.standard_site_width {
+  width: 960px;
+  margin: 0 auto;
+}
+
+
+/* --- Layout --- */
+
+#header {
+  position: fixed;
+  width: 100%;
+  z-index: 99;
+  left: 0;
+  top: 0;
+}
+#tip_top_nav {
+  background: #222;
+  padding: 10px 0;
+}
+#tip_top_nav h1 {
+  width: 120px;
+  height: 21px;
+  background: url(/images/admin/logo_fdl.png) no-repeat left top;
+  margin: 0;
+}
+#tip_top_nav h1 em {
+  display: none;
+}
+#tip_top_nav p.user_info {
+  float: right;
+  margin: 0;
+  color: #8f9295;
+  font-size: 12px;
+}
+#tip_top_nav p.user_info em,
+#tip_top_nav p.user_info a {
+  color: #fff;
+  font-style: normal;
+  margin: 0 3px;
+}
+
+#top_nav {
+  height: 50px;
+  background-color: #8f9295;
+}
+#top_nav ul {
+  margin: 0;
+  padding: 0;
+}
+#top_nav li {
+  list-style: none;
+  float: left;
+}
+#top_nav li a {
+  float: left;
+  margin: 10px 0;
+  border-right: #aaabab 1px solid;
+  padding: 8px 10px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+}
+#top_nav li a.current {
+  color: #333;
+}
+#top_nav li.home a {
+  background: url(/images/admin/icon_home_off.png) no-repeat center center;
+  height: 12px;
+  width: 20px;
+}
+
+#top_nav li.home a:hover {
+  background-image: url(/images/admin/icon_home_on.png);
+}
+#top_nav li.home a em {
+  display: none;
+}
+
+#context_nav {
+  float: right;
+  margin: 50px 0 0 20px;
+
+  background: #ccc;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  color: #333;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 18px;
+  padding: 10px;
+  width: 280px;
+}
+#context_nav h2 {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+#context_nav a {
+  display: block;
+  color: #333;
+}
+
+#content {
+  margin-top: 125px;
+}
+#content .narrow_content {
+}
+/* --- misc layout classes --- */
+
+ul.big_list {
+  margin: 0;
+  padding: 0;
+}
+li.carlines_list {
+  list-style: none;
+  clear: both;
+  padding: 20px 0;
+  border-bottom: #ebebeb 1px solid;
+}
+.carlines_list h2 {
+  float: left;
+}
+.carlines_list h2 a {
+  color: #333;
+  font-weight: bold;
+}
+div.extra_tools {
+  float: right;
+  background: #ccc;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  color: #333;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 18px;
+  padding: 10px;
+  width: 280px;
+}
+.extra_tools ul {
+  padding: 0;
+}
+.extra_tools li {
+  list-style: none;
+}
+.extra_tools a {
+  color: #333;
+}
+div.model_list {
+  float: left;
+  line-height: 24px;
+  clear: left;
+}
+img.sort-handle {
+  cursor: move;
+}
+
+div.sortable {
+  padding: 3px;
+  margin-bottom: 2px;
+}
+
+/* --- Filtered results fieldsets --- */
+form.filter fieldset li {
+  list-style: none;
+  float: left;
+  width: 25%;
+}
+
+table.list .controls li {
+  list-style: none;
+  margin-bottom: 5px;
+}
+
+/* --- Pagination (w/ will_paginate) --- */
+
+.pagination {
+  margin: 1em 0;
+}
+
+.pagination span,
+.pagination em,
+.pagination a {
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+/* --- items related to old styles/markup --- */
+
+/*form.formtastic fieldset.buttons {*/
+  /*border: red 1px solid;*/
+  /*position: fixed;*/
+  /*top: 320px;*/
+/*}*/
