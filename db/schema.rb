@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110421213034) do
+ActiveRecord::Schema.define(:version => 20110422223445) do
 
   create_table "credentials", :force => true do |t|
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
@@ -31,6 +31,26 @@ ActiveRecord::Schema.define(:version => 20110421213034) do
 
   add_index "credentials", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
+  create_table "emergency_profiles", :force => true do |t|
+    t.integer  "person_id"
+    t.string   "emergency_contact_name"
+    t.string   "emergency_contact_number"
+    t.string   "emergency_contact_relation"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "facilities_profiles", :force => true do |t|
+    t.integer  "person_id"
+    t.string   "seating_floor"
+    t.string   "seating_number"
+    t.string   "building_card"
+    t.string   "garage_card"
+    t.string   "fed_ex_account"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "groups", :force => true do |t|
     t.string   "name"
     t.integer  "person_id"
@@ -43,27 +63,19 @@ ActiveRecord::Schema.define(:version => 20110421213034) do
     t.integer "person_id"
   end
 
-  create_table "people", :force => true do |t|
+  create_table "hr_profiles", :force => true do |t|
     t.string   "first_name"
-    t.string   "title"
-    t.string   "default_username"
-    t.text     "bio"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "middle_name"
     t.string   "last_name"
-    t.string   "status"
-    t.string   "type"
+    t.string   "title"
+    t.string   "gender"
+    t.string   "department"
+    t.string   "job_title"
     t.date     "hire_date"
     t.date     "hire_date_vacation_adjustment"
     t.date     "departure_date"
-    t.string   "pay_type"
-    t.string   "job_title"
-    t.string   "seating_floor"
-    t.string   "seating_number"
-    t.string   "gender"
-    t.string   "middle_name"
-    t.string   "nick_name"
     t.date     "birthday"
+    t.string   "pay_type"
     t.string   "work_email_address"
     t.string   "work_phone_number"
     t.string   "work_fax_number"
@@ -74,6 +86,40 @@ ActiveRecord::Schema.define(:version => 20110421213034) do
     t.string   "work_state"
     t.string   "work_zip"
     t.string   "work_country"
+    t.integer  "person_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "it_profiles", :force => true do |t|
+    t.integer  "person_id"
+    t.string   "default_username"
+    t.string   "status"
+    t.string   "type"
+    t.boolean  "email_account_active"
+    t.string   "chat_aim"
+    t.string   "chat_skype"
+    t.string   "chat_gtalk"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "people", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "employee_photo"
+    t.integer  "user_id"
+  end
+
+  create_table "people_groups", :id => false, :force => true do |t|
+    t.integer "person_id"
+    t.integer "group_id"
+  end
+
+  create_table "public_profiles", :force => true do |t|
+    t.integer  "person_id"
+    t.string   "nick_name"
+    t.text     "bio"
     t.string   "personal_email_address"
     t.string   "home_phone_number"
     t.string   "home_fax_number"
@@ -83,24 +129,8 @@ ActiveRecord::Schema.define(:version => 20110421213034) do
     t.string   "home_state"
     t.string   "home_zip"
     t.string   "home_country"
-    t.string   "emergency_contact_name"
-    t.string   "emergency_contact_number"
-    t.string   "emergency_contact_relation"
-    t.boolean  "email_account_active"
-    t.string   "employee_photo"
-    t.string   "chat_gtalk"
-    t.string   "chat_aim"
-    t.string   "chat_skype"
-    t.string   "building_card"
-    t.string   "garage_card"
-    t.string   "fed_ex_account"
-    t.integer  "user_id"
-    t.string   "department"
-  end
-
-  create_table "people_groups", :id => false, :force => true do |t|
-    t.integer "person_id"
-    t.integer "group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

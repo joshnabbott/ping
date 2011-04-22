@@ -21,7 +21,7 @@
         .standard_site_width
           %ul
             %li.home= link_to "<em>Home</em>".html_safe, root_path
-            %li= nav_item("My Profile", my_profile_path, :section => "people")
+            %li= nav_item("My Profile", my_profile_path, :section => "people") if logged_in?
             %li= nav_item("People", people_path, :section => "people") if can?(:manage, Person)
             %li= nav_item("Groups", groups_path, :section => "groups") if can?(:manage, Group)
     #content.standard_site_width

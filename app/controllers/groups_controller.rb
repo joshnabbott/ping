@@ -1,6 +1,5 @@
 class GroupsController < ApplicationController
 
-  before_filter :authenticate_credential!
   load_and_authorize_resource
 
   # GET /groups

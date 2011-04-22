@@ -2,97 +2,55 @@
 #
 # Table name: people
 #
-#  id                            :integer         not null, primary key
-#  first_name                    :string(255)
-#  title                         :string(255)
-#  default_username              :string(255)
-#  bio                           :text
-#  created_at                    :datetime
-#  updated_at                    :datetime
-#  last_name                     :string(255)
-#  status                        :string(255)
-#  type                          :string(255)
-#  hire_date                     :date
-#  hire_date_vacation_adjustment :date
-#  departure_date                :date
-#  pay_type                      :string(255)
-#  job_title                     :string(255)
-#  seating_floor                 :string(255)
-#  seating_number                :string(255)
-#  gender                        :string(255)
-#  middle_name                   :string(255)
-#  nick_name                     :string(255)
-#  birthday                      :date
-#  work_email_address            :string(255)
-#  work_phone_number             :string(255)
-#  work_fax_number               :string(255)
-#  work_mobile_number            :string(255)
-#  work_extension                :string(255)
-#  work_address                  :string(255)
-#  work_city                     :string(255)
-#  work_state                    :string(255)
-#  work_zip                      :string(255)
-#  work_country                  :string(255)
-#  personal_email_address        :string(255)
-#  home_phone_number             :string(255)
-#  home_fax_number               :string(255)
-#  home_mobile_number            :string(255)
-#  home_address                  :string(255)
-#  home_city                     :string(255)
-#  home_state                    :string(255)
-#  home_zip                      :string(255)
-#  home_country                  :string(255)
-#  emergency_contact_name        :string(255)
-#  emergency_contact_number      :string(255)
-#  emergency_contact_relation    :string(255)
-#  email_account_active          :boolean
-#  employee_photo                :string(255)
-#  chat_gtalk                    :string(255)
-#  chat_aim                      :string(255)
-#  chat_skype                    :string(255)
-#  building_card                 :string(255)
-#  garage_card                   :string(255)
-#  fed_ex_account                :string(255)
-#  user_id                       :integer
-#  department                    :string(255)
+#  id             :integer         not null, primary key
+#  created_at     :datetime
+#  updated_at     :datetime
+#  employee_photo :string(255)
+#  user_id        :integer
 #
 
 class Person < ActiveRecord::Base
-  
-  GENDERS     = [ 'male', 'female' ]
-  PAY_TYPES   = [ 'hourly', 'salaried' ]
-  DEPARTMENTS = [ 'AS', 'CS', 'IS', 'MS', 'OPS', 'EXEC', 'IPS' ]
+
   COUNTRIES   = [ 'USA' ]
-  
-  def self.genders_for_select
-    GENDERS.map { |c| [ c.titleize, c ]}
-  end
-  
-  def self.pay_types_for_select
-    PAY_TYPES.map { |c| [ c.titleize, c ]}
-  end
 
   # Associations
-  has_one                 :credential
+  has_one                 :credential,          :dependent => :destroy
+  has_one                 :hr_profile,          :dependent => :destroy
+  has_one                 :it_profile,          :dependent => :destroy
+  has_one                 :facilities_profile,  :dependent => :destroy
+  has_one                 :public_profile,      :dependent => :destroy
+  has_one                 :emergency_profile,   :dependent => :destroy
+
   has_and_belongs_to_many :groups
 
   # Setup accessible (or protected) attributes for your model
   # attr_accessible :username, :password, :password_confirmation, :remember_me
 
-  validates :first_name,        :presence => true
-  validates :last_name,         :presence => true
-  validates :gender,            :presence => true,
-                                :inclusion => { :in => GENDERS }
-  validates :department,        :presence => true,
-                                :inclusion => { :in => DEPARTMENTS }
-  validates :pay_type,          :presence => true,
-                                :inclusion => { :in => PAY_TYPES }
-  validates :job_title,         :presence => true
-  validates :default_username,  :presence => true,
-                                :length => {:minimum => 3}
-  
-  validates :work_country,      :inclusion => { :in => COUNTRIES }
-  validates :home_country,      :inclusion => { :in => COUNTRIES }
+  validates_associated :hr_profile
+  validates_associated :it_profile
+  validates_associated :facilities_profile
+  validates_associated :public_profile
+  validates_associated :emergency_profile
+
+  accepts_nested_attributes_for :hr_profile
+  accepts_nested_attributes_for :it_profile
+  accepts_nested_attributes_for :facilities_profile
+  accepts_nested_attributes_for :public_profile
+  accepts_nested_attributes_for :emergency_profile
+
+  after_initialize do
+    self.build_hr_profile         unless self.hr_profile
+    self.build_it_profile         unless self.it_profile
+    self.build_facilities_profile unless self.facilities_profile
+    self.build_public_profile     unless self.public_profile
+    self.build_emergency_profile  unless self.emergency_profile
+  end
+
+  delegate :first_name,       :to => :hr_profile,     :allow_nil => true
+  delegate :last_name,        :to => :hr_profile,     :allow_nil => true
+  delegate :title,            :to => :hr_profile,     :allow_nil => true
+  delegate :default_username, :to => :it_profile,     :allow_nil => true
+  delegate :bio,              :to => :public_profile, :allow_nil => true
 
   def as_json(options={})
     super(:only => [:first_name, :last_name, :job_title, :work_email_address, :work_phone_number, :id],
@@ -104,12 +62,6 @@ class Person < ActiveRecord::Base
 
   def group_names
     self.groups.map(&:name)
-  end
-  
-  private
-  
-  def compact_group_ids
-    self.group_ids = self.group_ids.compact
   end
 
 end

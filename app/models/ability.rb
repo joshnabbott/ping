@@ -3,28 +3,39 @@ class Ability
 
   def initialize(credential)
 
-    can :manage, :all if Rails.env.development?
+#    can :manage, :all if Rails.env.development?
 
-    person = credential.person
-
-    # User can hit the home page
+    # Anyone can hit the home page
     can :view, :home
 
-    # User can manage their own public profile
-    can :manage_public_profile, Person, :id => credential.person.id
+    return unless credential && (person = credential.person)
 
-    # IT can manage groups, IT/Facilities profiles
+    # User can manage their own public and emergency profiles
+    can :manage, Person,            :id => credential.person.id
+    can :manage, PublicProfile,     :person => { :id => credential.person.id }
+    can :manage, EmergencyProfile,  :person => { :id => credential.person.id }
+
+    # User can view their own IT, HR, and Facilities profiles
+    can :view, ItProfile,         :person => { :id => credential.person.id }
+    can :view, HrProfile,         :person => { :id => credential.person.id }
+    can :view, FacilitiesProfile, :person => { :id => credential.person.id }
+
+    # IT can manage groups and IT/Facilities profiles
     if person.group_names.include?('IT')
-      can :manage,                    Person
-      can :manage_it_profile,         Person
-      can :manage_facilities_profile, Person
-      can :manage,                    Group
+      can :manage, Person
+      can :manage, ItProfile
+      can :manage, FacilitiesProfile
+      can :manage, Group
     end
 
     # HR can manage HR profiles
     if person.group_names.include?('HR')
-      can :manage,                    Person
-      can :manage_hr_profile,         Person
+      can :manage, Person
+      can :manage, HrProfile
+      can :manage, PublicProfile
+      can :manage, FacilitiesProfile
+      can :manage, EmergencyProfile
+      can :manage, Group
     end
 
     # Define abilities for the passed in user here. For example:
