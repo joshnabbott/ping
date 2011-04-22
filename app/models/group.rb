@@ -2,9 +2,9 @@
 #
 # Table name: groups
 #
-#  id         :integer         not null, primary key
+#  id         :integer(4)      not null, primary key
 #  name       :string(255)
-#  person_id  :integer
+#  person_id  :integer(4)
 #  created_at :datetime
 #  updated_at :datetime
 #

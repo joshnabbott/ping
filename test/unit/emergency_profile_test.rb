@@ -2,8 +2,8 @@
 #
 # Table name: emergency_profiles
 #
-#  id                         :integer         not null, primary key
-#  person_id                  :integer
+#  id                         :integer(4)      not null, primary key
+#  person_id                  :integer(4)
 #  emergency_contact_name     :string(255)
 #  emergency_contact_number   :string(255)
 #  emergency_contact_relation :string(255)

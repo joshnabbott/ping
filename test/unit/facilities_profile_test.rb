@@ -2,8 +2,8 @@
 #
 # Table name: facilities_profiles
 #
-#  id             :integer         not null, primary key
-#  person_id      :integer
+#  id             :integer(4)      not null, primary key
+#  person_id      :integer(4)
 #  seating_floor  :string(255)
 #  seating_number :string(255)
 #  building_card  :string(255)

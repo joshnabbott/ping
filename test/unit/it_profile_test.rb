@@ -2,12 +2,12 @@
 #
 # Table name: it_profiles
 #
-#  id                   :integer         not null, primary key
-#  person_id            :integer
+#  id                   :integer(4)      not null, primary key
+#  person_id            :integer(4)
 #  default_username     :string(255)
 #  status               :string(255)
 #  type                 :string(255)
-#  email_account_active :boolean
+#  email_account_active :boolean(1)
 #  chat_aim             :string(255)
 #  chat_skype           :string(255)
 #  chat_gtalk           :string(255)

@@ -2,11 +2,11 @@
 #
 # Table name: people
 #
-#  id             :integer         not null, primary key
+#  id             :integer(4)      not null, primary key
 #  created_at     :datetime
 #  updated_at     :datetime
 #  employee_photo :string(255)
-#  user_id        :integer
+#  user_id        :integer(4)
 #
 
 require 'test_helper'

@@ -2,8 +2,8 @@
 #
 # Table name: public_profiles
 #
-#  id                     :integer         not null, primary key
-#  person_id              :integer
+#  id                     :integer(4)      not null, primary key
+#  person_id              :integer(4)
 #  nick_name              :string(255)
 #  bio                    :text
 #  personal_email_address :string(255)
