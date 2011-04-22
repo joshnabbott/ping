@@ -52,6 +52,19 @@ class Person < ActiveRecord::Base
   delegate :default_username, :to => :it_profile,     :allow_nil => true
   delegate :bio,              :to => :public_profile, :allow_nil => true
 
+  define_index do
+    indexes hr_profile.first_name
+    indexes hr_profile.middle_name
+    indexes hr_profile.last_name
+    indexes hr_profile.job_title
+    indexes it_profile.default_username
+    indexes public_profile.nick_name
+    indexes public_profile.bio
+    indexes public_profile.personal_email_address
+    indexes facilities_profile.seating_floor
+    indexes facilities_profile.seating_number
+  end
+
   def as_json(options={})
     super(:only => [:first_name, :last_name, :job_title, :work_email_address, :work_phone_number, :id],
       :include => {

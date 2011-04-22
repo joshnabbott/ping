@@ -7,6 +7,7 @@ gem 'vpim'
 gem 'mysql2'
 gem 'sqlite3-ruby',                               :require => 'sqlite3'
 gem 'fastercsv'
+gem 'thinking-sphinx'
 
 gem 'haml-rails'
 gem 'formtastic',                   "~> 1.2.3"
