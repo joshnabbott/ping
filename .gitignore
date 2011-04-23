@@ -3,3 +3,7 @@ db/*.sqlite3
 log/*.log
 tmp/**/*
 .DS_Store
+db/sphinx
+*.log
+*.pid
+config/*.sphinx.conf
