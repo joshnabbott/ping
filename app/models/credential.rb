@@ -45,12 +45,14 @@ class Credential < ActiveRecord::Base
                   :password_confirmation, 
                   :remember_me
 
-  validates  :username, :presence   => true,
-                        :uniqueness => { :case_sensitive => true, :allow_blank => false }
+  validates   :username,  :presence   => true,
+                          :uniqueness => { :case_sensitive => true, :allow_blank => false }
 
-  validates :password,  :presence     => true,
-                        :confirmation => true,
-                        :length       => { :within => 5..50, :allow_blank => true }
+  validates   :password,  :presence     => true,
+                          :confirmation => true,
+                          :length       => { :within => 5..50, :allow_blank => true }
+
+  validates   :person_id, :presence => true
   
   def decrypted_password
     ::Devise::Encryptors::Aes256.decrypt(encrypted_password, Devise.pepper)
