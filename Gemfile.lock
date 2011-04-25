@@ -31,7 +31,7 @@ GEM
     aes (0.4.0)
     annotate (2.4.0)
     arel (2.0.9)
-    auto_annotate (0.1.0)
+    auto_annotate (0.2.0)
       annotate (>= 2.4.0)
       rails (>= 3.0.0)
       rake-hooks (>= 0.1)
@@ -171,7 +171,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  auto_annotate (= 0.1)
+  auto_annotate
   cancan
   capybara
   chronic

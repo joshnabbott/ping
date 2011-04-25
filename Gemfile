@@ -18,7 +18,7 @@ gem 'devise_aes_encryptable'
 gem 'cancan'
 
 group :development, :test do
-  gem 'auto_annotate',              '0.1'
+  gem 'auto_annotate'
   gem 'ruby-debug'
   gem 'cucumber-rails'
   gem 'capybara'
