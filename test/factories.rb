@@ -17,7 +17,7 @@ end
 
 Factory.define(:public_profile) do |f|
   f.bio                             'I am an employee'
-  f.nick_name                       'John'
+  f.nickname                        'John'
   f.personal_email_address          'johnsmith@yahoo.com'
   f.home_phone_number               '123-456-7890'
   f.home_fax_number                 '123-456-7890'

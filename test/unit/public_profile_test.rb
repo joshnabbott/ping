@@ -4,7 +4,7 @@
 #
 #  id                     :integer(4)      not null, primary key
 #  person_id              :integer(4)
-#  nick_name              :string(255)
+#  nickname               :string(255)
 #  bio                    :text
 #  personal_email_address :string(255)
 #  home_phone_number      :string(255)
