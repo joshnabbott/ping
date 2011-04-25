@@ -1,0 +1,15 @@
+%p
+  %b= @group.name
+
+%p
+  %b Members:
+  %br
+
+  %ul
+    - unless @group.people.empty?
+      - @group.people.each do |p|
+        %li= link_to p.full_name, p
+    - else
+      %li No Members
+
+= link_to('Edit', edit_group_path(@group)) + ' ' + link_to('Back', groups_path)

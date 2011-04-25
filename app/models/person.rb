@@ -86,6 +86,10 @@ class Person < ActiveRecord::Base
     self.groups.map(&:name)
   end
 
+  def full_name
+    [ self.first_name, self.last_name ] * ' '
+  end
+
   def to_vcard
     Vpim::Vcard::Maker.make2 do |maker|
 
