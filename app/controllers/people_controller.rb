@@ -1,14 +1,24 @@
 class PeopleController < ApplicationController
   
-   load_and_authorize_resource
+  load_and_authorize_resource
+
+#  # GET /people/search
+#  # GET /people/search.xml
+#  def search
+#    respond_to do |format|
+#      format.html # index.html.haml
+#      format.xml  { render :xml => @people }
+#      format.json  { render :json => @people }
+#    end
+#  end
 
   # GET /people
   # GET /people.xml
   def index
     respond_to do |format|
       format.html # index.html.haml
-      format.xml  { render :xml => @people }
-      format.json  { render :json => @people }
+      format.xml    { render :xml => @people }
+      format.json   { render :json => @people }
     end
   end
 
@@ -77,30 +87,7 @@ class PeopleController < ApplicationController
   end
 
   def vcard
-    card = Vpim::Vcard::Maker.make2 do |maker|
-   
-      maker.add_name do |name|
-            name.given = @person.first_name
-            name.family = @person.last_name
-      end
-   
-      # maker.add_addr do |addr|
-      #       addr.preferred = true
-      #       addr.location = 'work'
-      #       addr.street = '243 Felixstowe Road'
-      #       addr.locality = 'Ipswich'
-      #       addr.country = 'United Kingdom'
-      # end
-
-      maker.nickname = @person.nick_name
-      maker.title = @person.job_title
-
-      maker.add_tel(@person.work_phone_number)
-      maker.add_email(@person.work_email_address) { |e| e.location = 'work' }
-
-    end
-   
-    send_data card.to_s, :filename => @person.username + '.vcf'
+    send_data @person.to_vcard.to_s, :filename => @person.username + '.vcf'
   end
 
 end

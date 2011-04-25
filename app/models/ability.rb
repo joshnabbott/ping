@@ -5,8 +5,9 @@ class Ability
 
 #    can :manage, :all if Rails.env.development?
 
-    # Anyone can hit the home page
-    can :view, :home
+    # Anyone can hit the home page or search for people
+    can :view,    :home
+    can :search,  Person
 
     # Can't authorize anything if there's no associated person 
     return unless credential && (person = credential.person)

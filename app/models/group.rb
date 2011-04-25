@@ -17,11 +17,15 @@ class Group < ActiveRecord::Base
 
   ActiveRecord::Base.include_root_in_json = false
 
-  def as_json(options={})
-  	super(:only => [:name],
-  		:include => {
-	  		:person => {:only => [:first_name, :last_name, :job_title, :work_email_address, :work_phone_number, :id]}
-  		}
-  	)
+  def as_json(options = {})
+  	super(  :only => [ :name ],
+            :include => {
+	  		      :people => { :methods => [ :first_name,
+                                         :last_name,
+                                        :job_title,
+                                        :work_email_address,
+                                        :work_phone_number,
+                                        :id ] }
+  		      })
   end
 end

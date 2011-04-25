@@ -45,11 +45,15 @@ class Person < ActiveRecord::Base
     self.build_emergency_profile  unless self.emergency_profile
   end
 
-  delegate :first_name,       :to => :hr_profile,     :allow_nil => true
-  delegate :last_name,        :to => :hr_profile,     :allow_nil => true
-  delegate :title,            :to => :hr_profile,     :allow_nil => true
-  delegate :default_username, :to => :it_profile,     :allow_nil => true
-  delegate :bio,              :to => :public_profile, :allow_nil => true
+  delegate :first_name,         :to => :hr_profile,     :allow_nil => true
+  delegate :last_name,          :to => :hr_profile,     :allow_nil => true
+  delegate :title,              :to => :hr_profile,     :allow_nil => true
+  delegate :job_title,          :to => :hr_profile,     :allow_nil => true
+  delegate :work_email_address, :to => :hr_profile,     :allow_nil => true
+  delegate :work_phone_number,  :to => :hr_profile,     :allow_nil => true
+  delegate :default_username,   :to => :it_profile,     :allow_nil => true
+  delegate :bio,                :to => :public_profile, :allow_nil => true
+  delegate :nickname,           :to => :public_profile, :allow_nil => true
 
   define_index do
     indexes hr_profile.first_name
@@ -64,16 +68,47 @@ class Person < ActiveRecord::Base
     indexes facilities_profile.seating_number
   end
 
-  def as_json(options={})
-    super(:only => [:first_name, :last_name, :job_title, :work_email_address, :work_phone_number, :id],
-      :include => {
-        :group => {:only => [:name, :id]}
-      }
+  def as_json( options = {} )
+    super(  :methods => [ :first_name,
+                          :last_name,
+                          :job_title,
+                          :work_email_address,
+                          :work_phone_number,
+                          :id ],
+            :include => {
+              :groups => { :methods => [ :name,
+                                         :id ] }
+            }
     )
   end
 
   def group_names
     self.groups.map(&:name)
+  end
+
+  def to_vcard
+    Vpim::Vcard::Maker.make2 do |maker|
+
+      maker.add_name do |name|
+            name.given = self.first_name
+            name.family = self.last_name
+      end
+
+      # maker.add_addr do |addr|
+      #       addr.preferred = true
+      #       addr.location = 'work'
+      #       addr.street = '243 Felixstowe Road'
+      #       addr.locality = 'Ipswich'
+      #       addr.country = 'United Kingdom'
+      # end
+
+      maker.nickname = self.nickname
+      maker.title = self.job_title
+      maker.add_tel(self.work_phone_number)
+      maker.add_email(self.work_email_address) { |e| e.location = 'work' }
+      
+    end
+
   end
 
 end
