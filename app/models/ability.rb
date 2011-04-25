@@ -8,17 +8,18 @@ class Ability
     # Anyone can hit the home page
     can :view, :home
 
+    # Can't authorize anything if there's no associated person 
     return unless credential && (person = credential.person)
 
     # User can manage their own public and emergency profiles
-    can :manage, Person,            :id => credential.person.id
-    can :manage, PublicProfile,     :person => { :id => credential.person.id }
-    can :manage, EmergencyProfile,  :person => { :id => credential.person.id }
+    can :edit,    Person,            :id => person.id
+    can :edit,    PublicProfile,     :person_id => person.id
+    can :edit,    EmergencyProfile,  :person_id => person.id
 
     # User can view their own IT, HR, and Facilities profiles
-    can :view, ItProfile,         :person => { :id => credential.person.id }
-    can :view, HrProfile,         :person => { :id => credential.person.id }
-    can :view, FacilitiesProfile, :person => { :id => credential.person.id }
+    can :view,    ItProfile,         :person_id => person.id
+    can :view,    HrProfile,         :person_id => person.id
+    can :view,    FacilitiesProfile, :person_id => person.id
 
     # IT can manage groups and IT/Facilities profiles
     if person.group_names.include?('IT')

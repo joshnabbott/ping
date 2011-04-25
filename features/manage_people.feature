@@ -5,6 +5,7 @@ Feature: Manage people
   Background:
     Given I am authenticated
     And I am in the "IT" group
+    And I am in the "HR" group
   
   Scenario: Register a new person
     Given I am on the new person page
@@ -50,28 +51,34 @@ Feature: Manage people
     And I select "IS" from "Department"
     And I select "USA" from "Home country"
     And I select "USA" from "Work country"
-    And I select "4/11/2010" as the date for "person_hire_date"
-    And I select "4/11/2010" as the date for "person_departure_date"
-    And I select "4/11/2010" as the date for "person_birthday"
+    And I select "4/11/2010" as the date for "person_hr_profile_attributes_hire_date"
+    And I select "4/11/2010" as the date for "person_hr_profile_attributes_departure_date"
+    And I select "4/11/2010" as the date for "person_hr_profile_attributes_birthday"
     And I press "Create"
     Then I should see "Person was successfully created."
     And I should see "john.smith"
     
   Scenario: Update a person
+    Given the following hr profiles exist:
+      | First Name  |  Last Name |
+      | Joe         |  Smith     |
     Given the following people exist:
-      | Default Username  |
-      | john.smith        |
+      | HR Profile        |
+      | First Name: Joe   |
     And I am on the people page
-    And I follow "Edit"
-    And I fill in "Default username" with "john.q.smith"
+    And I follow "Edit" within the 2nd person
+    And I fill in "Default username" with "joe.smith"
     And I press "Update"
     Then I should see "Person was successfully updated."
-    And I should see "john.q.smith"
+    And I should see "joe.smith"
 
   Scenario: Delete a person
+    Given the following hr profiles exist:
+      | First Name  |  Last Name |
+      | Joe         |  Smith     |
     Given the following people exist:
-      | Default Username  |
-      | joe.smith        |
+      | HR Profile        |
+      | First Name: Joe   |
     Given I am on the people page
-    And I delete the 2nd person
+    And I follow "Destroy" within the 2nd person
     Then I should not see "joe.smith"
