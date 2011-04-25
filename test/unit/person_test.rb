@@ -6,7 +6,6 @@
 #  created_at     :datetime
 #  updated_at     :datetime
 #  employee_photo :string(255)
-#  user_id        :integer(4)
 #
 
 require 'test_helper'
