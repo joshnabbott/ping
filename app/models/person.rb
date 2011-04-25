@@ -61,7 +61,7 @@ class Person < ActiveRecord::Base
     indexes hr_profile.last_name
     indexes hr_profile.job_title
     indexes it_profile.default_username
-    indexes public_profile.nick_name
+    indexes public_profile.nickname
     indexes public_profile.bio
     indexes public_profile.personal_email_address
     indexes facilities_profile.seating_floor
