@@ -1,5 +1,4 @@
-class PeopleController < ApplicationController
-  
+class PeopleController < AuthenticatedController
   load_and_authorize_resource
 
 #  # GET /people/search
