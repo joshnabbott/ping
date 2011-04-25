@@ -6,7 +6,7 @@ class PeopleController < ApplicationController
   # GET /people.xml
   def index
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # index.html.haml
       format.xml  { render :xml => @people }
       format.json  { render :json => @people }
     end
