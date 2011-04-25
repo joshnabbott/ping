@@ -1,15 +1,18 @@
 class PeopleController < AuthenticatedController
+
+  before_filter :search_for_people, :only => :search
   load_and_authorize_resource
 
-#  # GET /people/search
-#  # GET /people/search.xml
-#  def search
-#    respond_to do |format|
-#      format.html # index.html.haml
-#      format.xml  { render :xml => @people }
-#      format.json  { render :json => @people }
-#    end
-#  end
+  # GET /people/search
+  # GET /people/search.xml
+  def search
+    respond_to do |format|
+      format.html   { render :action  => 'index' }
+      format.xml    { render :xml     => @people }
+      format.json   { render :json    => @people }
+      format.vcf    { send_data @people.map(&:to_vcard).map(&:to_s).join("\n"), :filename => 'search.vcf' }
+    end
+  end
 
   # GET /people
   # GET /people.xml
@@ -18,6 +21,7 @@ class PeopleController < AuthenticatedController
       format.html # index.html.haml
       format.xml    { render :xml => @people }
       format.json   { render :json => @people }
+      format.vcf    { send_data @people.map(&:to_vcard).map(&:to_s).join("\n"), :filename => 'directory.vcf' }
     end
   end
 
@@ -27,7 +31,8 @@ class PeopleController < AuthenticatedController
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @person }
-      format.json  { render :json => @person }
+      format.json { render :json => @person }
+      format.vcf  { send_data @person.to_vcard.to_s, :filename => @person.default_username + '.vcf' }
     end
   end
 
@@ -85,8 +90,10 @@ class PeopleController < AuthenticatedController
     end
   end
 
-  def vcard
-    send_data @person.to_vcard.to_s, :filename => @person.username + '.vcf'
+  protected
+
+  def search_for_people
+    @people = Person.search(params[:search] || '*', :star =>true, :retry_stale => true)
   end
 
 end

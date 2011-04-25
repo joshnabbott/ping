@@ -1,32 +1,35 @@
-= form_for :search, @search, :html => {:method => :get} do |f|
-  = f.label :bio_contains
-  = f.text_field :bio_contains
-  = f.submit
+= form_tag search_people_path, :method => :get do
+  = label_tag :search, 'Search for a person'
+  = text_field_tag :search, params[:search]
+  = submit_tag('Search')
 
-%table
-  %tr
-    %th First
-    %th Last
-    %th Title
-    %th Username
-    %th Bio
-    %th
-    %th
-    %th
-  - unless @people.empty?
-    - @people.each do |person|
-      %tr{ :id => dom_id(person) }
-        %td= person.first_name
-        %td= person.last_name
-        %td= person.title
-        %td= person.default_username
-        %td= person.bio
-        %td= link_to 'Details', person
-        %td= link_to 'Edit', edit_person_path(person)
-        %td= link_to 'Destroy', person, :confirm => 'Are you sure?', :method => :delete
-  - else
-    %tr{ :colspan => 8 }
-      %td No people found
+- if can?(:manage, Person) || action_name == 'search'
+  %br
+
+  %table
+    %tr
+      %th First
+      %th Last
+      %th Title
+      %th Username
+      %th Bio
+      %th
+      %th
+      %th
+    - unless @people.empty?
+      - @people.each do |person|
+        %tr{ :id => dom_id(person) }
+          %td= person.first_name
+          %td= person.last_name
+          %td= person.title
+          %td= person.default_username
+          %td= person.bio
+          %td= link_to 'Details', person
+          %td= link_to 'Edit', edit_person_path(person)
+          %td= link_to 'Destroy', person, :confirm => 'Are you sure?', :method => :delete
+    - else
+      %tr{ :colspan => 8 }
+        %td No people found
 
 - if can?(:create, Person)
   = link_to 'New Person', new_person_path

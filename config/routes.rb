@@ -5,15 +5,11 @@ Factorypeople::Application.routes.draw do
   root :to => "home#index"
   match 'admin' => "home#index"
   
-  resources :groups do
-    resources :people
-  end
+  resources :groups
 
   resources :people do
-    member do
-      get :vcard
-    end
-    resources :groups
+    collection  { get :search }
+    member      { get :vcard  }
   end
 
 end

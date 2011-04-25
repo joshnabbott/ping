@@ -20,12 +20,12 @@ class Group < ActiveRecord::Base
   def as_json(options = {})
   	super(  :only => [ :name ],
             :include => {
-	  		      :people => { :methods => [ :first_name,
-                                         :last_name,
-                                        :job_title,
-                                        :work_email_address,
-                                        :work_phone_number,
-                                        :id ] }
+	  		      :people => { :methods => [  :first_name,
+                                          :last_name,
+                                          :job_title,
+                                          :work_email_address,
+                                          :work_phone_number,
+                                          :id ] }
   		      })
   end
 end

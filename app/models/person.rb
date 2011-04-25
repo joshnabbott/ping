@@ -94,8 +94,8 @@ class Person < ActiveRecord::Base
     Vpim::Vcard::Maker.make2 do |maker|
 
       maker.add_name do |name|
-            name.given = self.first_name
-            name.family = self.last_name
+        name.given = self.first_name
+        name.family = self.last_name
       end
 
       # maker.add_addr do |addr|
@@ -106,9 +106,9 @@ class Person < ActiveRecord::Base
       #       addr.country = 'United Kingdom'
       # end
 
-      maker.nickname = self.nickname
-      maker.title = self.job_title
-      maker.add_tel(self.work_phone_number)
+      maker.nickname  = self.nickname if self.nickname.present?
+      maker.title     = self.job_title
+      maker.add_tel(self.work_phone_number) if self.work_phone_number.present?
       maker.add_email(self.work_email_address) { |e| e.location = 'work' }
       
     end
