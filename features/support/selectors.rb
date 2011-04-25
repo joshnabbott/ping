@@ -11,7 +11,6 @@ module HtmlSelectorsHelpers
     when /the page/
       "html > body"
     when /the (#{Factory.factories.values.map(&:human_name) * '|'}) with the (.*) "([^"]*)/
-      debugger
       human_name  = $1
       attribute   = $2
       value       = $3
