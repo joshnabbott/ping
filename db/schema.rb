@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110425165256) do
+ActiveRecord::Schema.define(:version => 20110425200232) do
 
   create_table "credentials", :force => true do |t|
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
@@ -53,7 +53,6 @@ ActiveRecord::Schema.define(:version => 20110425165256) do
 
   create_table "groups", :force => true do |t|
     t.string   "name"
-    t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -117,7 +116,7 @@ ActiveRecord::Schema.define(:version => 20110425165256) do
 
   create_table "public_profiles", :force => true do |t|
     t.integer  "person_id"
-    t.string   "nick_name"
+    t.string   "nickname"
     t.text     "bio"
     t.string   "personal_email_address"
     t.string   "home_phone_number"
