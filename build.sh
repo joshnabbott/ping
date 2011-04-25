@@ -30,9 +30,12 @@ export RUBY_HEAP_FREE_MIN=500000
 
 # Setup bundler
 gem install bundler -v 1.0.10 --no-ri --no-rdoc
-bundle install
+bundle install && \
 
 # DB Setup
+cp config/database.example.yml config/database.yml && \
+bundle exec rake db:create:all && \
+bundle exec rake db:migrate && \
 
 # Build
 bundle exec rake cucumber
