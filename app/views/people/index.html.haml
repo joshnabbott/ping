@@ -3,6 +3,8 @@
   = text_field_tag :search, params[:search]
   = submit_tag('Search')
 
+= link_to "Download all contacts#{image_tag('vcard.png', :style => 'float: left;')}".html_safe, people_path(:format => :vcf), :alt => 'Download company vCard', :style => 'float: right;'
+
 - if can?(:manage, Person) || action_name == 'search'
   %br
 
