@@ -62,7 +62,7 @@ Feature: Manage people
     Given the following hr profiles exist:
       | First Name  |  Last Name |
       | Joe         |  Smith     |
-    Given the following people exist:
+    And the following people exist:
       | HR Profile        |
       | First Name: Joe   |
     And I am on the people page
@@ -76,9 +76,9 @@ Feature: Manage people
     Given the following hr profiles exist:
       | First Name  |  Last Name |
       | Joe         |  Smith     |
-    Given the following people exist:
+    And the following people exist:
       | HR Profile        |
       | First Name: Joe   |
-    Given I am on the people page
+    And I am on the people page
     And I follow "Destroy" within the 2nd person
     Then I should not see "joe.smith"
