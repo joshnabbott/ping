@@ -17,6 +17,7 @@
 #  updated_at             :datetime
 #  username               :string(255)
 #  person_id              :integer(4)
+#  password_changed_at    :datetime
 #
 # Indexes
 #
@@ -34,7 +35,9 @@ class Credential < ActiveRecord::Base
           :rememberable, 
           :trackable, 
           # :validatable,
-          :encryptable
+          :encryptable,
+          :password_expirable,
+          :password_archivable
           
   # Associations
   belongs_to :person

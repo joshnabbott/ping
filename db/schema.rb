@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110425200232) do
+ActiveRecord::Schema.define(:version => 20110427214156) do
 
   create_table "credentials", :force => true do |t|
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20110425200232) do
     t.datetime "updated_at"
     t.string   "username"
     t.integer  "person_id"
+    t.datetime "password_changed_at"
   end
 
   add_index "credentials", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
@@ -102,6 +103,16 @@ ActiveRecord::Schema.define(:version => 20110425200232) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "old_passwords", :force => true do |t|
+    t.string   "encrypted_password",       :limit => 128, :null => false
+    t.string   "password_salt",                           :null => false
+    t.integer  "password_archivable_id",                  :null => false
+    t.string   "password_archivable_type",                :null => false
+    t.datetime "created_at"
+  end
+
+  add_index "old_passwords", ["password_archivable_type", "password_archivable_id"], :name => "index_password_archivable"
 
   create_table "people", :force => true do |t|
     t.datetime "created_at"

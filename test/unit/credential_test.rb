@@ -17,6 +17,7 @@
 #  updated_at             :datetime
 #  username               :string(255)
 #  person_id              :integer(4)
+#  password_changed_at    :datetime
 #
 # Indexes
 #

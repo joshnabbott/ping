@@ -12,6 +12,7 @@ gem "flutie",                       "~> 1.1"
 
 gem 'devise',                       '1.3.0'
 gem 'devise_aes_encryptable'
+gem 'devise_security_extension'
 gem 'cancan'
 
 gem 'fastercsv'

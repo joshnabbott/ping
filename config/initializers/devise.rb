@@ -191,4 +191,19 @@ Devise.setup do |config|
   #   manager.intercept_401 = false
   #   manager.default_strategies(:scope => :user).unshift :some_external_strategy
   # end
+
+  # ==> Security Extension
+  # Configure security extension for devise
+
+  # Should the password expire (e.g 3.months)
+  config.expire_password_after = 6.months
+
+  # Need 1 char of A-Z, a-z and 0-9
+  # config.password_regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/
+
+  # How often save old passwords in archive
+  config.password_archiving_count = 10
+
+  # Deny old password (true, false, count)
+  config.deny_old_passwords = 3
 end
