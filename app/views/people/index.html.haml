@@ -16,8 +16,10 @@
       %th Username
       %th Bio
       %th
-      %th
-      %th
+      - if can? :edit, Person
+        %th
+      - if can? :delete, Person
+        %th
     - unless @people.empty?
       - @people.each do |person|
         %tr{ :id => dom_id(person) }
@@ -27,8 +29,10 @@
           %td= person.default_username
           %td= person.bio
           %td= link_to 'Details', person
-          %td= link_to 'Edit', edit_person_path(person)
-          %td= link_to 'Destroy', person, :confirm => 'Are you sure?', :method => :delete
+          - if can? :edit, person
+            %td= link_to 'Edit', edit_person_path(person)
+          - if can? :delete, person
+            %td= link_to 'Destroy', person, :confirm => 'Are you sure?', :method => :delete
     - else
       %tr{ :colspan => 8 }
         %td No people found

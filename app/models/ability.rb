@@ -8,6 +8,7 @@ class Ability
     # Anyone can hit the home page or search for people
     can :view,    :home
     can :search,  Person
+    can :read,    Person
 
     # Can't authorize anything if there's no associated person 
     return unless credential && (person = credential.person)
