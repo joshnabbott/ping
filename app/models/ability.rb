@@ -6,22 +6,23 @@ class Ability
 #    can :manage, :all if Rails.env.development?
 
     # Anyone can hit the home page or search for people
-    can :view,    :home
+    can :read,    :home
     can :search,  Person
     can :read,    Person
+    can :read,    PublicProfile
 
     # Can't authorize anything if there's no associated person 
     return unless credential && (person = credential.person)
 
     # User can manage their own public and emergency profiles
-    can :edit,    Person,            :id => person.id
-    can :edit,    PublicProfile,     :person_id => person.id
-    can :edit,    EmergencyProfile,  :person_id => person.id
+    can :update,  Person,            :id => person.id
+    can :update,  PublicProfile,     :person_id => person.id
+    can :update,  EmergencyProfile,  :person_id => person.id
 
     # User can view their own IT, HR, and Facilities profiles
-    can :view,    ItProfile,         :person_id => person.id
-    can :view,    HrProfile,         :person_id => person.id
-    can :view,    FacilitiesProfile, :person_id => person.id
+    can :read,    ItProfile,         :person_id => person.id
+    can :read,    HrProfile,         :person_id => person.id
+    can :read,    FacilitiesProfile, :person_id => person.id
 
     # IT can manage groups and IT/Facilities profiles
     if person.group_names.include?('IT')

@@ -1,7 +1,7 @@
 class HomeController < AuthenticatedController
 
   def index
-    authorize! :view, :home
+    authorize! :read, :home
   end
 
 end

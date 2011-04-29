@@ -1,0 +1,13 @@
+%dl
+  %dt Seating Floor
+  %dd= value_with_placeholder @facilities_profile.seating_floor
+  %dt Seating Number
+  %dd= value_with_placeholder @facilities_profile.seating_number
+  %dt Building Card
+  %dd= value_with_placeholder @facilities_profile.building_card
+  %dt Garage Card
+  %dd= value_with_placeholder @facilities_profile.garage_card
+  %dt FedEx Account
+  %dd= value_with_placeholder @facilities_profile.fed_ex_account
+
+= link_to('Back', person_path(@person))

@@ -26,7 +26,15 @@ module ApplicationHelper
   end
 
   def my_profile_path
-   edit_person_path(current_credential.person)
+    person_path(current_credential.person)
+  end
+
+  def value_with_placeholder(value, placeholder = 'None')
+    value.present? ? value : placeholder
+  end
+
+  def boolean_to_human(boolean)
+    boolean ? 'yes' : 'no'
   end
   
 end

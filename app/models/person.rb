@@ -49,6 +49,7 @@ class Person < ActiveRecord::Base
   delegate :last_name,          :to => :hr_profile,     :allow_nil => true
   delegate :title,              :to => :hr_profile,     :allow_nil => true
   delegate :job_title,          :to => :hr_profile,     :allow_nil => true
+  delegate :department,         :to => :hr_profile,     :allow_nil => true
   delegate :work_email_address, :to => :hr_profile,     :allow_nil => true
   delegate :work_phone_number,  :to => :hr_profile,     :allow_nil => true
   delegate :default_username,   :to => :it_profile,     :allow_nil => true
@@ -87,7 +88,7 @@ class Person < ActiveRecord::Base
   end
 
   def full_name
-    [ self.first_name, self.last_name ] * ' '
+    [ (self.nickname.present? ? self.nickname : self.first_name), self.last_name ] * ' '
   end
 
   def to_vcard

@@ -1,0 +1,4 @@
+%h2= "Editing facilities profile for #{@person.first_name} #{@person.last_name}"
+= render 'form'
+- if can?(:manage, @person)
+  = [ link_to('Show', @person), link_to('Back', person_facilities_profile_path(@person, @facilities_profile)) ].join(' | ').html_safe

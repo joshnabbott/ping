@@ -1,0 +1,8 @@
+- semantic_form_for [:person, @emergency_profile] do |form|
+  = form.inputs :name => "Emergency Profile" do
+    = form.input :emergency_contact_name
+    = form.input :emergency_contact_number
+    = form.input :emergency_contact_relation
+  
+  = form.buttons do
+    = form.commit_button

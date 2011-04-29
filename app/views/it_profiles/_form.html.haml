@@ -1,0 +1,12 @@
+- semantic_form_for [:person, @it_profile] do |form|
+  = form.inputs :name => "IT Profile" do
+    = form.input :default_username
+    = form.input :status
+    = form.input :type
+    = form.input :email_account_active, :as => :boolean
+    = form.input :chat_aim, :label => 'AIM'
+    = form.input :chat_skype, :label => 'Skype'
+    = form.input :chat_gtalk, :label => 'Google Talk'
+  
+  = form.buttons do
+    = form.commit_button

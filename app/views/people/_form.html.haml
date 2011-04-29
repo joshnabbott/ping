@@ -15,59 +15,6 @@
         = public_profile.input :home_zip
         = public_profile.input :home_country, :as => :select, :collection => Person::COUNTRIES, :include_blank => false
 
-  - if can? :edit, @person.emergency_profile
-    = form.inputs :name => "Emergency Contact" do
-      = form.semantic_fields_for :emergency_profile do |emergency_profile|
-        = emergency_profile.input :emergency_contact_name
-        = emergency_profile.input :emergency_contact_number
-        = emergency_profile.input :emergency_contact_relation
-
-  - if can?(:edit, @person.hr_profile) || can?(:view, @person.hr_profile)
-    = form.inputs :name => "HR#{!can?(:edit, @person.hr_profile) ? ' (Read-only)' :''}" do
-      = form.semantic_fields_for :hr_profile do |hr_profile|
-        = hr_profile.input :first_name,  :input_html => { :disabled => !can?(:edit, @person.hr_profile) }
-        = hr_profile.input :middle_name,  :input_html => { :disabled => !can?(:edit, @person.hr_profile) }
-        = hr_profile.input :last_name,  :input_html => { :disabled => !can?(:edit, @person.hr_profile) }
-        = hr_profile.input :title,  :input_html => { :disabled => !can?(:edit, @person.hr_profile) }
-        = hr_profile.input :gender, :as => :select, :collection => HrProfile.genders_for_select, :include_blank => false,  :input_html => { :disabled => !can?(:edit, @person.hr_profile) }
-        = hr_profile.input :department, :as => :select, :collection => HrProfile::DEPARTMENTS, :include_blank => false,  :input_html => { :disabled => !can?(:edit, @person.hr_profile) }
-        = hr_profile.input :job_title,  :input_html => { :disabled => !can?(:edit, @person.hr_profile) }
-        = hr_profile.input :hire_date,  :as => :date,  :input_html => { :disabled => !can?(:edit, @person.hr_profile) }
-        = hr_profile.input :hire_date_vacation_adjustment,  :as => :date,  :input_html => { :disabled => !can?(:edit, @person.hr_profile) }
-        = hr_profile.input :departure_date,  :as => :date,  :input_html => { :disabled => !can?(:edit, @person.hr_profile) }
-        = hr_profile.input :birthday,  :as => :date,  :input_html => { :disabled => !can?(:edit, @person.hr_profile) }
-        = hr_profile.input :pay_type, :as => :select, :collection => HrProfile.pay_types_for_select, :include_blank => false,  :input_html => { :disabled => !can?(:edit, @person.hr_profile) }
-        = hr_profile.input :work_email_address,  :input_html => { :disabled => !can?(:edit, @person.hr_profile) }
-        = hr_profile.input :work_phone_number,  :input_html => { :disabled => !can?(:edit, @person.hr_profile) }
-        = hr_profile.input :work_fax_number,  :input_html => { :disabled => !can?(:edit, @person.hr_profile) }
-        = hr_profile.input :work_mobile_number,  :input_html => { :disabled => !can?(:edit, @person.hr_profile) }
-        = hr_profile.input :work_extension,  :input_html => { :disabled => !can?(:edit, @person.hr_profile) }
-        = hr_profile.input :work_address,  :input_html => { :disabled => !can?(:edit, @person.hr_profile) }
-        = hr_profile.input :work_city,  :input_html => { :disabled => !can?(:edit, @person.hr_profile) }
-        = hr_profile.input :work_state,  :input_html => { :disabled => !can?(:edit, @person.hr_profile) }
-        = hr_profile.input :work_zip,  :input_html => { :disabled => !can?(:edit, @person.hr_profile) }
-        = hr_profile.input :work_country, :as => :select, :collection => Person::COUNTRIES, :include_blank => false,  :input_html => { :disabled => !can?(:edit, @person.hr_profile) }
-
-  - if can?(:edit, @person.facilities_profile) || can?(:view, @person.facilities_profile)
-    = form.inputs :name => "Facilities#{!can?(:edit, @person.facilities_profile) ? ' (Read-only)' :''}" do
-      = form.semantic_fields_for :facilities_profile do |facilities_profile|
-        = facilities_profile.input :seating_floor,  :input_html => { :disabled => !can?(:edit, @person.facilities_profile) }
-        = facilities_profile.input :seating_number, :input_html => { :disabled => !can?(:edit, @person.facilities_profile) }
-        = facilities_profile.input :building_card,  :input_html => { :disabled => !can?(:edit, @person.facilities_profile) }
-        = facilities_profile.input :garage_card,    :input_html => { :disabled => !can?(:edit, @person.facilities_profile) }
-        = facilities_profile.input :fed_ex_account, :label => 'FedEx Account', :input_html => { :disabled => !can?(:edit, @person.facilities_profile) }
-
-  - if can?(:edit, @person.it_profile) || can?(:view, @person.it_profile)
-    = form.inputs :name => "IT#{!can?(:edit, @person.it_profile) ? ' (Read-only)' :''}" do
-      = form.semantic_fields_for :it_profile do |it_profile|
-        = it_profile.input :default_username,  :input_html => { :disabled => !can?(:edit, @person.it_profile) }
-        = it_profile.input :status,  :input_html => { :disabled => !can?(:edit, @person.it_profile) }
-        = it_profile.input :type,  :input_html => { :disabled => !can?(:edit, @person.it_profile) }
-        = it_profile.input :email_account_active, :as => :boolean,  :input_html => { :disabled => !can?(:edit, @person.it_profile) }
-        = it_profile.input :chat_aim, :label => 'AIM',  :input_html => { :disabled => !can?(:edit, @person.it_profile) }
-        = it_profile.input :chat_skype, :label => 'Skype',  :input_html => { :disabled => !can?(:edit, @person.it_profile) }
-        = it_profile.input :chat_gtalk, :label => 'Google Talk',  :input_html => { :disabled => !can?(:edit, @person.it_profile) }
-
   - if can? :manage, Group
     = form.inputs :name => "Groups" do
       = form.input :groups, :as => :check_boxes, :collection => @groups, :label => ''

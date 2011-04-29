@@ -1,0 +1,47 @@
+%dl
+  %dt First Name
+  %dd= value_with_placeholder @hr_profile.first_name
+  %dt Middle Name
+  %dd= value_with_placeholder @hr_profile.middle_name
+  %dt Last Name
+  %dd= value_with_placeholder @hr_profile.last_name
+  %dt Title Name
+  %dd= value_with_placeholder @hr_profile.title
+  %dt Gender
+  %dd= value_with_placeholder  @hr_profile.gender.capitalize
+  %dt Department
+  %dd= value_with_placeholder  @hr_profile.department
+  %dt Job Title
+  %dd= value_with_placeholder  @hr_profile.job_title
+  %dt Hire Date
+  %dd= value_with_placeholder  @hr_profile.hire_date
+  %dt Hire Date (Vacation Adjustment)
+  %dd= value_with_placeholder  @hr_profile.hire_date_vacation_adjustment
+  %dt Departure Date
+  %dd= value_with_placeholder  @hr_profile.departure_date
+  %dt Birthday
+  %dd= value_with_placeholder  @hr_profile.birthday
+  %dt Pay Type
+  %dd= value_with_placeholder  @hr_profile.pay_type
+  %dt Work E-mail Address
+  %dd= value_with_placeholder  @hr_profile.work_email_address
+  %dt Work Phone Number
+  %dd= value_with_placeholder  @hr_profile.work_phone_number
+  %dt Work Fax Number
+  %dd= value_with_placeholder  @hr_profile.work_fax_number
+  %dt Work Mobile Number
+  %dd= value_with_placeholder  @hr_profile.work_mobile_number
+  %dt Work Extension
+  %dd= value_with_placeholder  @hr_profile.work_extension
+  %dt Work Address
+  %dd= value_with_placeholder  @hr_profile.work_address
+  %dt Work City
+  %dd= value_with_placeholder  @hr_profile.work_city
+  %dt Work State
+  %dd= value_with_placeholder  @hr_profile.work_state
+  %dt Work Zip
+  %dd= value_with_placeholder  @hr_profile.work_zip
+  %dt Work Country
+  %dd= value_with_placeholder  @hr_profile.work_country
+  
+= link_to('Back', person_path(@person))

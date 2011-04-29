@@ -1,0 +1,27 @@
+- semantic_form_for [:person, @hr_profile] do |form|
+  = form.inputs :name => "HR Profile" do
+    = form.input :first_name
+    = form.input :middle_name
+    = form.input :last_name
+    = form.input :title
+    = form.input :gender, :as => :select, :collection => HrProfile.genders_for_select, :include_blank => false
+    = form.input :department, :as => :select, :collection => HrProfile::DEPARTMENTS, :include_blank => false
+    = form.input :job_title
+    = form.input :hire_date,  :as => :date
+    = form.input :hire_date_vacation_adjustment,  :as => :date
+    = form.input :departure_date,  :as => :date
+    = form.input :birthday,  :as => :date
+    = form.input :pay_type, :as => :select, :collection => HrProfile.pay_types_for_select, :include_blank => false
+    = form.input :work_email_address
+    = form.input :work_phone_number
+    = form.input :work_fax_number
+    = form.input :work_mobile_number
+    = form.input :work_extension
+    = form.input :work_address
+    = form.input :work_city
+    = form.input :work_state
+    = form.input :work_zip
+    = form.input :work_country, :as => :select, :collection => Person::COUNTRIES, :include_blank => false
+  
+  = form.buttons do
+    = form.commit_button

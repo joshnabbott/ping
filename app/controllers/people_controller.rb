@@ -29,7 +29,7 @@ class PeopleController < AuthenticatedController
   # GET /people/1.xml
   def show
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # show.html.haml
       format.xml  { render :xml => @person }
       format.json { render :json => @person }
       format.vcf  { send_data @person.to_vcard.to_s, :filename => @person.default_username + '.vcf' }
