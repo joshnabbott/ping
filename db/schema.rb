@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110427214156) do
+ActiveRecord::Schema.define(:version => 20110504205443) do
 
   create_table "credentials", :force => true do |t|
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
@@ -34,9 +34,9 @@ ActiveRecord::Schema.define(:version => 20110427214156) do
 
   create_table "emergency_profiles", :force => true do |t|
     t.integer  "person_id"
-    t.string   "emergency_contact_name"
-    t.string   "emergency_contact_number"
-    t.string   "emergency_contact_relation"
+    t.string   "name"
+    t.string   "phone_number"
+    t.string   "relation"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

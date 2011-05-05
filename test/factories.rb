@@ -30,9 +30,9 @@ Factory.define(:public_profile) do |f|
 end
 
 Factory.define(:emergency_profile) do |f|
-  f.emergency_contact_name          'Joan Smith'
-  f.emergency_contact_number        '123-456-7890'
-  f.emergency_contact_relation      'Mom'
+  f.name                            'Joan Smith'
+  f.phone_number                    '123-456-7890'
+  f.relation                        'Mom'
 end
 
 Factory.define(:hr_profile) do |f|
