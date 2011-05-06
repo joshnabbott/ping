@@ -1,2 +1,3 @@
+%h2= "#{pronoun_or_first_name(@person)} Emergency Contact"
 = render :partial => 'shared/person', :locals => { :person => @person }
 = link_to('Back', person_path(@person))

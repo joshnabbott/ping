@@ -1,4 +1,4 @@
-%h2= "Editing HR profile for #{@person.full_name}"
+%h2= "#{pronoun_or_first_name(@person)} HR Profile"
 = render 'form'
 - if can?(:manage, @person)
   = [ link_to('Show', @person), link_to('Back', person_hr_profile_path(@person, @hr_profile)) ].join(' | ').html_safe

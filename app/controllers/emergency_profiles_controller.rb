@@ -22,7 +22,7 @@ class EmergencyProfilesController < AuthenticatedController
   def update
     respond_to do |format|
       if @emergency_profile.update_attributes(params[:emergency_profile])
-        format.html { redirect_to([:person, @emergency_profile], :notice => 'Emergency profile was successfully updated.') }
+        format.html { redirect_to(@person, :notice => "#{pronoun_or_first_name(@emergency_profile.person)} emergency contact was successfully updated.") }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

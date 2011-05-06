@@ -88,7 +88,11 @@ class Person < ActiveRecord::Base
   end
 
   def full_name
-    [ (self.nickname.present? ? self.nickname : self.first_name), self.last_name ] * ' '
+    [ self.first_or_nickname, self.last_name ] * ' '
+  end
+
+  def first_or_nickname
+    (self.nickname.present? ? self.nickname : self.first_name)
   end
 
   def to_vcard

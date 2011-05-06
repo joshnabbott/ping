@@ -3,16 +3,17 @@ class Ability
 
   def initialize(credential)
 
-#    can :manage, :all if Rails.env.development?
+    # Can't authorize anything if there's no associated person
+    return unless credential && (person = credential.person)
+
+    # Credential can update its own password
+    can :change_password, Credential, :id => credential.id
 
     # Anyone can hit the home page or search for people
     can :read,    :home
     can :search,  Person
     can :read,    Person
     can :read,    PublicProfile
-
-    # Can't authorize anything if there's no associated person 
-    return unless credential && (person = credential.person)
 
     # User can manage their own public and emergency profiles
     can :update,  Person,            :id => person.id
