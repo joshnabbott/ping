@@ -4,7 +4,6 @@ gem 'bundler',                      '1.0.13'
 gem 'rails',                        '3.0.6'
 
 gem 'mysql2'
-gem 'sqlite3-ruby',                               :require => 'sqlite3'
 gem 'thinking-sphinx'
 
 gem 'haml-rails'
