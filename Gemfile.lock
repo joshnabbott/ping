@@ -173,6 +173,7 @@ PLATFORMS
 
 DEPENDENCIES
   auto_annotate
+  bundler (= 1.0.13)
   cancan
   capybara
   chronic
