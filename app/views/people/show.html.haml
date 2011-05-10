@@ -22,8 +22,8 @@
     - elsif can?(:read, @person.emergency_profile)
       %li= link_to 'View my emergency contact', person_emergency_profile_path(@person)
 
-    %li= link_to 'Change my password', edit_person_path(@person)
+    %li= link_to 'Change my password', edit_person_credential_path(@person)
     %li= link_to 'Manage my services', edit_person_path(@person)
-    %li= link_to 'Remove this user', edit_person_path(@person) if can?(:delete, @person)
+    %li= link_to 'Remove this user', edit_person_path(@person, :method => :delete) if can?(:delete, @person)
 
 = render :partial => 'shared/person', :locals => { :person => @person }

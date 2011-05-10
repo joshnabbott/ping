@@ -74,6 +74,6 @@ end
 
 Factory.define(:credential) do |f|
   f.sequence(:username) { |n| "user_#{n}" }
-  f.password            'password'
+  f.password            'Password1'
   f.association         :person
 end

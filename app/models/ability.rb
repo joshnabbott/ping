@@ -15,10 +15,11 @@ class Ability
     can :read,    Person
     can :read,    PublicProfile
 
-    # User can manage their own public and emergency profiles
+    # User can manage their own public and emergency profiles and credentials
     can :update,  Person,            :id => person.id
     can :update,  PublicProfile,     :person_id => person.id
     can :update,  EmergencyProfile,  :person_id => person.id
+    can :update,  Credential,        :person_id => person.id
 
     # User can view their own IT, HR, and Facilities profiles
     can :read,    ItProfile,         :person_id => person.id
@@ -31,6 +32,7 @@ class Ability
       can :manage, ItProfile
       can :manage, FacilitiesProfile
       can :manage, Group
+      can :manage, Credential
     end
 
     # HR can manage HR profiles

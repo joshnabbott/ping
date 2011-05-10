@@ -53,12 +53,13 @@ class Credential < ActiveRecord::Base
 
   validates   :password,  :presence     => true,
                           :confirmation => true,
-                          :length       => { :within => 5..50, :allow_blank => true }
+                          :length       => { :within => 8..50, :allow_blank => false },
+                          :format       => /^.*(?=.{8,})(?=\w*\d)(?=\w*[a-z])(?=\w*[A-Z])\w*$/
 
   validates   :person_id, :presence => true
   
   def decrypted_password
     ::Devise::Encryptors::Aes256.decrypt(encrypted_password, Devise.pepper)
-  end     
+  end
 
 end

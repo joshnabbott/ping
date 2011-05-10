@@ -1,6 +1,6 @@
 Given /^I am authenticated$/ do
   username = 'testuser'
-  password = 'password'
+  password = 'L33tPass1'
   @credential = Factory(:credential, :username => username, :password => password, :password_confirmation => password)
 
   Given %{I go to the login page}

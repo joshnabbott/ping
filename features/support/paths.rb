@@ -28,7 +28,11 @@ module NavigationHelpers
 
     when /my profile page/
       person_path(@credential.person)
-      
+
+    when /my change password page/
+      edit_person_credential_path(@credential.person)
+
+
     else
       begin
         page_name =~ /the (.*) page/
