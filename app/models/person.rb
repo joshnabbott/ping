@@ -47,6 +47,7 @@ class Person < ActiveRecord::Base
 
   delegate :first_name,         :to => :hr_profile,     :allow_nil => true
   delegate :last_name,          :to => :hr_profile,     :allow_nil => true
+  delegate :gender,             :to => :hr_profile,     :allow_nil => true
   delegate :title,              :to => :hr_profile,     :allow_nil => true
   delegate :job_title,          :to => :hr_profile,     :allow_nil => true
   delegate :department,         :to => :hr_profile,     :allow_nil => true

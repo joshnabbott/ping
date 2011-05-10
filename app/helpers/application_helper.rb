@@ -36,5 +36,14 @@ module ApplicationHelper
   def boolean_to_human(boolean)
     boolean ? 'yes' : 'no'
   end
-  
+
+  def pronoun_for_person(person)
+    if current_credential.person == person
+      'my'
+    elsif person.gender == 'male'
+      'his'
+    elsif person.gender == 'female'
+      'her'
+    end
+  end
 end
