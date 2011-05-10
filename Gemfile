@@ -7,6 +7,7 @@ gem 'mysql2'
 gem 'thinking-sphinx'
 
 gem 'haml-rails'
+gem 'jquery-rails'
 gem 'formtastic',                   "~> 1.2.3"
 gem "flutie",                       "~> 1.1"
 
