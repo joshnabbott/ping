@@ -29,7 +29,7 @@ export RUBY_GC_MALLOC_LIMIT=1000000000
 export RUBY_HEAP_FREE_MIN=500000
 
 # Setup bundler
-gem install bundler -v 1.0.10 --no-ri --no-rdoc
+gem install bundler -v 1.0.13 --no-ri --no-rdoc
 bundle install && \
 
 # DB Setup
