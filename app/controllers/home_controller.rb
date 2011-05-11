@@ -1,7 +1,11 @@
-class HomeController < AuthenticatedController
+class HomeController < ApplicationController
 
   def index
-    authorize! :read, :home
+    unless logged_in?
+      redirect_to search_people_path
+    else
+      authorize! :read, :home
+    end
   end
 
 end

@@ -23,7 +23,7 @@
             %li.home= link_to "<em>Home</em>".html_safe, root_path
             %li= nav_item("My Profile", my_profile_path) if logged_in?
             %li= nav_item("Change My Password", edit_person_credential_path(current_credential.person)) if logged_in?
-            %li= nav_item("Company Directory", search_people_path, :section => "people") if logged_in?
+            %li= nav_item("Company Directory", search_people_path, :section => "people") if can?(:read, PublicProfile)
             %li= nav_item("Manage People", people_path, :section => "people") if can?(:manage, Person)
             %li= nav_item("Manage Groups", groups_path, :section => "groups") if can?(:manage, Group)
     #content.standard_site_width

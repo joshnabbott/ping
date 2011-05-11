@@ -3,17 +3,19 @@ class Ability
 
   def initialize(credential)
 
+    # Public can search for people
+    can :search,  Person
+    can :read,    Person
+    can :read,    PublicProfile
+
     # Can't authorize anything if there's no associated person
     return unless credential && (person = credential.person)
 
     # Credential can update its own password
     can :change_password, Credential, :id => credential.id
 
-    # Anyone can hit the home page or search for people
+    # Anyone can hit the home page if they're authenticated
     can :read,    :home
-    can :search,  Person
-    can :read,    Person
-    can :read,    PublicProfile
 
     # User can manage their own public and emergency profiles and credentials
     can :update,  Person,            :id => person.id

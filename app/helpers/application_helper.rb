@@ -40,6 +40,8 @@ module ApplicationHelper
   def session_bug
     if logged_in?
       content_tag(:p, "Signed in as <em>#{current_credential.username}</em> | #{link_to('Sign Out', destroy_credential_session_path)}".html_safe, :class => "user_info")
+    else
+      content_tag(:p, link_to('Sign In', new_credential_session_path).html_safe, :class => "user_info")
     end
   end
 
