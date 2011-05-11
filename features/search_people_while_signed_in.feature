@@ -13,7 +13,7 @@ Feature: Search for people
     And the Sphinx indexes are updated
   Scenario: Search for a person
     Given I am on the home page
-    And I follow "Directory"
+    And I follow "Search Directory"
     And I fill in "Search" with "Joe"
     And I press "Search"
     Then I should see "Joe Smith"

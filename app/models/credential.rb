@@ -31,8 +31,8 @@ class Credential < ActiveRecord::Base
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise  :database_authenticatable, 
           # :registerable,
-          # :recoverable, 
-          :rememberable, 
+          :recoverable,
+#          :rememberable,
           :trackable, 
           # :validatable,
           :encryptable,

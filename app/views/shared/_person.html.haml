@@ -1,10 +1,17 @@
-%h2= @person.full_name
-%h5= "#{@person.job_title} (#{@person.department})"
-%h4= link_to @person.work_email_address, "mailto:#{@person.work_email_address}"
-%h4= @person.work_phone_number
+%h1= @person.full_name
+%h2= "#{@person.job_title} (#{@person.department})"
 
 - if @person.bio.present?
-  %p= @person.bio
+  .bio
+    %h3 Bio
+    %p= @person.bio
+    %br
 
-%p
-  = link_to 'Download vCard', person_path(@person, :format => :vcf)
+
+%dl{:class => 'details'}
+  %dt E-mail
+  %dd= link_to @person.work_email_address, "mailto:#{@person.work_email_address}"
+  %dt Phone
+  %dd= value_with_placeholder(@person.work_phone_number)
+  %dt Download vCard
+  %dd= link_to 'Click here', person_path(@person, :format => :vcf)

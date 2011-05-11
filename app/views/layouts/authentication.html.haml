@@ -1,0 +1,26 @@
+!!!
+%html{ "xml:lang" => "en", :lang => "en"}
+  %head
+    %title= site_title
+    %link{ :href => "/favicon.ico", :rel => "shortcut icon" }
+    %meta{ :content => "text/html; charset=UTF-8", "http-equiv" => "content-type" }
+    %meta{ :content => "en", "http-equiv" => "content-language" }
+    %meta{ :content => "no", "http-equiv" => "imagetoolbar" }
+    %meta{ :name => "layout", :content => "protosite" }
+
+    = csrf_meta_tag
+
+    = stylesheet_link_tag 'protosite_backend', :media => :all
+    = javascript_include_tag 'protosite_common', 'protosite_backend'
+
+    = content_for :head
+  %body{ :id => "#{controller.controller_name.underscore}_controller", :class => "#{controller.action_name.dasherize}-action not-logged-in without-javascript" }
+    #background= image_tag('protosite/client-background.jpg', :size => '1555x1050', :class => 'retain-aspect')
+    #body
+      #header
+        #title
+          #control
+            %h1.title= site_title
+          #login_form= yield
+          #logo= image_tag 'protosite/client-logo.png'
+          = flash_messages(true)

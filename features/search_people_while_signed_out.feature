@@ -12,7 +12,7 @@ Feature: Search for people without signing in
     And the Sphinx indexes are updated
   Scenario: Search for a person
     Given I am on the home page
-    Then I should see "Download all contacts"
+    Then I should see "Download Contacts"
     When I fill in "Search" with "Joe"
     And I press "Search"
     Then I should see "Joe Smith"

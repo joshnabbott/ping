@@ -8,7 +8,7 @@ Feature: Manage my HR profile
 
   Scenario: Edit my HR profile
     Given I am on the home page
-    And I follow "My Profile"
+    And I follow "Manage My Information"
     Then I should not see "View my HR profile"
     And I follow "Edit my HR profile"
     Then I should see "Your HR Profile"

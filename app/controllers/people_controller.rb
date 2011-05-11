@@ -1,6 +1,6 @@
 class PeopleController < AuthenticatedController
 
-  skip_before_filter :authenticate_credential!, :only => :search
+  skip_before_filter :authenticate_credential!, :only => [:search, :index]
   before_filter :search_for_people, :only => :search
   load_and_authorize_resource
 

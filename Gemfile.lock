@@ -87,7 +87,6 @@ GEM
     fastercsv (1.5.4)
     ffi (1.0.7)
       rake (>= 0.8.7)
-    flutie (1.1.5)
     formtastic (1.2.3)
       actionpack (>= 2.3.7)
       activesupport (>= 2.3.7)
@@ -117,6 +116,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.16)
     mysql2 (0.2.7)
+    navigasmic (0.5.5)
     nokogiri (1.4.4)
     orm_adapter (0.0.4)
     polyglot (0.3.1)
@@ -184,12 +184,12 @@ DEPENDENCIES
   devise_security_extension
   factory_girl_rails
   fastercsv
-  flutie (~> 1.1)
   formtastic (~> 1.2.3)
   haml-rails
   jquery-rails
   launchy
   mysql2
+  navigasmic (= 0.5.5)
   rails (= 3.0.6)
   ruby-debug
   thinking-sphinx

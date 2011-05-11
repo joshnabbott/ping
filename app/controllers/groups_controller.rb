@@ -6,7 +6,7 @@ class GroupsController < AuthenticatedController
   # GET /groups.xml
   def index
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # index.html.haml
       format.xml  { render :xml => @groups }
       format.json  { render :json => @groups }
     end
@@ -26,7 +26,7 @@ class GroupsController < AuthenticatedController
   # GET /groups/new.xml
   def new
     respond_to do |format|
-      format.html # new.html.erb
+      format.html # new.html.haml
       format.xml  { render :xml => @group }
     end
   end

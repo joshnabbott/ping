@@ -1,5 +1,7 @@
-%h2= "#{pronoun_or_first_name(@person)} HR Profile"
-%dl
+- content_for :title do
+  %h1= "#{link_to((pronoun_or_first_name(@person) + ' Information'), person_path(@person))} &raquo; #{pronoun_or_first_name(@person)} HR Profile".html_safe
+
+%dl{:class => 'details'}
   %dt First Name
   %dd= value_with_placeholder @hr_profile.first_name
   %dt Middle Name
@@ -44,5 +46,3 @@
   %dd= value_with_placeholder  @hr_profile.work_zip
   %dt Work Country
   %dd= value_with_placeholder  @hr_profile.work_country
-  
-= link_to('Back', person_path(@person))

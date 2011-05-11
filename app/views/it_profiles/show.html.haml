@@ -1,5 +1,7 @@
-%h2= "#{pronoun_or_first_name(@person)} IT Profile"
-%dl
+- content_for :title do
+  %h1= "#{link_to((pronoun_or_first_name(@person) + ' Information'), person_path(@person))} &raquo; #{pronoun_or_first_name(@person)} IT Profile".html_safe
+
+%dl{:class => 'details'}
   %dt Default Username
   %dd= value_with_placeholder @it_profile.default_username
   %dt Status
@@ -14,5 +16,3 @@
   %dd= value_with_placeholder @it_profile.chat_skype
   %dt Google Talk Username
   %dd= value_with_placeholder @it_profile.chat_gtalk
-
-= link_to('Back', person_path(@person))

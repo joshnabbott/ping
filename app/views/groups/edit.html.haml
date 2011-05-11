@@ -1,0 +1,4 @@
+- content_for :title do
+  %h1= "#{link_to 'Groups', groups_path} &raquo; #{@group.name}".html_safe
+
+= render 'form'

@@ -12,7 +12,7 @@ Feature: View my IT profile
       | Chat Skype        | factoryjsmith               |
       | Chat GTalk        | john.smith@factorylabs.com  |
     When I am on the home page
-    And I follow "My Profile"
+    And I follow "Manage My Information"
     And I follow "View my IT profile"
     Then I should see "Your IT Profile"
     And I should see "Default Username john.smith"

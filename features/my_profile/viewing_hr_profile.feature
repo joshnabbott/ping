@@ -30,7 +30,7 @@ Feature: View my HR profile
       | Departure Date              | 4/13/2010                   |
       | Birthday                    | 1/11/1980                   |
     When I am on the home page
-    And I follow "My Profile"
+    And I follow "Manage My Information"
     And I follow "View my HR profile"
     Then I should see "Your HR Profile"
     And I should see "First Name John"

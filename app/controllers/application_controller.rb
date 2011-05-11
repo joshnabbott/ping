@@ -4,13 +4,17 @@ class ApplicationController < ActionController::Base
   
   protected
 
-  alias_method :current_user, :current_credential
-
   helper_method :logged_in?
   helper_method :pronoun_or_first_name
+
+  helper FlashHelper
   
   def logged_in?
     !!current_credential
+  end
+
+  def current_user
+    current_credential
   end
 
   def pronoun_or_first_name(person)

@@ -7,8 +7,7 @@ Feature: Change my password
 
   Scenario: Change my password successfully
     Given I am on the home page
-    And I follow "My Profile"
-    And I follow "Change my password"
+    And I follow "Change My Password"
     Then I should see "Your Credentials"
     When I fill in the following:
       | Password              | L33tPass |
@@ -19,8 +18,7 @@ Feature: Change my password
 
   Scenario: Change my password with a password that is too short
     Given I am on the home page
-    And I follow "My Profile"
-    And I follow "Change my password"
+    And I follow "Change My Password"
     When I fill in the following:
       | Password              | weak |
       | Password confirmation | weak |
@@ -30,13 +28,12 @@ Feature: Change my password
 
   Scenario: Change my password with a password that has been used recently
     Given I am on the home page
-    And I follow "My Profile"
-    And I follow "Change my password"
+    And I follow "Change My Password"
     When I fill in the following:
       | Password              | NewPass1 |
       | Password confirmation | NewPass1 |
     And I press "Change password"
-    And I follow "Change my password"
+    And I follow "Change My Password"
     When I fill in the following:
       | Password              | L33tPass1 |
       | Password confirmation | L33tPass1 |
@@ -46,8 +43,7 @@ Feature: Change my password
 
   Scenario: Change my password with a password that has no caps
     Given I am on the home page
-    And I follow "My Profile"
-    And I follow "Change my password"
+    And I follow "Change My Password"
     When I fill in the following:
       | Password              | weakpass1 |
       | Password confirmation | weakpass1 |
@@ -57,8 +53,7 @@ Feature: Change my password
 
   Scenario: Change my password with a password that has no numbers
     Given I am on the home page
-    And I follow "My Profile"
-    And I follow "Change my password"
+    And I follow "Change My Password"
     When I fill in the following:
       | Password              | weakpass |
       | Password confirmation | weakpass |

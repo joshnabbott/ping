@@ -1,29 +1,27 @@
-.extra_tools
-  %h3 Actions
-  %ul
-    - if can?(:edit, @person.public_profile)
-      %li= link_to "Edit #{pronoun_for_person(@person)} public profile", edit_person_public_profile_path(@person)
-    - elsif can?(:read, @person.public_profile)
-      %li= link_to "View #{pronoun_for_person(@person)} public profile", person_public_profile_path(@person)
-    - if can?(:edit, @person.it_profile)
-      %li= link_to "Edit #{pronoun_for_person(@person)} IT profile", edit_person_it_profile_path(@person)
-    - elsif can?(:read, @person.it_profile)
-      %li= link_to "View #{pronoun_for_person(@person)} IT profile", person_it_profile_path(@person)
-    - if can?(:edit, @person.hr_profile)
-      %li= link_to "Edit #{pronoun_for_person(@person)} HR profile", edit_person_hr_profile_path(@person)
-    - elsif can?(:read, @person.hr_profile)
-      %li= link_to "View #{pronoun_for_person(@person)} HR profile", person_hr_profile_path(@person)
-    - if can?(:edit, @person.facilities_profile)
-      %li= link_to "Edit #{pronoun_for_person(@person)} facilities profile", edit_person_facilities_profile_path(@person)
-    - elsif can?(:read, @person.facilities_profile)
-      %li= link_to "View #{pronoun_for_person(@person)} facilities profile", person_facilities_profile_path(@person)
-    - if can?(:edit, @person.emergency_profile)
-      %li= link_to "Edit #{pronoun_for_person(@person)} emergency contact", edit_person_emergency_profile_path(@person)
-    - elsif can?(:read, @person.emergency_profile)
-      %li= link_to "View #{pronoun_for_person(@person)} emergency contact", person_emergency_profile_path(@person)
-
-    %li= link_to "Change #{pronoun_for_person(@person)} password", edit_person_credential_path(@person)
-    %li= link_to "Manage #{pronoun_for_person(@person)} services", edit_person_path(@person)
-    %li= link_to "Remove this user", edit_person_path(@person, :method => :delete) if can?(:delete, @person)
-
 = render :partial => 'shared/person', :locals => { :person => @person }
+
+.box
+  - if can?(:edit, @person.public_profile)
+    = link_to "Edit #{pronoun_for_person(@person)} public profile", edit_person_public_profile_path(@person), :class => 'button'
+  - elsif can?(:read, @person.public_profile)
+    = link_to "View #{pronoun_for_person(@person)} public profile", person_public_profile_path(@person), :class => 'button'
+  - if can?(:edit, @person.it_profile)
+    = link_to "Edit #{pronoun_for_person(@person)} IT profile", edit_person_it_profile_path(@person), :class => 'button'
+  - elsif can?(:read, @person.it_profile)
+    = link_to "View #{pronoun_for_person(@person)} IT profile", person_it_profile_path(@person), :class => 'button'
+  - if can?(:edit, @person.hr_profile)
+    = link_to "Edit #{pronoun_for_person(@person)} HR profile", edit_person_hr_profile_path(@person), :class => 'button'
+  - elsif can?(:read, @person.hr_profile)
+    = link_to "View #{pronoun_for_person(@person)} HR profile", person_hr_profile_path(@person), :class => 'button'
+  - if can?(:edit, @person.facilities_profile)
+    = link_to "Edit #{pronoun_for_person(@person)} facilities profile", edit_person_facilities_profile_path(@person), :class => 'button'
+  - elsif can?(:read, @person.facilities_profile)
+    = link_to "View #{pronoun_for_person(@person)} facilities profile", person_facilities_profile_path(@person), :class => 'button'
+  - if can?(:edit, @person.emergency_profile)
+    = link_to "Edit #{pronoun_for_person(@person)} emergency contact", edit_person_emergency_profile_path(@person), :class => 'button'
+  - elsif can?(:read, @person.emergency_profile)
+    = link_to "View #{pronoun_for_person(@person)} emergency contact", person_emergency_profile_path(@person), :class => 'button'
+
+    = link_to "Change #{pronoun_for_person(@person)} password", edit_person_credential_path(@person), :class => 'button'
+    = link_to "Manage #{pronoun_for_person(@person)} services", edit_person_path(@person), :class => 'button'
+    = link_to "Remove this user", edit_person_path(@person, :method => :delete), :class => 'button' if can?(:delete, @person)

@@ -1,5 +1,6 @@
-%h2= "#{pronoun_or_first_name(@person)} Facilities Profile"
-%dl
+- content_for :title do
+  %h1= "#{link_to((pronoun_or_first_name(@person) + ' Information'), person_path(@person))} &raquo; #{pronoun_or_first_name(@person)} Facilities Profile".html_safe
+%dl{:class => 'details'}
   %dt Seating Floor
   %dd= value_with_placeholder @facilities_profile.seating_floor
   %dt Seating Number
@@ -10,5 +11,3 @@
   %dd= value_with_placeholder @facilities_profile.garage_card
   %dt FedEx Account
   %dd= value_with_placeholder @facilities_profile.fed_ex_account
-
-= link_to('Back', person_path(@person))

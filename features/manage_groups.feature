@@ -7,7 +7,8 @@ Feature: Manage groups
     And I am in the "IT" group
   
   Scenario: Register a new group
-    Given I am on the new group page
+    Given I am on the groups page
+    And I follow "Create a new group"
     And I fill in "Name" with "Developers"
     And I press "Create"
     Then I should see "Group was successfully created."
@@ -20,7 +21,7 @@ Feature: Manage groups
     And I am on the groups page
     And I follow "Edit" within the group with the name "Developers"
     And I fill in "Name" with "Rubyists"
-    And I press "Update"
+    And I press "Update Group"
     Then I should see "Group was successfully updated."
     And I should see "Rubyists"
 

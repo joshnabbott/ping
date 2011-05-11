@@ -3,20 +3,6 @@ module ApplicationHelper
     boolean ? 'yes' : 'no'
   end
 
-  def flash_messages
-    messages = ''.html_safe
-    %w{ alert notice success warning error }.each do |type|
-      if flash[type.to_sym] || flash.now[type.to_sym]
-        messages += flash_message_tag(type,flash[type.to_sym] || flash.now[type.to_sym])
-      end                               
-    end
-    messages.blank? ? '' : content_tag(:div, messages.html_safe, :id => 'flash_messages')
-  end
-
-  def flash_message_tag(type,message)
-    content_tag(:div, content_tag(:div, message, :class => type + ' flash'.html_safe))
-  end
-
   def my_profile_path
     person_path(current_credential.person)
   end
@@ -43,6 +29,10 @@ module ApplicationHelper
     else
       content_tag(:p, link_to('Sign In', new_credential_session_path).html_safe, :class => "user_info")
     end
+  end
+
+  def site_title
+    'FDL :: People'
   end
 
   def value_with_placeholder(value, placeholder = 'None')

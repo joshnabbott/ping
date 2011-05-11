@@ -7,7 +7,7 @@ Feature: Manage my emergency contact
 
   Scenario: Edit my emergency contact
     Given I am on the home page
-    And I follow "My Profile"
+    And I follow "Manage My Information"
     And I follow "Edit my emergency contact"
     Then I should see "Your Emergency Contact"
     When I fill in the following:

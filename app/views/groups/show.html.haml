@@ -1,15 +1,13 @@
-%p
-  %b= @group.name
+- content_for :title do
+  %h1= "#{link_to 'Groups', groups_path} &raquo; #{@group.name}".html_safe
+- content_for :related do
+  = link_to "Edit this group", edit_group_path(@group)
 
 %p
-  %b Members:
-  %br
-
+  %h3 Members
   %ul
     - unless @group.people.empty?
       - @group.people.each do |p|
         %li= link_to p.full_name, p
     - else
       %li No Members
-
-= link_to('Edit', edit_group_path(@group)) + ' ' + link_to('Back', groups_path)
