@@ -8,3 +8,4 @@ db/sphinx
 *.pid
 config/*.sphinx.conf
 config/database.yml
+doc/*
