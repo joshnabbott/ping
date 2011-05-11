@@ -1,5 +1,3 @@
 - content_for :title do
   %h1= "#{link_to((pronoun_or_first_name(@person) + ' Information'), person_path(@person))} &raquo; #{pronoun_or_first_name(@person)} Public Profile".html_safe
 = render 'form'
-- if can?(:manage, @person)
-  = [ link_to('Show', @person), link_to('Back', person_public_profile_path(@person, @public_profile)) ].join(' | ').html_safe
