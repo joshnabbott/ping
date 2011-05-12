@@ -1701,10 +1701,10 @@ div.autocomplete-results ul li {
 #search_controller form.formtastic.search li.commit {
   float: right; }
 
-/* Users controller
+/* Credentials controller
  *---------------------------------------------------------------------------*/
-#users_controller #user_password,
-#users_controller #user_password_confirmation {
+#credentials_controller #credential_password,
+#credentials_controller #credential_password_confirmation {
   width: 200px; }
 
 /* Lightview Popup Windows
