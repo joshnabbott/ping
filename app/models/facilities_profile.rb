@@ -15,8 +15,13 @@
 
 class FacilitiesProfile < ActiveRecord::Base
 
+  SEATING_NUMBERS = (1..50).to_a.map(&:to_s)
+  SEATING_FLOORS  = [ 'Floor 2', 'Floor 3', 'Floor 4' ]
+
   belongs_to :person
 
+  validates :seating_floor,   :inclusion => SEATING_FLOORS
+  validates :seating_number,  :inclusion => SEATING_NUMBERS
 #  validates :person_id,         :presence => true
   
 end

@@ -7,8 +7,8 @@ Feature: View my facilities profile
 
   Scenario: View my facilities profile
     Given my facilities profile has the following attributes:
-      | Seating floor               | 2                           |
-      | Seating number              | 100                         |
+      | Seating floor               | Floor 2                     |
+      | Seating number              | 10                          |
       | Building card               | 931742389y32894             |
       | Garage card                 | 128473874320482             |
       | Fed Ex Account              | 237438297493242             |
@@ -16,8 +16,8 @@ Feature: View my facilities profile
     And I follow "Manage My Information"
     And I follow "View my facilities profile"
     Then I should see "Your Facilities Profile"
-    And I should see "Seating Floor 2"
-    And I should see "Seating Number 100"
+    And I should see "Seating Floor Floor 2"
+    And I should see "Seating Number 10"
     And I should see "Building Card 931742389y32894"
     And I should see "Garage Card 128473874320482"
     And I should see "FedEx Account 237438297493242"

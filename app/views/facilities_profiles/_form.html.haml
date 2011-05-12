@@ -1,7 +1,7 @@
 - semantic_form_for [:person, @facilities_profile] do |form|
   = form.inputs :name => "Facilities Profile" do
-    = form.input :seating_floor
-    = form.input :seating_number
+    = form.input :seating_floor, :as => :select, :collection => FacilitiesProfile::SEATING_FLOORS, :include_blank => false
+    = form.input :seating_number, :as => :select, :collection => FacilitiesProfile::SEATING_NUMBERS, :include_blank => false
     = form.input :building_card
     = form.input :garage_card
     = form.input :fed_ex_account, :label => 'FedEx Account'

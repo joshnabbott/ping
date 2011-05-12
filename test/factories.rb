@@ -8,8 +8,8 @@ Factory.define(:person) do |f|
 end
 
 Factory.define(:facilities_profile) do |f|
-  f.seating_floor                   '1'
-  f.seating_number                  '50'
+  f.seating_floor                   FacilitiesProfile::SEATING_FLOORS.sample
+  f.seating_number                  FacilitiesProfile::SEATING_NUMBERS.sample
   f.building_card                   '123456'
   f.garage_card                     '566789'
   f.fed_ex_account                  '234298356234'
