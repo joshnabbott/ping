@@ -33,7 +33,7 @@
         %td= link_to person.work_email_address, "mailto:#{person.work_email_address}"
         %td= value_with_placeholder(person.work_phone_number)
         %td{:class => 'controls'}
-          - if can? :read, person
+          - if logged_in? and can?(:read, person)
             = link_to 'Details', person
           = link_to 'vCard', person_path(person, :format => 'vcf')
           - if can? :edit, person
