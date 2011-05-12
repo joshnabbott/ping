@@ -58,16 +58,17 @@ class Person < ActiveRecord::Base
   delegate :nickname,           :to => :public_profile, :allow_nil => true
 
   define_index do
-    indexes hr_profile.first_name
-    indexes hr_profile.middle_name
-    indexes hr_profile.last_name
-    indexes hr_profile.job_title
-    indexes it_profile.default_username
-    indexes public_profile.nickname
+    indexes hr_profile.first_name, :sortable => true
+    indexes hr_profile.middle_name, :sortable => true
+    indexes hr_profile.last_name, :sortable => true
+    indexes hr_profile.job_title, :sortable => true
+    indexes it_profile.default_username, :sortable => true
+    indexes public_profile.nickname, :sortable => true
     indexes public_profile.bio
-    indexes public_profile.personal_email_address
-    indexes facilities_profile.seating_floor
-    indexes facilities_profile.seating_number
+    indexes public_profile.personal_email_address, :sortable => true
+    indexes facilities_profile.seating_floor, :sortable => true
+    indexes facilities_profile.seating_number, :sortable => true
+    has '1', :as => :is_active, :type => :boolean
   end
 
   def as_json( options = {} )

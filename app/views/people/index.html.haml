@@ -1,40 +1,47 @@
+= content_for :title do
+  %h1 Company Directory
+- if can?(:create, Person)
+  = content_for :related do
+    = link_to 'Create a new person', new_person_path
+
 .filter.container
-  = form_tag search_people_path, :method => :get do
+  = form_tag people_path, :method => :get do
     = label_tag :search, 'Search for a person'
     = text_field_tag :search, params[:search]
     = submit_tag 'Search', :class => 'button'
 
-- if can?(:manage, Person) || action_name == 'search'
-  %br
-
-  %table{:class => 'list'}
-    %tr
-      %th First
-      %th Last
-      %th Title
-      %th Username
-      %th Bio
+%br
+  
+%table{:class => 'list'}
+  %tr
+    %th Name
+    %th Title
+    %th Department
+    %th E-mail
+    %th Phone
+    %th
+    - if can? :edit, Person
       %th
-      - if can? :edit, Person
-        %th
-      - if can? :delete, Person
-        %th
-    - unless @people.empty?
-      - @people.each do |person|
-        %tr{ :id => dom_id(person) }
-          %td= person.first_name
-          %td= person.last_name
-          %td= person.title
-          %td= person.default_username
-          %td= person.bio
-          %td= link_to 'Details', person
+    - if can? :delete, Person
+      %th
+  - unless @people.empty?
+    - @people.each do |person|
+      %tr{ :id => dom_id(person) }
+        %td= person.full_name
+        %td= person.job_title
+        %td= person.department
+        %td= link_to person.work_email_address, "mailto:#{person.work_email_address}"
+        %td= value_with_placeholder(person.work_phone_number)
+        %td{:class => 'controls'}
+          - if can? :read, person
+            = link_to 'Details', person
+          = link_to 'vCard', person_path(person, :format => 'vcf')
           - if can? :edit, person
-            %td= link_to 'Edit', edit_person_path(person)
+            = link_to 'Edit', edit_person_path(person)
           - if can? :delete, person
-            %td= link_to 'Destroy', person, :confirm => 'Are you sure?', :method => :delete
-    - else
-      %tr{ :colspan => 8 }
-        %td No people found
+            = link_to 'Destroy', person, :confirm => 'Are you sure?', :method => :delete
+  - else
+    %tr{ :colspan => 8 }
+      %td No people found
 
-- if can?(:create, Person)
-  = link_to 'New Person', new_person_path
+= will_paginate(@people)

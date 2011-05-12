@@ -8,8 +8,6 @@ Factorypeople::Application.routes.draw do
   resources :groups
 
   resources :people do
-    collection  { get :search }
-    member      { get :vcard  }
     resource :public_profile
     resource :it_profile
     resource :hr_profile

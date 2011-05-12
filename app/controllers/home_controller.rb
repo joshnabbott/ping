@@ -2,7 +2,7 @@ class HomeController < ApplicationController
 
   def index
     unless logged_in?
-      redirect_to search_people_path
+      redirect_to people_path
     else
       authorize! :read, :home
     end

@@ -8,7 +8,6 @@ Feature: Change my password
   Scenario: Change my password successfully
     Given I am on the home page
     And I follow "Change My Password"
-    Then I should see "Your Credentials"
     When I fill in the following:
       | Password              | L33tPass |
       | Password confirmation | L33tPass |

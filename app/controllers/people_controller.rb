@@ -1,19 +1,8 @@
 class PeopleController < AuthenticatedController
 
-  skip_before_filter :authenticate_credential!, :only => [:search, :index]
-  before_filter :search_for_people, :only => :search
+  skip_before_filter :authenticate_credential!, :only => [:index, :show]
+  before_filter :search_for_people, :only => :index
   load_and_authorize_resource
-
-  # GET /people/search
-  # GET /people/search.xml
-  def search
-    respond_to do |format|
-      format.html   { render :action  => 'index' }
-      format.xml    { render :xml     => @people }
-      format.json   { render :json    => @people }
-      format.vcf    { send_data @people.map(&:to_vcard).map(&:to_s).join("\n"), :filename => 'search.vcf' }
-    end
-  end
 
   # GET /people
   # GET /people.xml
@@ -42,7 +31,7 @@ class PeopleController < AuthenticatedController
   def new
     @groups = Group.all
     respond_to do |format|
-      format.html # new.html.erb
+      format.html # new.html.haml
       format.xml  { render :xml => @person }
       format.json  { render :json => @person }
     end
@@ -94,7 +83,7 @@ class PeopleController < AuthenticatedController
   protected
 
   def search_for_people
-    @people = Person.search(params[:search] || '*', :star =>true, :retry_stale => true)
+    @people = Person.search(params[:search], :where => { :is_active => true }, :star => true, :retry_stale => true, :page => params[:page], :per_page => 50, :order => :last_name)
   end
 
 end

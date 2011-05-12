@@ -14,6 +14,7 @@ Feature: Manage people
     And the following people exist:
       | HR Profile        |
       | First Name: Joe   |
+    And the Sphinx indexes are updated
     And I am on the people page
     And I follow "Destroy" within the 2nd person
     Then I should not see "joe.smith"

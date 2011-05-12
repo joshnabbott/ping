@@ -14,7 +14,7 @@ module ApplicationHelper
   end
 
   def pronoun_for_person(person)
-    if current_credential.person == person
+    if current_credential && current_credential.person == person
       'my'
     elsif person.gender == 'male'
       'his'

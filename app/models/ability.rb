@@ -4,7 +4,6 @@ class Ability
   def initialize(credential)
 
     # Public can search for people
-    can :search,  Person
     can :read,    Person
     can :read,    PublicProfile
 

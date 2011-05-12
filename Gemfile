@@ -10,6 +10,7 @@ gem 'haml-rails'
 gem 'jquery-rails'
 gem 'formtastic',                   "~> 1.2.3"
 gem 'navigasmic',                   '0.5.5'
+gem 'will_paginate'
 
 gem 'devise',                       '1.3.0'
 gem 'devise_aes_encryptable'
