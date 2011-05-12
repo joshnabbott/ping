@@ -12,7 +12,7 @@
 
     = stylesheet_link_tag 'protosite_backend'
 
-    = javascript_include_tag 'protosite_common', 'protosite_backend', 'application', :media => 'all'
+    = javascript_include_tag 'protosite_common', 'protosite_backend', 'chroma-hash', 'application', :media => 'all'
 
     = content_for :head
   %body{ :id => "#{controller.controller_name.underscore}_controller", :class => "#{controller.action_name.dasherize}-action without-javascript" }
