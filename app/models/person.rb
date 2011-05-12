@@ -53,6 +53,7 @@ class Person < ActiveRecord::Base
   delegate :department,         :to => :hr_profile,     :allow_nil => true
   delegate :work_email_address, :to => :hr_profile,     :allow_nil => true
   delegate :work_phone_number,  :to => :hr_profile,     :allow_nil => true
+  delegate :birthday,           :to => :hr_profile,     :allow_nil => true
   delegate :default_username,   :to => :it_profile,     :allow_nil => true
   delegate :bio,                :to => :public_profile, :allow_nil => true
   delegate :nickname,           :to => :public_profile, :allow_nil => true
@@ -115,6 +116,8 @@ class Person < ActiveRecord::Base
 
       maker.nickname  = self.nickname if self.nickname.present?
       maker.title     = self.job_title
+      maker.org       = "Factory Design Labs"
+      maker.birthday  = self.birthday.to_date if self.birthday
       maker.add_tel(self.work_phone_number) if self.work_phone_number.present?
       maker.add_email(self.work_email_address) { |e| e.location = 'work' }
       
