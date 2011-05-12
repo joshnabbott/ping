@@ -32,7 +32,7 @@ module ApplicationHelper
   end
 
   def site_title
-    'FDL :: People'
+    'FDL :: Ping'
   end
 
   def value_with_placeholder(value, placeholder = 'None')
