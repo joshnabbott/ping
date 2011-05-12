@@ -20,6 +20,8 @@ gem 'cancan'
 gem 'fastercsv'
 gem 'vpim'
 
+gem 'hoptoad_notifier'
+
 group :development, :test do
   gem 'auto_annotate'
   gem 'ruby-debug'
