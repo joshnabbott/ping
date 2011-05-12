@@ -337,6 +337,7 @@ p {
   color: #F00; }
 
 #header #title #login_form #credential_email,
+#header #title #login_form #credential_username,
 #header #title #login_form #credential_password,
 #header #title #login_form #credential_password_confirmation {
   width: 325px;
