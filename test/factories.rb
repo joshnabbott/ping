@@ -46,6 +46,8 @@ Factory.define(:hr_profile) do |f|
   f.hire_date_vacation_adjustment   Date.today
   f.departure_date                  Date.today
   f.pay_type                        HrProfile::PAY_TYPES.sample
+  f.status                          HrProfile::STATUSES.sample
+  f.employment_type                 HrProfile::EMPLOYMENT_TYPES.sample
   f.birthday                        30.years.ago
   f.work_email_address              'john.smith@factorylabs.com'
   f.work_phone_number               '123-456-7890'

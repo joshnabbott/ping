@@ -28,13 +28,17 @@
 #  person_id                     :integer(4)
 #  created_at                    :datetime
 #  updated_at                    :datetime
+#  status                        :string(255)
+#  employment_type               :string(255)
 #
 
 class HrProfile < ActiveRecord::Base
 
-  GENDERS     = [ 'male', 'female' ]
-  PAY_TYPES   = [ 'hourly', 'salaried' ]
-  DEPARTMENTS = [ 'AS', 'CS', 'IS', 'MS', 'OPS', 'EXEC', 'IPS' ]
+  GENDERS           = [ 'male', 'female' ]
+  PAY_TYPES         = [ 'hourly', 'salaried' ]
+  DEPARTMENTS       = [ 'AS', 'CS', 'IS', 'MS', 'OPS', 'EXEC', 'IPS' ]
+  STATUSES          = [ 'Active', 'Ended' ]
+  EMPLOYMENT_TYPES  = [ 'Full Time', 'Part Time', 'Freelance', '3rd Party' ]
 
   def self.genders_for_select
     GENDERS.map { |c| [ c.titleize, c ]}
@@ -58,5 +62,9 @@ class HrProfile < ActiveRecord::Base
   validates :job_title,         :presence => true
 
   validates :work_country,      :inclusion => { :in => Person::COUNTRIES }
+  validates :status,            :presence => true,
+                                :inclusion => { :in => STATUSES }
+  validates :employment_type,   :presence => true,
+                                :inclusion => { :in => EMPLOYMENT_TYPES }
 
 end

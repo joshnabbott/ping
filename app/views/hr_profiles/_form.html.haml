@@ -11,7 +11,8 @@
     = form.input :hire_date_vacation_adjustment,  :as => :date
     = form.input :departure_date,  :as => :date
     = form.input :birthday,  :as => :date
-    = form.input :pay_type, :as => :select, :collection => HrProfile.pay_types_for_select, :include_blank => false
+    = form.input :status, :as => :select, :collection => HrProfile::STATUSES, :include_blank => false
+    = form.input :employment_type, :as => :select, :collection => HrProfile::EMPLOYMENT_TYPES, :include_blank => false
     = form.input :work_email_address
     = form.input :work_phone_number
     = form.input :work_fax_number

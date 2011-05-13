@@ -13,8 +13,7 @@ Feature: Manage my IT profile
     And I follow "Edit my IT profile"
     Then I should see "Your IT Profile"
     When I fill in the following:
-      | Status | Crazy       |
-      | Type   | Human being |
+      | Default Username | Crazy       |
     And I press "Update"
     Then I should see "IT profile was successfully updated."
     And I should be on my profile page

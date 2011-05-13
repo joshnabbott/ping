@@ -28,6 +28,8 @@
 #  person_id                     :integer(4)
 #  created_at                    :datetime
 #  updated_at                    :datetime
+#  status                        :string(255)
+#  employment_type               :string(255)
 #
 
 require 'test_helper'

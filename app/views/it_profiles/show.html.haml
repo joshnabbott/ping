@@ -4,10 +4,6 @@
 %dl{:class => 'details'}
   %dt Default Username
   %dd= value_with_placeholder @it_profile.default_username
-  %dt Status
-  %dd= value_with_placeholder @it_profile.status
-  %dt Type
-  %dd= value_with_placeholder @it_profile.type
   %dt E-mail account active?
   %dd= boolean_to_human(@it_profile.email_account_active).capitalize
   %dt AIM Username
