@@ -1,20 +1,26 @@
 = render :partial => 'navigation'
 
-%h2= "#{@person.job_title} (#{@person.department})"
+%dl{:class => 'details'}
+  %dt Title
+  %dd= value_with_placeholder(@person.job_title)
+  %dt Department
+  %dd= value_with_placeholder(@person.department)
+  %dt E-mail
+  %dd= link_to @person.email_address, "mailto:#{@person.email_address}"
+  %dt Phone
+  %dd= value_with_placeholder(@person.work_phone_number)
+  %dt Floor
+  %dd= value_with_placeholder(@person.seating_floor)
+  %dt Seat
+  %dd= value_with_placeholder(@person.seating_number)
+  %dt Download vCard
+  %dd= link_to 'Click here', person_path(@person, :format => :vcf)
 
 - if @person.bio.present?
   .bio
     %h3 Bio
     %p= @person.bio
     %br
-
-%dl{:class => 'details'}
-  %dt E-mail
-  %dd= link_to @person.email_address, "mailto:#{@person.email_address}"
-  %dt Phone
-  %dd= value_with_placeholder(@person.work_phone_number)
-  %dt Download vCard
-  %dd= link_to 'Click here', person_path(@person, :format => :vcf)
 
 - if can?(:edit, @person)
   .box
