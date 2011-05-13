@@ -17,6 +17,8 @@
 #  home_country           :string(255)
 #  created_at             :datetime
 #  updated_at             :datetime
+#  chat_aim               :string(255)
+#  chat_skype             :string(255)
 #
 
 class PublicProfile < ActiveRecord::Base

@@ -26,6 +26,8 @@ Factory.define(:public_profile) do |f|
   f.home_state                      'IL'
   f.home_zip                        '60613'
   f.home_country                    Person::COUNTRIES.sample
+  f.chat_aim                        'factoryjsmith'
+  f.chat_skype                      'factoryjsmith'
 end
 
 Factory.define(:emergency_profile) do |f|
@@ -64,8 +66,6 @@ end
 Factory.define(:it_profile) do |f|
   f.default_username                'john.smith'
   f.chat_gtalk                      'john.smith@factorylabs.com'
-  f.chat_aim                        'factoryjsmith'
-  f.chat_skype                      'factoryjsmith'
   f.email_account_active            true
 end
 
