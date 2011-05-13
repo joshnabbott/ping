@@ -16,12 +16,19 @@ module ApplicationHelper
   def pronoun_for_person(person)
     if current_credential && current_credential.person == person
       'my'
-    elsif person.gender == 'male'
-      'his'
-    elsif person.gender == 'female'
-      'her'
+    else
+      "#{person.first_or_nickname}'s"
     end
   end
+
+  def pronoun_for_person_with_full_name(person)
+    if current_credential && current_credential.person == person
+      'my'
+    else
+      "#{person.full_name}'s"
+    end
+  end
+
 
   def session_bug
     if logged_in?
