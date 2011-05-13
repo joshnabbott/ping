@@ -4,7 +4,8 @@ Factorypeople::Application.routes.draw do
 
   root :to => "home#index"
   match 'admin' => "home#index"
-  
+
+  resources :assets
   resources :groups
 
   resources :people do
