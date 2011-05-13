@@ -19,6 +19,12 @@
 #  updated_at             :datetime
 #  chat_aim               :string(255)
 #  chat_skype             :string(255)
+#  twitter_url            :string(255)
+#  linkedin_url           :string(255)
+#  facebook_url           :string(255)
+#  flickr_url             :string(255)
+#  instagram_url          :string(255)
+#  website_url            :string(255)
 #
 
 class PublicProfile < ActiveRecord::Base

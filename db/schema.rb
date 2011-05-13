@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110513001048) do
+ActiveRecord::Schema.define(:version => 20110513002115) do
 
   create_table "credentials", :force => true do |t|
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
@@ -140,6 +140,12 @@ ActiveRecord::Schema.define(:version => 20110513001048) do
     t.datetime "updated_at"
     t.string   "chat_aim"
     t.string   "chat_skype"
+    t.string   "twitter_url"
+    t.string   "linkedin_url"
+    t.string   "facebook_url"
+    t.string   "flickr_url"
+    t.string   "instagram_url"
+    t.string   "website_url"
   end
 
 end
