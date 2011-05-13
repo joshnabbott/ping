@@ -14,9 +14,8 @@ Feature: View my facilities profile
       | Fed Ex Account              | 237438297493242             |
     When I am on the home page
     And I follow "Manage My Information"
-    And I follow "View my facilities profile"
-    Then I should see "Your Facilities Profile"
-    And I should see "Seating Floor Floor 2"
+    And I follow "Facilities Profile"
+    Then I should see "Seating Floor Floor 2"
     And I should see "Seating Number 10"
     And I should see "Building Card 931742389y32894"
     And I should see "Garage Card 128473874320482"

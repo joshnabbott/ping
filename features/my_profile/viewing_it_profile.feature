@@ -12,8 +12,7 @@ Feature: View my IT profile
       | Email address     | john.smith@factorylabs.com  |
     When I am on the home page
     And I follow "Manage My Information"
-    And I follow "View my IT profile"
-    Then I should see "Your IT Profile"
-    And I should see "Default Username john.smith"
+    And I follow "IT Profile"
+    Then I should see "Default Username john.smith"
     And I should see "E-mail Address john.smith@factorylabs.com"
     And I should see "Google Talk Username john.smith@factorylabs.com"

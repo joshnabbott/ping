@@ -21,9 +21,8 @@ Feature: View my HR profile
       | Birthday                    | 1/11/1980                   |
     When I am on the home page
     And I follow "Manage My Information"
-    And I follow "View my HR profile"
-    Then I should see "Your HR Profile"
-    And I should see "First Name John"
+    And I follow "HR Profile"
+    Then I should see "First Name John"
     And I should see "Middle Name Q"
     And I should see "Last Name Smith"
     And I should see "Gender Male"

@@ -1,3 +1,2 @@
-- content_for :title do
-  %h1= "#{link_to((pronoun_or_first_name(@person) + ' Information'), person_path(@person))} &raquo; #{pronoun_or_first_name(@person)} Work Contact Profile".html_safe
+= render :partial => 'people/navigation'
 = render 'form'

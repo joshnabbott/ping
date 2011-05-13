@@ -8,8 +8,7 @@ Feature: Manage my public profile
   Scenario: Edit my public profile
     Given I am on the home page
     And I follow "Manage My Information"
-    And I follow "Edit my public profile"
-    Then I should see "Your Public Profile"
+    And I follow "Public Profile"
     When I fill in the following:
       | Nickname                    | Johnny                      |
       | Bio                         | I am a developer            |

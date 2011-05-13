@@ -9,9 +9,7 @@ Feature: Manage my IT profile
   Scenario: Edit my IT profile
     Given I am on the home page
     And I follow "Manage My Information"
-    Then I should not see "View my IT profile"
-    And I follow "Edit my IT profile"
-    Then I should see "Your IT Profile"
+    And I follow "IT Profile"
     When I fill in the following:
       | Default Username | Crazy       |
     And I press "Update"

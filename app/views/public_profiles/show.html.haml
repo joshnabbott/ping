@@ -1,3 +1,47 @@
-- content_for :title do
-  %h1= "#{link_to((pronoun_or_first_name(@person) + ' Information'), person_path(@person))} &raquo; #{pronoun_or_first_name(@person)} Public Profile".html_safe
-= render :partial => 'shared/person', :locals => { :person => @person }
+= render :partial => 'people/navigation'
+
+%h3 Contact Information
+%dl{:class => 'details'}
+  %dt Personal E-mail Address
+  %dd= value_with_placeholder  @public_profile.personal_email_address
+  %dt Home Phone Number
+  %dd= value_with_placeholder  @public_profile.home_phone_number
+  %dt Home Fax Number
+  %dd= value_with_placeholder  @public_profile.home_fax_number
+  %dt Home Mobile Number
+  %dd= value_with_placeholder  @public_profile.home_mobile_number
+  %dt Home Address
+  %dd= value_with_placeholder  @public_profile.home_address
+  %dt Home City
+  %dd= value_with_placeholder  @public_profile.home_city
+  %dt Home State
+  %dd= value_with_placeholder  @public_profile.home_state
+  %dt Home Zip
+  %dd= value_with_placeholder  @public_profile.home_zip
+  %dt Home Country
+  %dd= value_with_placeholder  @public_profile.home_country
+
+%h3 Other Services
+%dl{:class => 'details'}
+  %dt AIM Username
+  %dd= value_with_placeholder  @public_profile.chat_aim
+  %dt Skype Username
+  %dd= value_with_placeholder  @public_profile.chat_skype
+  - if @public_profile.twitter_url.present?
+    %dt Twitter
+    %dd= link_to @public_profile.twitter_url, @public_profile.twitter_url
+  - if @public_profile.linkedin_url.present?
+    %dt LinkedIn
+    %dd= link_to @public_profile.linkedin_url, @public_profile.linkedin_url
+  - if @public_profile.facebook_url.present?
+    %dt Facebook
+    %dd= link_to @public_profile.facebook_url, @public_profile.facebook_url
+  - if @public_profile.flickr_url.present?
+    %dt Flickr
+    %dd= link_to @public_profile.flickr_url, @public_profile.flickr_url
+  - if @public_profile.instagram_url.present?
+    %dt Instagram
+    %dd= link_to @public_profile.instagram_url, @public_profile.instagram_url
+  - if @public_profile.website_url.present?
+    %dt Website
+    %dd= link_to @public_profile.website_url, @public_profile.website_url

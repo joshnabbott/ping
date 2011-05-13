@@ -1,5 +1,7 @@
 class PublicProfilesController < AuthenticatedController
 
+  skip_before_filter :authenticate_credential!, :only => :show
+
   load_and_authorize_resource :person
   load_and_authorize_resource :public_profile, :through => :person, :singleton => true
 

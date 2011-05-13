@@ -1,31 +1,24 @@
-= render :partial => 'shared/person', :locals => { :person => @person }
+= render :partial => 'navigation'
 
-.box
-  - if can?(:edit, @person.public_profile)
-    = link_to "Edit #{pronoun_for_person(@person)} public profile", edit_person_public_profile_path(@person), :class => 'button'
-  - elsif can?(:read, @person.public_profile)
-    = link_to "View #{pronoun_for_person(@person)} public profile", person_public_profile_path(@person), :class => 'button'
-  - if can?(:edit, @person.it_profile)
-    = link_to "Edit #{pronoun_for_person(@person)} IT profile", edit_person_it_profile_path(@person), :class => 'button'
-  - elsif can?(:read, @person.it_profile)
-    = link_to "View #{pronoun_for_person(@person)} IT profile", person_it_profile_path(@person), :class => 'button'
-  - if can?(:edit, @person.hr_profile)
-    = link_to "Edit #{pronoun_for_person(@person)} HR profile", edit_person_hr_profile_path(@person), :class => 'button'
-  - elsif can?(:read, @person.hr_profile)
-    = link_to "View #{pronoun_for_person(@person)} HR profile", person_hr_profile_path(@person), :class => 'button'
-  - if can?(:edit, @person.facilities_profile)
-    = link_to "Edit #{pronoun_for_person(@person)} facilities profile", edit_person_facilities_profile_path(@person), :class => 'button'
-  - elsif can?(:read, @person.facilities_profile)
-    = link_to "View #{pronoun_for_person(@person)} facilities profile", person_facilities_profile_path(@person), :class => 'button'
-  - if can?(:edit, @person.emergency_profile)
-    = link_to "Edit #{pronoun_for_person(@person)} emergency contact", edit_person_emergency_profile_path(@person), :class => 'button'
-  - elsif can?(:read, @person.emergency_profile)
-    = link_to "View #{pronoun_for_person(@person)} emergency contact", person_emergency_profile_path(@person), :class => 'button'
-  - if can?(:edit, @person.work_profile)
-    = link_to "Edit #{pronoun_for_person(@person)} work contact profile", edit_person_work_profile_path(@person), :class => 'button'
-  - elsif can?(:read, @person.work_profile)
-    = link_to "View #{pronoun_for_person(@person)} work contact profile", person_work_profile_path(@person), :class => 'button'
+%h1= @person.full_name
+%h2= "#{@person.job_title} (#{@person.department})"
 
-    = link_to "Change #{pronoun_for_person(@person)} password", edit_person_credential_path(@person), :class => 'button'
-    = link_to "Manage #{pronoun_for_person(@person)} services", edit_person_path(@person), :class => 'button'
-    = link_to "Remove this user", edit_person_path(@person, :method => :delete), :class => 'button' if can?(:delete, @person)
+- if @person.bio.present?
+  .bio
+    %h3 Bio
+    %p= @person.bio
+    %br
+
+%dl{:class => 'details'}
+  %dt E-mail
+  %dd= link_to @person.email_address, "mailto:#{@person.email_address}"
+  %dt Phone
+  %dd= value_with_placeholder(@person.work_phone_number)
+  %dt Download vCard
+  %dd= link_to 'Click here', person_path(@person, :format => :vcf)
+
+- if can?(:edit, @person)
+  .box
+    = link_to "Change #{pronoun_for_person(@person)} password", edit_person_credential_path(@person), :class => 'button' if can?(:edit, @person.credential)
+    = link_to "Manage #{pronoun_for_person(@person)} services", edit_person_path(@person), :class => 'button' if can?(:manage, :services)
+    = link_to "Remove this user", edit_person_path(@person, :method => :delete), :class => 'button', :confirm =>  "Are you sure you want to remove this user?" if can?(:delete, @person)
