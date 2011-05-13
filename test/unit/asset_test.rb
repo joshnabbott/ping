@@ -22,7 +22,7 @@
 #  po_number              :string(255)
 #  transfer_type          :string(255)
 #  transfer_date          :date
-#  sale_price             :float
+#  sale_price             :decimal(8, 2)   default(0.0)
 #  payment_type           :string(255)
 #  transfer_notes         :text
 #  casper_serialized_data :text
@@ -55,6 +55,15 @@ class AssetTest < ActiveSupport::TestCase
     should 'be included in Asset::STATUSES' do
       @asset = Factory.build(:asset, :status => 'Dead.')
       assert !@asset.valid?
+    end
+  end
+
+  context 'sale price attribute' do
+    should 'be numerical' do
+      @asset_one = Factory.build(:asset, :sale_price => 1000.00)
+      @asset_two = Factory.build(:asset, :sale_price => 'one thousand dollars')
+      assert @asset_one.valid?
+      assert !@asset_two.valid?
     end
   end
 

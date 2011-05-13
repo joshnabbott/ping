@@ -20,7 +20,7 @@ class CreateAssets < ActiveRecord::Migration
       t.string :po_number
       t.string :transfer_type
       t.date :transfer_date
-      t.float :sale_price
+      t.decimal :sale_price, :precision => 8, :scale => 2, :default => 0.00
       t.string :payment_type
       t.text :transfer_notes
       t.text :casper_serialized_data

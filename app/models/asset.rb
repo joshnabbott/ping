@@ -22,7 +22,7 @@
 #  po_number              :string(255)
 #  transfer_type          :string(255)
 #  transfer_date          :date
-#  sale_price             :float
+#  sale_price             :decimal(8, 2)   default(0.0)
 #  payment_type           :string(255)
 #  transfer_notes         :text
 #  casper_serialized_data :text
@@ -45,7 +45,8 @@ class Asset < ActiveRecord::Base
   belongs_to :employee, :class_name => 'Person'
   belongs_to :transfer_employee, :class_name => 'Person'
 
-  validates :kind, :name, :model, :manufacturer, :presence => true
-  validates :asset_number, :serial_number, :presence => true, :uniqueness => true
-  validates :status, :presence => true, :inclusion => { :in => STATUSES }
+  validates :kind, :name, :model, :manufacturer,  :presence => true
+  validates :asset_number, :serial_number,        :presence => true, :uniqueness => true
+  validates :status,                              :presence => true, :inclusion => { :in => STATUSES }
+  validates :sale_price,                          :numericality => true
 end
