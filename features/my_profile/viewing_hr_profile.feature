@@ -12,7 +12,6 @@ Feature: View my HR profile
       | Last name                   | Smith                       |
       | Title                       | Jr.                         |
       | Job title                   | Developer                   |
-      | Work email address          | john.smith@factorylabs.com  |
       | Work phone number           | 123-567-7890                |
       | Work fax number             | 123-567-7890                |
       | Work mobile number          | 123-567-7890                |
@@ -44,7 +43,6 @@ Feature: View my HR profile
     And I should see "Departure Date 2010-04-13"
     And I should see "Birthday 1980-01-11"
     And I should see "Pay Type Salaried"
-    And I should see "Work E-mail Address john.smith@factorylabs.com"
     And I should see "Work Phone Number 123-567-7890"
     And I should see "Work Fax Number 123-567-7890"
     And I should see "Work Mobile Number 123-567-7890"

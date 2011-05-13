@@ -3,12 +3,15 @@ Feature: Search for people without signing in
   A user should be able to search an employee directory
 
   Background:
-    And the following hr profiles exist:
-      | First Name  |  Last Name | Department | Job Title | Work Email Address        | Work Phone Number |
-      | Joe         |  Smith     | IS         | Developer | joe.smith@factorylabs.com | 123-456-7891      |
+    Given the following hr profiles exist:
+      | First Name  |  Last Name | Department | Job Title | Work Phone Number |
+      | Joe         |  Smith     | IS         | Developer | 123-456-7891      |
+    And the following it profiles exist:
+      | Email Address             |
+      | joe.smith@factorylabs.com |
     And the following people exist:
-      | HR Profile        |
-      | First Name: Joe   |
+      | HR Profile        | IT Profile                                |
+      | First Name: Joe   | Email Address: joe.smith@factorylabs.com  |
     And the Sphinx indexes are updated
   Scenario: Search for a person
     Given I am on the home page

@@ -9,7 +9,7 @@
 
 %dl{:class => 'details'}
   %dt E-mail
-  %dd= link_to @person.work_email_address, "mailto:#{@person.work_email_address}"
+  %dd= link_to @person.email_address, "mailto:#{@person.email_address}"
   %dt Phone
   %dd= value_with_placeholder(@person.work_phone_number)
   %dt Download vCard

@@ -51,7 +51,6 @@ Factory.define(:hr_profile) do |f|
   f.status                          HrProfile::STATUSES.sample
   f.employment_type                 HrProfile::EMPLOYMENT_TYPES.sample
   f.birthday                        30.years.ago
-  f.work_email_address              'john.smith@factorylabs.com'
   f.work_phone_number               '123-456-7890'
   f.work_fax_number                 '123-456-7890'
   f.work_mobile_number              '123-456-7890'
@@ -65,6 +64,7 @@ end
 
 Factory.define(:it_profile) do |f|
   f.default_username                'john.smith'
+  f.email_address                   'john.smith@factorylabs.com'
   f.chat_gtalk                      'john.smith@factorylabs.com'
   f.email_account_active            true
 end

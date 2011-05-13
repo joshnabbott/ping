@@ -23,7 +23,7 @@ class Group < ActiveRecord::Base
 	  		      :people => { :methods => [  :first_name,
                                           :last_name,
                                           :job_title,
-                                          :work_email_address,
+                                          :email_address,
                                           :work_phone_number,
                                           :id ] }
   		      })

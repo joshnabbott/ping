@@ -51,7 +51,7 @@ class Person < ActiveRecord::Base
   delegate :title,              :to => :hr_profile,     :allow_nil => true
   delegate :job_title,          :to => :hr_profile,     :allow_nil => true
   delegate :department,         :to => :hr_profile,     :allow_nil => true
-  delegate :work_email_address, :to => :hr_profile,     :allow_nil => true
+  delegate :email_address,      :to => :it_profile,     :allow_nil => true
   delegate :work_phone_number,  :to => :hr_profile,     :allow_nil => true
   delegate :birthday,           :to => :hr_profile,     :allow_nil => true
   delegate :default_username,   :to => :it_profile,     :allow_nil => true
@@ -76,7 +76,7 @@ class Person < ActiveRecord::Base
     super(  :methods => [ :first_name,
                           :last_name,
                           :job_title,
-                          :work_email_address,
+                          :email_address,
                           :work_phone_number,
                           :id ],
             :include => {
@@ -119,7 +119,7 @@ class Person < ActiveRecord::Base
       maker.org       = "Factory Design Labs"
       maker.birthday  = self.birthday.to_date if self.birthday
       maker.add_tel(self.work_phone_number) if self.work_phone_number.present?
-      maker.add_email(self.work_email_address) { |e| e.location = 'work' }
+      maker.add_email(self.email_address) { |e| e.location = 'work' }
       
     end
 

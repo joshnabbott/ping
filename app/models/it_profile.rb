@@ -9,6 +9,7 @@
 #  chat_gtalk           :string(255)
 #  created_at           :datetime
 #  updated_at           :datetime
+#  email_address        :string(255)
 #
 
 class ItProfile < ActiveRecord::Base

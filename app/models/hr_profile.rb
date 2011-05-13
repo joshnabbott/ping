@@ -15,7 +15,6 @@
 #  departure_date                :date
 #  birthday                      :date
 #  pay_type                      :string(255)
-#  work_email_address            :string(255)
 #  work_phone_number             :string(255)
 #  work_fax_number               :string(255)
 #  work_mobile_number            :string(255)
