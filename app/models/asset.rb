@@ -45,5 +45,7 @@ class Asset < ActiveRecord::Base
   belongs_to :employee, :class_name => 'Person'
   belongs_to :transfer_employee, :class_name => 'Person'
 
-  validates :status, :inclusion => { :in => STATUSES }
+  validates :kind, :name, :model, :manufacturer, :presence => true
+  validates :asset_number, :serial_number, :presence => true, :uniqueness => true
+  validates :status, :presence => true, :inclusion => { :in => STATUSES }
 end

@@ -39,4 +39,23 @@ class AssetTest < ActiveSupport::TestCase
 
   should belong_to :employee
   should belong_to :transfer_employee
+
+  should validate_presence_of :asset_number
+  should validate_presence_of :kind
+  should validate_presence_of :serial_number
+  should validate_presence_of :name
+  should validate_presence_of :model
+  should validate_presence_of :manufacturer
+  should validate_presence_of :status
+
+  should validate_uniqueness_of :asset_number
+  should validate_uniqueness_of :serial_number
+
+  context 'status attribute' do
+    should 'be included in Asset::STATUSES' do
+      @asset = Factory.build(:asset, :status => 'Dead.')
+      assert !@asset.valid?
+    end
+  end
+
 end
