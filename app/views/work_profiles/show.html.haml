@@ -1,0 +1,23 @@
+- content_for :title do
+  %h1= "#{link_to((pronoun_or_first_name(@person) + ' Information'), person_path(@person))} &raquo; #{pronoun_or_first_name(@person)} Work Contact Profile".html_safe
+
+%h3 Contact Information
+%dl{:class => 'details'}
+  %dt Work Phone Number
+  %dd= value_with_placeholder  @work_profile.work_phone_number
+  %dt Work Fax Number
+  %dd= value_with_placeholder  @work_profile.work_fax_number
+  %dt Work Mobile Number
+  %dd= value_with_placeholder  @work_profile.work_mobile_number
+  %dt Work Extension
+  %dd= value_with_placeholder  @work_profile.work_extension
+  %dt Work Address
+  %dd= value_with_placeholder  @work_profile.work_address
+  %dt Work City
+  %dd= value_with_placeholder  @work_profile.work_city
+  %dt Work State
+  %dd= value_with_placeholder  @work_profile.work_state
+  %dt Work Zip
+  %dd= value_with_placeholder  @work_profile.work_zip
+  %dt Work Country
+  %dd= value_with_placeholder  @work_profile.work_country

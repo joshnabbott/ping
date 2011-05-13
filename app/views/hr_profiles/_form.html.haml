@@ -8,17 +8,6 @@
     = form.input :birthday,  :as => :date
     = form.input :status, :as => :select, :collection => HrProfile::STATUSES, :include_blank => false
 
-  = form.inputs :name => "Contact Information" do
-    = form.input :work_phone_number
-    = form.input :work_fax_number
-    = form.input :work_mobile_number
-    = form.input :work_extension
-    = form.input :work_address
-    = form.input :work_city
-    = form.input :work_state
-    = form.input :work_zip
-    = form.input :work_country, :as => :select, :collection => Person::COUNTRIES, :include_blank => false
-
   = form.inputs :name => "Personnel Information" do
     = form.input :department, :as => :select, :collection => HrProfile::DEPARTMENTS, :include_blank => false
     = form.input :job_title

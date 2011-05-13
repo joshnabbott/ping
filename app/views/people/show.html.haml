@@ -21,6 +21,10 @@
     = link_to "Edit #{pronoun_for_person(@person)} emergency contact", edit_person_emergency_profile_path(@person), :class => 'button'
   - elsif can?(:read, @person.emergency_profile)
     = link_to "View #{pronoun_for_person(@person)} emergency contact", person_emergency_profile_path(@person), :class => 'button'
+  - if can?(:edit, @person.work_profile)
+    = link_to "Edit #{pronoun_for_person(@person)} work contact profile", edit_person_work_profile_path(@person), :class => 'button'
+  - elsif can?(:read, @person.work_profile)
+    = link_to "View #{pronoun_for_person(@person)} work contact profile", person_work_profile_path(@person), :class => 'button'
 
     = link_to "Change #{pronoun_for_person(@person)} password", edit_person_credential_path(@person), :class => 'button'
     = link_to "Manage #{pronoun_for_person(@person)} services", edit_person_path(@person), :class => 'button'

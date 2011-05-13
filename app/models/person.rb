@@ -19,6 +19,7 @@ class Person < ActiveRecord::Base
   has_one                 :facilities_profile,  :dependent => :destroy
   has_one                 :public_profile,      :dependent => :destroy
   has_one                 :emergency_profile,   :dependent => :destroy
+  has_one                 :work_profile,        :dependent => :destroy
 
   has_and_belongs_to_many :groups
 
@@ -30,12 +31,14 @@ class Person < ActiveRecord::Base
   validates_associated :facilities_profile
   validates_associated :public_profile
   validates_associated :emergency_profile
+  validates_associated :work_profile
 
   accepts_nested_attributes_for :hr_profile
   accepts_nested_attributes_for :it_profile
   accepts_nested_attributes_for :facilities_profile
   accepts_nested_attributes_for :public_profile
   accepts_nested_attributes_for :emergency_profile
+  accepts_nested_attributes_for :work_profile
 
   after_initialize do
     self.build_hr_profile         unless self.hr_profile
@@ -43,6 +46,7 @@ class Person < ActiveRecord::Base
     self.build_facilities_profile unless self.facilities_profile
     self.build_public_profile     unless self.public_profile
     self.build_emergency_profile  unless self.emergency_profile
+    self.build_work_profile  unless self.work_profile
   end
 
   delegate :first_name,         :to => :hr_profile,     :allow_nil => true
@@ -52,7 +56,7 @@ class Person < ActiveRecord::Base
   delegate :job_title,          :to => :hr_profile,     :allow_nil => true
   delegate :department,         :to => :hr_profile,     :allow_nil => true
   delegate :email_address,      :to => :it_profile,     :allow_nil => true
-  delegate :work_phone_number,  :to => :hr_profile,     :allow_nil => true
+  delegate :work_phone_number,  :to => :work_profile,   :allow_nil => true
   delegate :birthday,           :to => :hr_profile,     :allow_nil => true
   delegate :default_username,   :to => :it_profile,     :allow_nil => true
   delegate :bio,                :to => :public_profile, :allow_nil => true

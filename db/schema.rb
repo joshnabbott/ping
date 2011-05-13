@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110513174758) do
+ActiveRecord::Schema.define(:version => 20110513202437) do
 
   create_table "credentials", :force => true do |t|
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
@@ -76,15 +76,6 @@ ActiveRecord::Schema.define(:version => 20110513174758) do
     t.date     "departure_date"
     t.date     "birthday"
     t.string   "pay_type"
-    t.string   "work_phone_number"
-    t.string   "work_fax_number"
-    t.string   "work_mobile_number"
-    t.string   "work_extension"
-    t.string   "work_address"
-    t.string   "work_city"
-    t.string   "work_state"
-    t.string   "work_zip"
-    t.string   "work_country"
     t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -161,6 +152,21 @@ ActiveRecord::Schema.define(:version => 20110513174758) do
     t.string   "flickr_url"
     t.string   "instagram_url"
     t.string   "website_url"
+  end
+
+  create_table "work_profiles", :force => true do |t|
+    t.string   "work_phone_number"
+    t.string   "work_fax_number"
+    t.string   "work_mobile_number"
+    t.string   "work_extension"
+    t.string   "work_address"
+    t.string   "work_city"
+    t.string   "work_state"
+    t.string   "work_zip"
+    t.string   "work_country"
+    t.integer  "person_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

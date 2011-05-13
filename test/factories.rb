@@ -4,6 +4,7 @@ Factory.define(:person) do |f|
   f.association                     :facilities_profile
   f.association                     :public_profile
   f.association                     :emergency_profile
+  f.association                     :work_profile
   f.employee_photo                  ''
 end
 
@@ -51,6 +52,9 @@ Factory.define(:hr_profile) do |f|
   f.status                          HrProfile::STATUSES.sample
   f.employment_type                 HrProfile::EMPLOYMENT_TYPES.sample
   f.birthday                        30.years.ago
+end
+
+Factory.define(:work_profile) do |f|
   f.work_phone_number               '123-456-7890'
   f.work_fax_number                 '123-456-7890'
   f.work_mobile_number              '123-456-7890'

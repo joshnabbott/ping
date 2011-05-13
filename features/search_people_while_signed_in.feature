@@ -5,14 +5,17 @@ Feature: Search for people
   Background:
     Given I am authenticated
     And the following hr profiles exist:
-      | First Name  |  Last Name | Department | Job Title | Work Phone Number |
-      | Joe         |  Smith     | IS         | Developer | 123-456-7891      |
+      | First Name  |  Last Name | Department | Job Title |
+      | Joe         |  Smith     | IS         | Developer |
+    And the following work profiles exist:
+      | Work Phone Number |
+      | 123-456-7891      |
     And the following it profiles exist:
       | Email Address             |
       | joe.smith@factorylabs.com |
     And the following people exist:
-      | HR Profile        | IT Profile                                |
-      | First Name: Joe   | Email Address: joe.smith@factorylabs.com  |
+      | HR Profile        | IT Profile                                | Work Profile                    |
+      | First Name: Joe   | Email Address: joe.smith@factorylabs.com  | Work Phone Number: 123-456-7891 |
     And the Sphinx indexes are updated
   Scenario: Search for a person
     Given I am on the home page

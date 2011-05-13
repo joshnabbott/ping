@@ -13,6 +13,7 @@ Factorypeople::Application.routes.draw do
     resource :hr_profile
     resource :facilities_profile
     resource :emergency_profile
+    resource :work_profile
     resource :credential
   end
 

@@ -26,12 +26,14 @@ class Ability
     can :read,    ItProfile,         :person_id => person.id
     can :read,    HrProfile,         :person_id => person.id
     can :read,    FacilitiesProfile, :person_id => person.id
+    can :read,    WorkProfile,       :person_id => person.id
 
     # IT can manage groups and IT/Facilities profiles
     if person.group_names.include?('IT')
       can :manage, Person
       can :manage, ItProfile
       can :manage, FacilitiesProfile
+      can :manage, WorkProfile
       can :manage, Group
       can :manage, Credential
     end
@@ -42,6 +44,7 @@ class Ability
       can :manage, HrProfile
       can :manage, PublicProfile
       can :manage, FacilitiesProfile
+      can :manage, WorkProfile
       can :manage, EmergencyProfile
       can :manage, Group
     end
