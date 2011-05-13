@@ -1,18 +1,14 @@
 - semantic_form_for [:person, @hr_profile] do |form|
-  = form.inputs :name => "HR Profile" do
+  = form.inputs :name => "Basic Information" do
     = form.input :first_name
     = form.input :middle_name
     = form.input :last_name
     = form.input :title
     = form.input :gender, :as => :select, :collection => HrProfile.genders_for_select, :include_blank => false
-    = form.input :department, :as => :select, :collection => HrProfile::DEPARTMENTS, :include_blank => false
-    = form.input :job_title
-    = form.input :hire_date,  :as => :date
-    = form.input :hire_date_vacation_adjustment,  :as => :date
-    = form.input :departure_date,  :as => :date
     = form.input :birthday,  :as => :date
     = form.input :status, :as => :select, :collection => HrProfile::STATUSES, :include_blank => false
-    = form.input :employment_type, :as => :select, :collection => HrProfile::EMPLOYMENT_TYPES, :include_blank => false
+
+  = form.inputs :name => "Contact Information" do
     = form.input :work_email_address
     = form.input :work_phone_number
     = form.input :work_fax_number
@@ -23,6 +19,34 @@
     = form.input :work_state
     = form.input :work_zip
     = form.input :work_country, :as => :select, :collection => Person::COUNTRIES, :include_blank => false
+
+  = form.inputs :name => "Personnel Information" do
+    = form.input :department, :as => :select, :collection => HrProfile::DEPARTMENTS, :include_blank => false
+    = form.input :job_title
+    = form.input :hire_date,       :as => :date
+    = form.input :hire_date_vacation_adjustment,  :as => :date
+    = form.input :employment_type, :as => :select, :collection => HrProfile::EMPLOYMENT_TYPES, :include_blank => false
+    = form.input :manager,          :as => :select, :collection => Person.all, :include_blank => false
+    = form.input :replacing,          :as => :select, :collection => Person.all, :include_blank => false
+
+  = form.inputs :name => "Pay/Benefits Information" do
+    = form.input :pay_type, :as => :select, :collection => HrProfile::PAY_TYPES, :include_blank => false
+    = form.input :salary_annual
+    = form.input :salary_per_period
+    = form.input :bonus_amount
+    = form.input :bonus_justification
+    = form.input :vacation
+    = form.input :vacation_effective_date
+    = form.input :flsa, :label => 'FLSA'
+    = form.input :fml_loa, :label =>'FML/LOA Status'
+
+  = form.inputs :name => "Separation Information" do
+    = form.input :separation_pay
+    = form.input :departure_date
+    = form.input :last_day_worked
+    = form.input :reason_for_release
+    = form.input :termination_date
+    = form.input :vacation_payout
   
   = form.buttons do
     = form.commit_button

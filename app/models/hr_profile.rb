@@ -30,6 +30,21 @@
 #  updated_at                    :datetime
 #  status                        :string(255)
 #  employment_type               :string(255)
+#  manager_id                    :integer(4)
+#  replacing_id                  :integer(4)
+#  salary_annual                 :integer(10)
+#  salary_per_period             :integer(10)
+#  flsa                          :string(255)
+#  vacation                      :string(255)
+#  vacation_effective_date       :date
+#  last_day_worked               :date
+#  separation_pay                :integer(10)
+#  termination_date              :date
+#  vacation_payout               :string(255)
+#  reason_for_release            :text
+#  bonus_justification           :text
+#  bonus_amount                  :integer(10)
+#  fml_loa                       :string(255)
 #
 
 class HrProfile < ActiveRecord::Base
@@ -49,6 +64,9 @@ class HrProfile < ActiveRecord::Base
   end
 
   belongs_to :person
+
+  belongs_to :manager,    :class_name => 'Person'
+  belongs_to :replacing,  :class_name => 'Person'
   
 #  validates :person_id,         :presence => true
   validates :first_name,        :presence => true

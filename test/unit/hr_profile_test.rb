@@ -30,6 +30,21 @@
 #  updated_at                    :datetime
 #  status                        :string(255)
 #  employment_type               :string(255)
+#  manager_id                    :integer(4)
+#  replacing_id                  :integer(4)
+#  salary_annual                 :integer(10)
+#  salary_per_period             :integer(10)
+#  flsa                          :string(255)
+#  vacation                      :string(255)
+#  vacation_effective_date       :date
+#  last_day_worked               :date
+#  separation_pay                :integer(10)
+#  termination_date              :date
+#  vacation_payout               :string(255)
+#  reason_for_release            :text
+#  bonus_justification           :text
+#  bonus_amount                  :integer(10)
+#  fml_loa                       :string(255)
 #
 
 require 'test_helper'

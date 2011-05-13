@@ -1,6 +1,7 @@
 - content_for :title do
   %h1= "#{link_to((pronoun_or_first_name(@person) + ' Information'), person_path(@person))} &raquo; #{pronoun_or_first_name(@person)} HR Profile".html_safe
 
+%h3 Basic Information
 %dl{:class => 'details'}
   %dt First Name
   %dd= value_with_placeholder @hr_profile.first_name
@@ -12,24 +13,13 @@
   %dd= value_with_placeholder @hr_profile.title
   %dt Gender
   %dd= value_with_placeholder  @hr_profile.gender.capitalize
-  %dt Department
-  %dd= value_with_placeholder  @hr_profile.department
-  %dt Job Title
-  %dd= value_with_placeholder  @hr_profile.job_title
-  %dt Hire Date
-  %dd= value_with_placeholder  @hr_profile.hire_date
-  %dt Hire Date (Vacation Adjustment)
-  %dd= value_with_placeholder  @hr_profile.hire_date_vacation_adjustment
-  %dt Departure Date
-  %dd= value_with_placeholder  @hr_profile.departure_date
   %dt Birthday
   %dd= value_with_placeholder  @hr_profile.birthday
-  %dt Pay Type
-  %dd= value_with_placeholder  @hr_profile.pay_type.capitalize
   %dt Status
   %dd= value_with_placeholder  @hr_profile.status
-  %dt Employment Type
-  %dd= value_with_placeholder  @hr_profile.employment_type
+
+%h3 Contact Information
+%dl{:class => 'details'}
   %dt Work E-mail Address
   %dd= value_with_placeholder  @hr_profile.work_email_address
   %dt Work Phone Number
@@ -50,3 +40,56 @@
   %dd= value_with_placeholder  @hr_profile.work_zip
   %dt Work Country
   %dd= value_with_placeholder  @hr_profile.work_country
+  
+%h3 Personnel Information
+%dl{:class => 'details'}
+  %dt Department
+  %dd= value_with_placeholder  @hr_profile.department
+  %dt Job Title
+  %dd= value_with_placeholder  @hr_profile.job_title
+  %dt Hire Date
+  %dd= value_with_placeholder  @hr_profile.hire_date
+  %dt Hire Date (Vacation Adjustment)
+  %dd= value_with_placeholder  @hr_profile.hire_date_vacation_adjustment
+  %dt Employment Type
+  %dd= value_with_placeholder  @hr_profile.employment_type
+  %dt Manager
+  %dd= value_with_placeholder  value_with_placeholder(@hr_profile.manager.try(:full_name))
+  %dt Replacing
+  %dd= value_with_placeholder  value_with_placeholder(@hr_profile.replacing.try(:full_name))
+
+%h3 Pay/Benefits Information
+%dl{:class => 'details'}
+  %dt Pay Type
+  %dd= value_with_placeholder  @hr_profile.pay_type.capitalize
+  %dt Annual Salary
+  %dd= value_with_placeholder  number_to_currency(@hr_profile.salary_annual)
+  %dt Salary Per Period
+  %dd= value_with_placeholder  number_to_currency(@hr_profile.salary_per_period)
+  %dt Bonus Amount
+  %dd= value_with_placeholder  number_to_currency(@hr_profile.bonus_amount)
+  %dt Bonus Justification
+  %dd= value_with_placeholder  @hr_profile.bonus_justification
+  %dt Vacation
+  %dd= value_with_placeholder  @hr_profile.vacation
+  %dt Vacation Effective Date
+  %dd= value_with_placeholder  @hr_profile.vacation_effective_date
+  %dt FLSA
+  %dd= value_with_placeholder  @hr_profile.flsa
+  %dt FML/LOA Status
+  %dd= value_with_placeholder  @hr_profile.fml_loa
+
+%h3 Separation Information
+%dl{:class => 'details'}
+  %dt Separation Pay
+  %dd= value_with_placeholder  number_to_currency(@hr_profile.separation_pay)
+  %dt Departure Date
+  %dd= value_with_placeholder  @hr_profile.departure_date
+  %dt Last Day Worked
+  %dd= value_with_placeholder  @hr_profile.last_day_worked
+  %dt Reason For Release
+  %dd= value_with_placeholder  @hr_profile.reason_for_release
+  %dt Termination Date
+  %dd= value_with_placeholder  @hr_profile.termination_date
+  %dt Vacation Payout
+  %dd= value_with_placeholder  @hr_profile.vacation_payout

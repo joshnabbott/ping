@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110513002115) do
+ActiveRecord::Schema.define(:version => 20110513170035) do
 
   create_table "credentials", :force => true do |t|
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
@@ -91,6 +91,21 @@ ActiveRecord::Schema.define(:version => 20110513002115) do
     t.datetime "updated_at"
     t.string   "status"
     t.string   "employment_type"
+    t.integer  "manager_id"
+    t.integer  "replacing_id"
+    t.decimal  "salary_annual",                 :precision => 10, :scale => 0
+    t.decimal  "salary_per_period",             :precision => 10, :scale => 0
+    t.string   "flsa"
+    t.string   "vacation"
+    t.date     "vacation_effective_date"
+    t.date     "last_day_worked"
+    t.decimal  "separation_pay",                :precision => 10, :scale => 0
+    t.date     "termination_date"
+    t.string   "vacation_payout"
+    t.text     "reason_for_release"
+    t.text     "bonus_justification"
+    t.decimal  "bonus_amount",                  :precision => 10, :scale => 0
+    t.string   "fml_loa"
   end
 
   create_table "it_profiles", :force => true do |t|
