@@ -12,6 +12,34 @@
 
 ActiveRecord::Schema.define(:version => 20110513202437) do
 
+  create_table "assets", :force => true do |t|
+    t.integer  "employee_id"
+    t.integer  "transfer_employee_id"
+    t.string   "asset_number"
+    t.string   "kind"
+    t.string   "serial_number"
+    t.string   "name"
+    t.string   "model"
+    t.string   "manufacturer"
+    t.date     "warranty_end_date"
+    t.string   "warranty_number"
+    t.date     "warranty_renewal_date"
+    t.string   "status"
+    t.string   "location"
+    t.text     "notes"
+    t.date     "purchase_date"
+    t.string   "purchase_type"
+    t.string   "po_number"
+    t.string   "transfer_type"
+    t.date     "transfer_date"
+    t.float    "sale_price"
+    t.string   "payment_type"
+    t.text     "transfer_notes"
+    t.text     "casper_serialized_data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "credentials", :force => true do |t|
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
     t.string   "reset_password_token"

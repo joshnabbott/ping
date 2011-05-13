@@ -82,3 +82,24 @@ Factory.define(:credential) do |f|
   f.password            'Password1'
   f.association         :person
 end
+
+Factory.define(:asset) do |f|
+  f.association                     :employee, :factory => :person
+  f.sequence(:asset_number)         { |n| n }
+  f.kind                            'Computer'
+  f.sequence(:serial_number)        { |n| n }
+  f.name                            'Joshua Abbott'
+  f.model                           'Macbook Pro'
+  f.manufacturer                    'Apple'
+  f.warranty_end_date               Date.new + 1.year
+  f.sequence(:warranty_number)      { |n| n }
+  f.warranty_renewal_date           Date.new + 1.year
+  f.status                          Asset::STATUSES.sample
+  f.location                        'Denver, CO'
+  f.notes                           'This computer is the best and this guy deserves the best.'
+  f.purchase_date                   1.year.ago
+  f.purchase_type                   'Purchased'
+  f.sequence(:po_number)            { |n| n }
+  f.sale_price                      4000.00
+  f.payment_type                    'Cash'
+end

@@ -3,6 +3,8 @@ source :rubygems
 gem 'bundler',                      '1.0.13'
 gem 'rails',                        '3.0.6'
 
+gem 'casper_api',                   '~> 0.0.1', :git => 'git://github.com/factorylabs/casper_api.git'
+
 gem 'mysql2'
 gem 'thinking-sphinx'
 
@@ -31,4 +33,5 @@ group :development, :test do
   gem 'launchy'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
+  gem 'shoulda'
 end
