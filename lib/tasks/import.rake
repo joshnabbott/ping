@@ -1,4 +1,41 @@
 namespace :import do
+  desc 'Imports asset data from casper using the casper_api gem'
+  task :casper => :environment do
+    casper = CasperApi::Casper.new('Development', 'test')
+
+    Person.all.each do |person|
+      puts "Searching for computer asset for #{person.full_name}..."
+
+      begin
+        casper_computer = casper.computers.find(person.full_name)
+
+        puts "Found #{person.full_name}'s computer."
+
+        computer                          = Asset.find_or_initialize_by_serial_number(casper_computer.general['serial_number'])
+        computer.employee                 = person
+        computer.kind                     = 'Laptop' # This isn't always gonna be a laptop... It might be a desktop
+        computer.asset_number             = casper_computer.general['id']
+        computer.name                     = casper_computer.general['name']
+        computer.model                    = casper_computer.hardware['model']
+        computer.manufacturer             = casper_computer.hardware['make']
+        computer.manufacturer             = casper_computer.hardware['make']
+        computer.status                   = 'Active'
+        # computer.casper_serialized_data = casper_computer.to_json # results in Mysql max_allowed_packet error for now.
+
+        if computer.save
+          puts "Saved #{person.full_name}'s computer."
+        else
+          puts "Couldn't save #{person.full_name}'s computer."
+          puts computer.error.inspect
+        end
+
+      rescue Exception => e
+        puts "Couldn't find a computer for #{person.full_name}."
+      end
+    end
+
+  end
+
   task :employee_list => :environment do
     FasterCSV.foreach('db/employee_list.csv', :headers => true) do |row|
       first_name,

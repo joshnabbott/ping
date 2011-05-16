@@ -31,6 +31,8 @@
 #
 
 class Asset < ActiveRecord::Base
+  serialize :casper_data
+
   KINDS = [
     'Laptop',
     'Desktop',
