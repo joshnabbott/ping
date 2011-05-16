@@ -24,14 +24,17 @@ gem 'vpim'
 
 gem 'hoptoad_notifier'
 
-group :development, :test do
+group :development do
   gem 'auto_annotate'
   gem 'ruby-debug'
-  gem 'cucumber-rails'
-  gem 'capybara'
   gem 'chronic'
   gem 'launchy'
-  gem 'factory_girl_rails'
   gem 'database_cleaner'
+end
+
+group :test do
+  gem 'cucumber-rails'
+  gem 'capybara'
+  gem 'factory_girl_rails'
   gem 'shoulda'
 end

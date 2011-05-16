@@ -1,0 +1,72 @@
+%p#notice= notice
+
+%p
+  %b Employee:
+  = @asset.employee
+%p
+  %b Asset number:
+  = @asset.asset_number
+%p
+  %b Kind:
+  = @asset.kind
+%p
+  %b Serial number:
+  = @asset.serial_number
+%p
+  %b Name:
+  = @asset.name
+%p
+  %b Model:
+  = @asset.model
+%p
+  %b Manufacturer:
+  = @asset.manufacturer
+%p
+  %b Warranty end date:
+  = @asset.warranty_end_date
+%p
+  %b Warranty number:
+  = @asset.warranty_number
+%p
+  %b Warranty renewal date:
+  = @asset.warranty_renewal_date
+%p
+  %b Status:
+  = @asset.status
+%p
+  %b Location:
+  = @asset.location
+%p
+  %b Notes:
+  = @asset.notes
+%p
+  %b Purchase date:
+  = @asset.purchase_date
+%p
+  %b Purchase type:
+  = @asset.purchase_type
+%p
+  %b Po number:
+  = @asset.po_number
+%p
+  %b Transfer employee:
+  = @asset.transfer_employee
+%p
+  %b Transfer type:
+  = @asset.transfer_type
+%p
+  %b Transfer date:
+  = @asset.transfer_date
+%p
+  %b Transfer notes:
+  = @asset.transfer_notes
+%p
+  %b Sale price:
+  = @asset.sale_price
+%p
+  %b Payment type:
+  = @asset.payment_type
+
+= link_to 'Edit', edit_asset_path(@asset)
+\|
+= link_to 'Back', assets_path

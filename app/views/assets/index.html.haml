@@ -1,0 +1,29 @@
+= content_for :title do
+  %h1 Assets
+= content_for :related do
+  = link_to 'Create a new asset', new_asset_path
+
+%table{:class => 'list'}
+  %tr
+    %th Asset number
+    %th Kind
+    %th Name
+    %th Serial Number
+    %th
+
+  - unless @assets.empty?
+    - @assets.each do |asset|
+      %tr{:class => cycle('even', 'odd'), :id => dom_id(asset)}
+        %td= asset.asset_number
+        %td= asset.kind
+        %td= asset.name
+        %td= asset.serial_number
+        %td.controls
+          = link_to 'Details', asset
+          = link_to 'Edit', [:edit, asset]
+          = link_to 'Destroy', asset, :confirm => 'Are you sure?', :method => :delete
+  - else
+    %tr{:colspan => 4}
+      %td No assets found
+
+%br

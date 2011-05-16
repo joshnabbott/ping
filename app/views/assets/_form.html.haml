@@ -1,0 +1,25 @@
+= semantic_form_for @asset do |form|
+  = form.inputs :name => "Asset" do
+    = form.input :employee_id, :as => :select, :collection => Person.all, :include_blank => false
+    = form.input :asset_number
+    = form.input :kind, :as => :select, :collection => Asset::KINDS, :include_blank => false
+    = form.input :serial_number
+    = form.input :name
+    = form.input :model
+    = form.input :manufacturer
+    = form.input :warranty_end_date
+    = form.input :warranty_number
+    = form.input :warranty_renewal_date
+    = form.input :status, :as => :select, :collection => Asset::STATUSES, :include_blank => false
+    = form.input :location
+    = form.input :purchase_date
+    = form.input :purchase_type
+    = form.input :po_number
+    = form.input :transfer_employee_id, :as => :select, :collection => Person.all
+    = form.input :transfer_type
+    = form.input :transfer_date
+    = form.input :transfer_notes
+    = form.input :sale_price
+    = form.input :payment_type
+  = form.buttons do
+    = form.commit_button

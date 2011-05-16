@@ -30,6 +30,7 @@ class Ability
 
     # IT can manage groups and IT/Facilities profiles
     if person.group_names.include?('IT')
+      can :manage, Asset
       can :manage, Person
       can :manage, ItProfile
       can :manage, FacilitiesProfile

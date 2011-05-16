@@ -31,6 +31,14 @@
 #
 
 class Asset < ActiveRecord::Base
+  KINDS = [
+    'Laptop',
+    'Desktop',
+    'iPhone',
+    'iPad',
+    'Printer'
+  ]
+
   STATUSES = [
     'Active',
     'Stock',
