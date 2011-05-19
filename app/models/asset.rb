@@ -34,11 +34,15 @@ class Asset < ActiveRecord::Base
   serialize :casper_data
 
   KINDS = [
-    'Laptop',
-    'Desktop',
-    'iPhone',
-    'iPad',
-    'Printer'
+    'Computer',
+    'Monitor',
+    'Infrastructure',
+    'Phone',
+    'Tablet',
+    'Wireless',
+    'Peripheral',
+    'Furniture',
+    'Software'
   ]
 
   STATUSES = [
@@ -59,4 +63,9 @@ class Asset < ActiveRecord::Base
   validates :asset_number, :serial_number,        :presence => true, :uniqueness => true
   validates :status,                              :presence => true, :inclusion => { :in => STATUSES }
   validates :sale_price,                          :numericality => true
+
+  define_index do
+    indexes :asset_number, :sortable => true
+    indexes :serial_number, :sortable => true
+  end
 end

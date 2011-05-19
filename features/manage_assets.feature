@@ -15,7 +15,7 @@ Feature: Manage assets
       | Name          | Joshua Abbott |
       | Model         | MacBook Pro   |
       | Manufacturer  | Apple         |
-    And I select "Laptop" from "Kind"
+    And I select "Computer" from "Kind"
     And I select "Active" from "Status"
     And I press "Create"
     Then I should see "Asset was successfully created."

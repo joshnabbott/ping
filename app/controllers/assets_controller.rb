@@ -1,14 +1,14 @@
 class AssetsController < ApplicationController
   load_and_authorize_resource :person
+  before_filter :search_for_assets, :only => :index
 
   # GET /assets
   # GET /assets.xml
   def index
-    @assets = Asset.all
-
     respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @assets }
+      format.html # index.html.haml
+      format.xml    { render :xml => @assets }
+      format.json   { render :json => @assets }
     end
   end
 
@@ -80,6 +80,15 @@ class AssetsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to([:assets]) }
       format.xml  { head :ok }
+    end
+  end
+
+protected
+  def search_for_assets
+    @assets = if params[:search].present?
+      Asset.search(params[:search], :star => true, :retry_stale => true, :page => params[:page], :per_page => 50, :order => :asset_number)
+    else
+      Asset.all
     end
   end
 end
