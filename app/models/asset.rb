@@ -59,13 +59,14 @@ class Asset < ActiveRecord::Base
   belongs_to :employee, :class_name => 'Person'
   belongs_to :transfer_employee, :class_name => 'Person'
 
-  validates :kind, :name, :model, :manufacturer,  :presence => true
+  validates :name, :model, :manufacturer,         :presence => true
+  validates :kind,                                :presence => true, :inclusion => { :in => KINDS }
   validates :asset_number, :serial_number,        :presence => true, :uniqueness => true
   validates :status,                              :presence => true, :inclusion => { :in => STATUSES }
   validates :sale_price,                          :numericality => true
 
   define_index do
-    indexes :asset_number, :sortable => true
+    indexes :asset_number,  :sortable => true
     indexes :serial_number, :sortable => true
   end
 end
