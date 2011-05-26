@@ -805,6 +805,8 @@ form.formtastic fieldset ol li label {
 select,
 input[type=text],
 input[type=password],
+input[type=email],
+input[type=phone],
 textarea,
 input.text,
 form.formtastic fieldset ol li select,

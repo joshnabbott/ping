@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
-  
+
+  Formtastic::SemanticFormHelper.builder = Protosite::FormBuilder
+
   protect_from_forgery
   
   protected
