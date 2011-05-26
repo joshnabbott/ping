@@ -9,13 +9,11 @@ namespace :ts do
     #   - So, we need to remap HUP to KILL for the purposes of this script.
     # Ugh.  Shoot me.
 
-    trap("SIGHUP") { Process.kill(:TERM, $pid) }
-    $pid = fork
-
-    if $pid == nil
+    unless pid = fork
       exec "#{ts.bin_path}#{ts.searchd_binary_name} --pidfile --config #{ts.config_file} --nodetach"
     end
 
+    trap("SIGHUP") { Process.kill(:TERM, pid) }
     Process.wait
 
   end
