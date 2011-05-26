@@ -2,6 +2,7 @@ source :rubygems
 
 gem 'bundler',                      '1.0.13'
 gem 'rails',                        '3.0.6'
+gem 'thin',                                       :require => false
 
 gem 'casper_api',                   '~> 0.0.1', :git => 'git://github.com/factorylabs/casper_api.git'
 
@@ -23,6 +24,7 @@ gem 'fastercsv'
 gem 'vpim'
 
 gem 'hoptoad_notifier'
+gem 'foreman'
 
 group :development do
   gem 'auto_annotate'
