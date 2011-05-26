@@ -1,5 +1,3 @@
-puts 'Loading formbuilder'
-
 class ActiveRecord::Base
   # When using the :twelve_hour format for date selectors, we need to convert
   # the time from the form back to 24 hour so we can store it appropriately.
