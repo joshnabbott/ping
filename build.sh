@@ -15,7 +15,7 @@ else
 fi
 
 # Setup the gemset
-rvm use ree@factorypeople --create && \
+rvm use ree@ping --create && \
 rvm --force gemset empty && \
 rvm get head && \
 rvm reload && \
@@ -29,7 +29,7 @@ export RUBY_GC_MALLOC_LIMIT=1000000000
 export RUBY_HEAP_FREE_MIN=500000
 
 # Setup bundler
-gem install bundler -v 1.0.13 --no-ri --no-rdoc
+gem install bundler -v 1.0.14 --no-ri --no-rdoc
 bundle install && \
 
 # DB Setup
