@@ -6,7 +6,7 @@ gem 'rake',                         '0.8.7',      :require => false
 gem 'thin',                                       :require => false
 gem 'unicorn',                                    :require => false
 
-gem 'casper_api',                   '~> 0.0.1', :git => 'git://github.com/factorylabs/casper_api.git'
+gem 'casper_api',                   '~> 0.0.1', :git => 'https://github.com/factorylabs/casper_api.git'
 
 gem 'mysql2'
 gem 'thinking-sphinx'

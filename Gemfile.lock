@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/factorylabs/casper_api.git
+  remote: https://github.com/factorylabs/casper_api.git
   revision: 52d5316e51621f9bb04c18ef2d8b6345c320bfb7
   specs:
     casper_api (0.0.1)
