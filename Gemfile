@@ -26,7 +26,7 @@ gem 'fastercsv'
 gem 'vpim'
 
 gem 'hoptoad_notifier'
-gem 'foreman',                                  :git => "https://github.com/jayzes/foreman.git"
+gem 'foreman',                                  :git => "https://github.com/jayzes/foreman.git", :branch => 'patch-1'
 
 group :development do
   gem 'auto_annotate'
