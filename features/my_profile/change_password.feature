@@ -23,7 +23,7 @@ Feature: Change my password
       | Password confirmation | weak |
     And I press "Change password"
     Then I should not see "Your credentials were successfully updated."
-    And I should see "is too short (minimum is 8 characters)"
+    And I should see "Is too short (minimum is 8 characters)"
 
   Scenario: Change my password with a password that has been used recently
     Given I am on the home page
@@ -38,7 +38,7 @@ Feature: Change my password
       | Password confirmation | L33tPass1 |
     And I press "Change password"
     Then I should not see "Your credentials were successfully updated."
-    And I should see "has already been used recently"
+    And I should see "Has already been used recently"
 
   Scenario: Change my password with a password that has no caps
     Given I am on the home page
@@ -48,7 +48,7 @@ Feature: Change my password
       | Password confirmation | weakpass1 |
     And I press "Change password"
     Then I should not see "Your credentials were successfully updated."
-    And I should see "is invalid"
+    And I should see "Is invalid"
 
   Scenario: Change my password with a password that has no numbers
     Given I am on the home page
@@ -58,4 +58,4 @@ Feature: Change my password
       | Password confirmation | weakpass |
     And I press "Change password"
     Then I should not see "Your credentials were successfully updated."
-    And I should see "is invalid"
+    And I should see "Is invalid"

@@ -94,7 +94,7 @@ module Protosite
       separator(options)
     end
 
-    def error_sentence(errors)
+    def error_sentence(errors, options = {})
       template.content_tag(:p, errors.to_sentence.humanize.untaint, :class => 'inline-errors')
     end
 
