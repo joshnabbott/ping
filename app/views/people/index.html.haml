@@ -5,43 +5,12 @@
     = link_to 'Create a new person', new_person_path
 
 .filter.container
-  = form_tag people_path, :method => :get do
+  = form_tag people_path, :method => :get, :id => 'search_form', :remote => true do
     = label_tag :search, 'Search for a person'
     = text_field_tag :search, params[:search]
     = submit_tag 'Search', :class => 'button'
 
 %br
 
-%table{:class => 'list'}
-  %tr
-    %th Name
-    %th Title
-    %th Department
-    %th E-mail
-    %th Phone
-    %th
-    - if can? :edit, Person
-      %th
-    - if can? :delete, Person
-      %th
-  - unless @people.empty?
-    - @people.each do |person|
-      %tr{ :id => dom_id(person) }
-        %td= person.full_name
-        %td= person.job_title
-        %td= person.department
-        %td= link_to person.email_address, "mailto:#{person.email_address}"
-        %td= value_with_placeholder(person.work_phone_number)
-        %td{:class => 'controls'}
-          - if logged_in? and can?(:read, person)
-            = link_to 'Details', person
-          = link_to 'vCard', person_path(person, :format => 'vcf')
-          - if can? :edit, person
-            = link_to 'Edit', edit_person_path(person)
-          - if can? :delete, person
-            = link_to 'Destroy', person, :confirm => 'Are you sure?', :method => :delete
-  - else
-    %tr{ :colspan => 8 }
-      %td No people found
-
-= will_paginate(@people)
+#people_container
+  = render :partial => 'search_results'

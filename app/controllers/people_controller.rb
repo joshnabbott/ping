@@ -10,6 +10,7 @@ class PeopleController < AuthenticatedController
     respond_to do |format|
       format.html # index.html.haml
       format.xml    { render :xml => @people }
+      format.js     { render :partial => 'search_results', :layout => false, :content_type => 'text/html' }
       format.json   { render :json => @people }
       format.vcf    { send_data @people.map(&:to_vcard).map(&:to_s).join("\n"), :filename => 'directory.vcf' }
     end
