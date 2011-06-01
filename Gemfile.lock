@@ -7,8 +7,7 @@ GIT
 
 GIT
   remote: https://github.com/jayzes/foreman.git
-  revision: 55375b9bdef3146e1a01c9b26b643eb391211aa3
-  branch: patch-1
+  revision: f308ad886deb190e8279a962b79d60063dd590bb
   specs:
     foreman (0.16.0)
       term-ansicolor (~> 1.0.5)
