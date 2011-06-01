@@ -1,5 +1,8 @@
 - semantic_form_for [:person, @facilities_profile] do |form|
   = form.inputs :name => "Facilities Profile" do
+    = form.input :avatar, :label => 'Headshot', :as => :file
+    = form.input :avatar_cache, :as => :hidden
+    = form.input :remove_avatar, :as => :boolean, :label => "Remove Headshot"
     = form.input :seating_floor, :as => :select, :collection => FacilitiesProfile::SEATING_FLOORS, :include_blank => false
     = form.input :seating_number, :as => :select, :collection => FacilitiesProfile::SEATING_NUMBERS, :include_blank => false
     = form.input :building_card

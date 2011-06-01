@@ -1,5 +1,10 @@
 - content_for :title do
-  %h1= "#{pronoun_for_person_with_full_name(@person).titleize} Information"
+  .clear.clearfix
+    - if @person.avatar?
+      - puts @person.avatar.micro.url
+      = image_tag(@person.avatar.micro.url || '', :class => 'micro-thumb')
+    %h1= "#{pronoun_for_person_with_full_name(@person).titleize} Information"
+
 - semantic_navigation :person, :html => {:class => 'tabs'} do |n|
   = n.item "#{pronoun_for_person(@person).capitalize} Summary", :link => person_path(@person)
   - if can?(:edit, @person.public_profile)

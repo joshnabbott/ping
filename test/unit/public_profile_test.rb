@@ -25,6 +25,7 @@
 #  flickr_url             :string(255)
 #  instagram_url          :string(255)
 #  website_url            :string(255)
+#  avatar                 :string(255)
 #
 
 require 'test_helper'

@@ -1,46 +1,4 @@
-#title { float: left; }
-
-#user_nav {float:right}
-
-nav { float: left; margin: 10px 0 0 15px; }
-nav a { margin: 0 20px 15px 0; }
-.icon { 
-  display: block; float: left; 
-  height: 20px; 
-  padding: 5px 5px 3px 26px; 
-  background: #ddd url(/images/people.png) 3px 4px no-repeat;
-  color: #444;
-  font-size: 1.2em; font-weight: bold;
-  border-radius: 5px;
-}
-.icon:hover, .icon.active { background-color: #AAA; color: #333; }
-.icon.people {}
-.icon.groups {background-position: 3px -48px; padding-left: 36px;}
-
-#main { clear: both; margin-top: 15px; }
-
-/* Flutie Mods */
-
-div.error, div.notice, div.success, div.alert,
-#flash_failure, #flash_success, #flash_notice, #flash_alert {
-  -moz-border-radius: 8px;
-  -webkit-border-radius: 8px;
-  border: 1px solid #ddd;
-  margin-bottom: 1em;
-  padding: 0.8em; }
-
-div.alert,
-#flash_alert {
-  background: #FFF6BF;
-  border-color: #FFD324;
-  color: #817134; }
-
-div.alert a,
-#flash_alert a {
-  color: #817134; }
-
-
-/* Allow the legend enclosed label for Formtastic Date fields to be shown. */
-form ol li.date legend label, form ol li.time legend label {
-	display: inline;
+img.micro-thumb {
+  margin: -5px 10px 10px 10px;
+  float: left;
 }

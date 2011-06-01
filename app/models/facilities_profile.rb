@@ -11,6 +11,7 @@
 #  fed_ex_account :string(255)
 #  created_at     :datetime
 #  updated_at     :datetime
+#  avatar         :string(255)
 #
 
 class FacilitiesProfile < ActiveRecord::Base
@@ -23,5 +24,7 @@ class FacilitiesProfile < ActiveRecord::Base
   validates :seating_floor,   :inclusion => SEATING_FLOORS
   validates :seating_number,  :inclusion => SEATING_NUMBERS
 #  validates :person_id,         :presence => true
+
+  mount_uploader :avatar, AvatarUploader
   
 end

@@ -10,9 +10,9 @@
 
     = csrf_meta_tag
 
-    = stylesheet_link_tag 'protosite_backend'
+    = stylesheet_link_tag 'protosite_backend', 'application', :media => 'all', :cache => true
 
-    = javascript_include_tag :defaults, 'chroma-hash', :media => 'all'
+    = javascript_include_tag :defaults, 'chroma-hash', :cache => true
 
     = content_for :head
   %body{ :id => "#{controller.controller_name.underscore}_controller", :class => "#{controller.action_name.dasherize}-action without-javascript" }

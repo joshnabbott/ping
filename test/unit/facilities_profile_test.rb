@@ -11,6 +11,7 @@
 #  fed_ex_account :string(255)
 #  created_at     :datetime
 #  updated_at     :datetime
+#  avatar         :string(255)
 #
 
 require 'test_helper'

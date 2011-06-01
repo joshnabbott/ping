@@ -131,4 +131,19 @@ class Person < ActiveRecord::Base
 
   end
 
+  def avatar?
+    self.public_profile.avatar? || self.facilities_profile.avatar?
+  end
+
+  def avatar
+    if self.public_profile.avatar?
+      self.public_profile.avatar
+    elsif self.facilities_profile.avatar
+      self.facilities_profile.avatar
+    else
+      nil
+    end
+  end
+
+
 end

@@ -1,6 +1,11 @@
 = render :partial => 'navigation'
 
 %dl{:class => 'details'}
+  %dt Headshot
+  - if @person.avatar?
+    %dd= image_tag @person.avatar.thumb.url || ''
+  - else
+    None
   %dt Title
   %dd= value_with_placeholder(@person.job_title)
   %dt Department

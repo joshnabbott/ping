@@ -12,6 +12,8 @@ gem 'casper_api',                   '~> 0.0.1',                       :git => 'h
 gem 'thinking-sphinx'
 gem 'fastercsv'
 gem 'vpim'
+gem 'carrierwave'
+gem 'rmagick'
 
 gem 'haml-rails'
 gem 'jquery-rails'
