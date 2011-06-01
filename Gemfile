@@ -3,13 +3,15 @@ source :rubygems
 gem 'bundler',                      '1.0.14',     :require => false
 gem 'rails',                        '3.0.7',      :require => false
 gem 'rake',                         '0.8.7',      :require => false
-gem 'thin',                                       :require => false
+gem 'mysql2'
 gem 'unicorn',                                    :require => false
 
-gem 'casper_api',                   '~> 0.0.1', :git => 'https://github.com/factorylabs/casper_api.git'
-
-gem 'mysql2'
+gem 'hoptoad_notifier'
+gem 'foreman',                                                        :git => "https://github.com/jayzes/foreman.git"
+gem 'casper_api',                   '~> 0.0.1',                       :git => 'https://github.com/factorylabs/casper_api.git'
 gem 'thinking-sphinx'
+gem 'fastercsv'
+gem 'vpim'
 
 gem 'haml-rails'
 gem 'jquery-rails'
@@ -21,12 +23,6 @@ gem 'devise',                       '1.3.0'
 gem 'devise_aes_encryptable'
 gem 'devise_security_extension'
 gem 'cancan'
-
-gem 'fastercsv'
-gem 'vpim'
-
-gem 'hoptoad_notifier'
-gem 'foreman',                                  :git => "https://github.com/jayzes/foreman.git"
 
 group :development do
   gem 'auto_annotate'
