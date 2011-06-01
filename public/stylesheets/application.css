@@ -1,4 +1,10 @@
 img.micro-thumb {
   margin: -5px 10px 10px 10px;
   float: left;
+  height: 40px;
+  width: 40px;
+}
+
+td img.micro-thumb {
+  margin: 10px;
 }

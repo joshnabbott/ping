@@ -1,5 +1,6 @@
 %table{:class => 'list'}
   %tr
+    %th
     %th Name
     %th Title
     %th Department
@@ -13,6 +14,7 @@
   - unless @people.empty?
     - @people.each do |person|
       %tr{ :id => dom_id(person) }
+        %td= image_tag(person.avatar.micro.url, :class => 'micro-thumb')
         %td= person.full_name
         %td= person.job_title
         %td= person.department

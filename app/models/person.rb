@@ -136,13 +136,7 @@ class Person < ActiveRecord::Base
   end
 
   def avatar
-    if self.public_profile.avatar?
-      self.public_profile.avatar
-    elsif self.facilities_profile.avatar
-      self.facilities_profile.avatar
-    else
-      nil
-    end
+    self.public_profile.avatar.presence || self.facilities_profile.avatar
   end
 
 
