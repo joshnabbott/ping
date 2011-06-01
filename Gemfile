@@ -14,6 +14,7 @@ gem 'fastercsv'
 gem 'vpim'
 gem 'carrierwave'
 gem 'rmagick'
+gem 'resque-scheduler'
 
 gem 'haml-rails'
 gem 'jquery-rails'
