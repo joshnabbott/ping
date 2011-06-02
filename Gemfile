@@ -7,7 +7,7 @@ gem 'mysql2'
 gem 'unicorn',                                    :require => false
 
 gem 'hoptoad_notifier'
-gem 'foreman',                                                        :git => "https://github.com/jayzes/foreman.git"
+gem 'foreman',                      '0.17',       :require => false
 gem 'casper_api',                   '~> 0.0.1',                       :git => 'https://github.com/factorylabs/casper_api.git'
 gem 'thinking-sphinx'
 gem 'fastercsv'
