@@ -1,0 +1,6 @@
+carrierwave_clean_cached_files:
+  cron: "0 0 * * *"
+  class: CarrierWave::CleanCachedFilesJob
+  queue: high
+  args:
+  description: "This job cleans cached files from the CarrierWave upload directory"
