@@ -1,4 +1,2 @@
-%h2= "Editing #{@person.first_name} #{@person.last_name}"
+= render :partial => 'people/navigation'
 = render 'form'
-- if can?(:manage, @person)
-  = [ link_to('Show', @person), link_to('Back', people_path) ].join(' | ').html_safe

@@ -30,4 +30,5 @@
 - if can?(:edit, @person)
   .box
     = link_to "Change #{pronoun_for_person(@person)} password", edit_person_credential_path(@person), :class => 'button' if can?(:edit, @person.credential)
+    = link_to "Manage #{pronoun_for_person(@person)} groups", edit_person_path(@person), :class => 'button' if can?(:manage, Group)
     = link_to "Manage #{pronoun_for_person(@person)} services", edit_person_path(@person), :class => 'button' if can?(:manage, :services)

@@ -1,20 +1,5 @@
 - semantic_form_for @person do |form|
 
-  - if can? :edit, @person.public_profile
-    = form.inputs :name => "Public Profile" do
-      = form.semantic_fields_for :public_profile do |public_profile|
-        = public_profile.input :nickname
-        = public_profile.input :bio
-        = public_profile.input :personal_email_address
-        = public_profile.input :home_phone_number
-        = public_profile.input :home_fax_number
-        = public_profile.input :home_mobile_number
-        = public_profile.input :home_address
-        = public_profile.input :home_city
-        = public_profile.input :home_state
-        = public_profile.input :home_zip
-        = public_profile.input :home_country, :as => :select, :collection => Person::COUNTRIES, :include_blank => false
-
   - if can? :manage, Group
     = form.inputs :name => "Groups" do
       = form.input :groups, :as => :check_boxes, :collection => @groups, :label => ''
