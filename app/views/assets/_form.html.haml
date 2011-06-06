@@ -1,6 +1,8 @@
+- content_for :document_ready do
+  alert("hello");
+
 = semantic_form_for @asset do |form|
-  = form.inputs :name => "Asset" do
-    = form.input :employee_id, :as => :select, :collection => Person.all, :include_blank => false
+  = form.inputs :name => 'Asset', :id => 'asset' do
     = form.input :asset_number
     = form.input :kind, :as => :select, :collection => Asset::KINDS, :include_blank => false
     = form.input :serial_number
@@ -10,16 +12,68 @@
     = form.input :warranty_end_date
     = form.input :warranty_number
     = form.input :warranty_renewal_date
+
+  = form.inputs :name => 'Tracking', :id => 'tracking' do
+    = form.input :employee_id, :as => :select, :collection => Person.all, :include_blank => false, :label => 'Assignment'
     = form.input :status, :as => :select, :collection => Asset::STATUSES, :include_blank => false
     = form.input :location
+    = form.input :tracking_notes, :label => 'Notes'
+
+  = form.inputs :name => 'Purchasing', :id => 'purchasing' do
     = form.input :purchase_date
     = form.input :purchase_type
-    = form.input :po_number
-    = form.input :transfer_employee_id, :as => :select, :collection => Person.all
+    = form.input :po_number, :label => 'PO number'
+
+  = form.inputs :name => 'Transfer', :id => 'transfer' do
     = form.input :transfer_type
+    = form.input :transfer_employee_id, :as => :select, :collection => Person.all, :label => 'New assignment'
     = form.input :transfer_date
     = form.input :transfer_notes
     = form.input :sale_price
     = form.input :payment_type
+    = form.input :transfer_notes, :label => 'Notes'
+
+  = form.inputs :name => 'Details', :class => 'details', :id => 'computer' do
+    = form.input :processor_speed
+    = form.input :processor_type
+    = form.input :total_ram, :label => 'Total RAM'
+    = form.input :mac_address_one, :label => 'MAC address 1'
+    = form.input :mac_address_two, :label => 'MAC address 2'
+    = form.input :operating_system_version
+    = form.input :battery_health
+    = form.input :uptime
+    = form.input :partition_size
+    = form.input :partition_name
+    = form.input :partition_percentage_used, :label => 'Partition % used'
+
+  = form.inputs :name => 'Details', :class => 'details', :id => 'display' do
+    = form.input :size
+
+  = form.inputs :name => 'Details', :class => 'details', :id => 'phone' do
+    = form.input :size
+    = form.input :carrier_info
+    = form.input :phone_number
+
+  = form.inputs :name => 'Details', :class => 'details', :id => 'tablet' do
+    = form.input :size
+    = form.input :carrier_info
+    = form.input :phone_number
+
+  = form.inputs :name => 'Details', :class => 'details', :id => 'wireless-access-point' do
+    = form.input :size
+    = form.input :carrier_info
+    = form.input :phone_number
+    = form.input :hardrive
+
+  = form.inputs :name => 'Details', :class => 'details', :id => 'software_serial_number_one' do
+    = form.input :software_serial_number_one, :label => 'Serial number 1'
+    = form.input :software_serial_number_two, :label => 'Serial number 2'
+    = form.input :organization_name
+    = form.input :registration_name
+    = form.input :license_quantity
+    = form.input :license_type
+    = form.input :license_notes
+    = form.input :license_renewal_date
+
   = form.buttons do
     = form.commit_button
