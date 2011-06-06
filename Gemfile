@@ -14,7 +14,7 @@ gem 'fastercsv'
 gem 'vpim'
 gem 'carrierwave'
 gem 'rmagick'
-gem 'resque-scheduler',                           :require => 'resque_scheduler'
+gem 'resque-scheduler',             '2.0.0.d',    :require => 'resque_scheduler'
 
 gem 'haml-rails'
 gem 'jquery-rails'
