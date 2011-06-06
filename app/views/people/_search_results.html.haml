@@ -26,8 +26,6 @@
           = link_to 'vCard', person_path(person, :format => 'vcf')
           - if can? :edit, person
             = link_to 'Edit', edit_person_path(person)
-          - if can? :delete, person
-            = link_to 'Destroy', person, :confirm => 'Are you sure?', :method => :delete
   - else
     %tr{ :colspan => 8 }
       %td No people found

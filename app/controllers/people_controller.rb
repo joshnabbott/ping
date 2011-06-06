@@ -71,16 +71,6 @@ class PeopleController < AuthenticatedController
     end
   end
 
-  # DELETE /people/1
-  # DELETE /people/1.xml
-  def destroy
-    @person.destroy
-    respond_to do |format|
-      format.html { redirect_to(people_url) }
-      format.xml  { head :ok }
-    end
-  end
-
   protected
 
   def search_for_people
