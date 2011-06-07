@@ -14,6 +14,13 @@ Feature: Manage services
     Then I should see "Service was successfully created."
     And I should see "Google Apps"
 
+  Scenario: Register a new service with a blank name
+    Given I am on the services page
+    And I follow "Create a new service"
+    And I press "Create"
+    Then I should not see "Service was successfully created."
+    And I should see "Can't be blank"
+
   Scenario: Update a service
     Given the following services exist:
       | Name        |
