@@ -14,6 +14,13 @@ Feature: Manage groups
     Then I should see "Group was successfully created."
     And I should see "Developers"
 
+  Scenario: Register a new group with a blank name
+    Given I am on the groups page
+    And I follow "Create a new group"
+    And I press "Create"
+    Then I should not see "Group was successfully created."
+    And I should see "Can't be blank"
+
   Scenario: Update a group
     Given the following groups exist:
       | Name        |
