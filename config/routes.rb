@@ -7,6 +7,7 @@ Factorypeople::Application.routes.draw do
 
   resources :assets
   resources :groups
+  resources :services
 
   resources :people do
     resource :public_profile

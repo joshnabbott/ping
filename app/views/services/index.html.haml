@@ -1,0 +1,23 @@
+= content_for :title do
+  %h1 Services
+= content_for :related do
+  = link_to 'Create a new service', new_service_path
+
+%table{:class => 'list'}
+  %tr
+    %th Name
+    %th
+
+  - unless @services.empty?
+    - @services.each do |service|
+      %tr{:class => cycle('even', 'odd'), :id => dom_id(service)}
+        %td= link_to service.name, service_path(service)
+        %td.controls
+          = link_to 'Details', service_path(service)
+          = link_to 'Edit', edit_service_path(service)
+          = link_to 'Destroy', service, :confirm => 'Are you sure?', :method => :delete
+  - else
+    %tr{:colspan => 2}
+      %td No services found
+
+%br

@@ -37,6 +37,7 @@ class Ability
       can :manage, WorkProfile
       can :manage, Group
       can :manage, Credential
+      can :manage, Service
     end
 
     # HR can manage HR profiles

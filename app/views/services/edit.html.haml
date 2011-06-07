@@ -1,0 +1,4 @@
+- content_for :title do
+  %h1= "#{link_to 'Services', services_path} &raquo; #{@service.name}".html_safe
+
+= render 'form'

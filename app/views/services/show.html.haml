@@ -1,0 +1,4 @@
+- content_for :title do
+  %h1= "#{link_to 'Services', services_path} &raquo; #{@service.name}".html_safe
+- content_for :related do
+  = link_to "Edit this service", edit_service_path(@service)

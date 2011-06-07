@@ -77,6 +77,10 @@ Factory.define(:group) do |f|
   f.sequence(:name) { |n| "Group #{n}" }
 end
 
+Factory.define(:service) do |f|
+  f.sequence(:name) { |n| "Service #{n}" }
+end
+
 Factory.define(:credential) do |f|
   f.sequence(:username) { |n| "user_#{n}" }
   f.password            'Password1'

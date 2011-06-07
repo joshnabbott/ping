@@ -31,4 +31,5 @@ Feature: Manage groups
       | Developers  |
     When I go to the groups page
     And I follow "Destroy" within the group with the name "Developers"
+    And I should be on the groups page
     Then I should not see "Developers"

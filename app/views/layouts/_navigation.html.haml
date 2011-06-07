@@ -14,3 +14,6 @@
   - if can?(:manage, Asset)
     = n.group "Assets" do
       = n.item "Manage Assets", :link => assets_path
+  - if can?(:manage, Service)
+    = n.group "Services" do
+      = n.item "Manage Services", :link => services_path

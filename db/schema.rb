@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110601171011) do
+ActiveRecord::Schema.define(:version => 20110606222744) do
 
   create_table "assets", :force => true do |t|
     t.integer  "employee_id"
@@ -182,6 +182,12 @@ ActiveRecord::Schema.define(:version => 20110601171011) do
     t.string   "instagram_url"
     t.string   "website_url"
     t.string   "avatar"
+  end
+
+  create_table "services", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "work_profiles", :force => true do |t|
