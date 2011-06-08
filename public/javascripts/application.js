@@ -23,3 +23,9 @@
     });
   });
 })( jQuery );
+
+function showDetails(id) {
+  $('.details').hide();
+
+  $('#' + id).show();
+}

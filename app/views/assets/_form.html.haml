@@ -1,10 +1,15 @@
 - content_for :document_ready do
-  alert("hello");
+  showDetails('computer');
+
+  $('#asset_kind').change(function() {
+  var elementID = $('#asset_kind option:selected').attr('data-div-id');
+  showDetails(elementID);
+  })
 
 = semantic_form_for @asset do |form|
   = form.inputs :name => 'Asset', :id => 'asset' do
     = form.input :asset_number
-    = form.input :kind, :as => :select, :collection => Asset::KINDS, :include_blank => false
+    = form.input :kind, :collection => options_for_kind, :include_blank => false
     = form.input :serial_number
     = form.input :name
     = form.input :model
@@ -33,47 +38,53 @@
     = form.input :payment_type
     = form.input :transfer_notes, :label => 'Notes'
 
-  = form.inputs :name => 'Details', :class => 'details', :id => 'computer' do
-    = form.input :processor_speed
-    = form.input :processor_type
-    = form.input :total_ram, :label => 'Total RAM'
-    = form.input :mac_address_one, :label => 'MAC address 1'
-    = form.input :mac_address_two, :label => 'MAC address 2'
-    = form.input :operating_system_version
-    = form.input :battery_health
-    = form.input :uptime
-    = form.input :partition_size
-    = form.input :partition_name
-    = form.input :partition_percentage_used, :label => 'Partition % used'
+  #computer.details
+    = form.inputs :name => 'Details' do
+      = form.input :processor_speed
+      = form.input :processor_type
+      = form.input :total_ram, :label => 'Total RAM'
+      = form.input :mac_address_one, :label => 'MAC address 1'
+      = form.input :mac_address_two, :label => 'MAC address 2'
+      = form.input :operating_system_version
+      = form.input :battery_health
+      = form.input :uptime
+      = form.input :partition_size
+      = form.input :partition_name
+      = form.input :partition_percentage_used, :label => 'Partition % used'
 
-  = form.inputs :name => 'Details', :class => 'details', :id => 'display' do
-    = form.input :size
+  #display.details
+    = form.inputs :name => 'Details' do
+      = form.input :size
 
-  = form.inputs :name => 'Details', :class => 'details', :id => 'phone' do
-    = form.input :size
-    = form.input :carrier_info
-    = form.input :phone_number
+  #phone.details
+    = form.inputs :name => 'Details' do
+      = form.input :size
+      = form.input :carrier_info
+      = form.input :phone_number
 
-  = form.inputs :name => 'Details', :class => 'details', :id => 'tablet' do
-    = form.input :size
-    = form.input :carrier_info
-    = form.input :phone_number
+  #tablet.details
+    = form.inputs :name => 'Details' do
+      = form.input :size
+      = form.input :carrier_info
+      = form.input :phone_number
 
-  = form.inputs :name => 'Details', :class => 'details', :id => 'wireless-access-point' do
-    = form.input :size
-    = form.input :carrier_info
-    = form.input :phone_number
-    = form.input :hardrive
+  #wireless-access-point.details
+    = form.inputs :name => 'Details' do
+      = form.input :size
+      = form.input :carrier_info
+      = form.input :phone_number
+      = form.input :hardrive
 
-  = form.inputs :name => 'Details', :class => 'details', :id => 'software_serial_number_one' do
-    = form.input :software_serial_number_one, :label => 'Serial number 1'
-    = form.input :software_serial_number_two, :label => 'Serial number 2'
-    = form.input :organization_name
-    = form.input :registration_name
-    = form.input :license_quantity
-    = form.input :license_type
-    = form.input :license_notes
-    = form.input :license_renewal_date
+  #software.details
+    = form.inputs :name => 'Details' do
+      = form.input :software_serial_number_one, :label => 'Serial number 1'
+      = form.input :software_serial_number_two, :label => 'Serial number 2'
+      = form.input :organization_name
+      = form.input :registration_name
+      = form.input :license_quantity
+      = form.input :license_type
+      = form.input :license_notes
+      = form.input :license_renewal_date
 
   = form.buttons do
     = form.commit_button

@@ -14,6 +14,16 @@ Given /^I am in the "([^"]*)" group$/ do |group_name|
   @credential.person.groups << group
 end
 
+Then /^"([^\"]+)" should not be visible$/ do |text|
+  paths = [
+    "//*[@class='hidden']/*[contains(.,'#{text}')]",
+    "//*[@class='invisible']/*[contains(.,'#{text}')]",
+    "//*[@style='display: none;']/*[contains(.,'#{text}')]"
+  ]
+  xpath = paths.join '|'
+  assert page.has_xpath?(xpath)
+end
+
 #Then /^(?:|I )should see "([^"]*)"$/ do |text|
 #  if page.respond_to? :should
 #    page.should have_content(text)
