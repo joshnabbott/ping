@@ -61,14 +61,12 @@ class Asset < ActiveRecord::Base
 
   KINDS = [
     'Computer',
-    'Monitor',
-    'Infrastructure',
+    'Display',
+    'Other',
     'Phone',
     'Tablet',
-    'Wireless',
-    'Peripheral',
-    'Furniture',
-    'Software'
+    'Software',
+    'Wireless Access Point'
   ]
 
   STATUSES = [
@@ -86,7 +84,7 @@ class Asset < ActiveRecord::Base
   belongs_to :transfer_employee, :class_name => 'Person'
 
   validates :name, :model, :manufacturer,         :presence => true
-  validates :kind,                                :presence => true, :inclusion => { :in => KINDS }
+  validates :kind,                                :presence => true, :inclusion => { :in => KINDS.map { |kind| kind.parameterize } }
   validates :asset_number, :serial_number,        :presence => true, :uniqueness => true
   validates :status,                              :presence => true, :inclusion => { :in => STATUSES }
   validates :sale_price,                          :numericality => true

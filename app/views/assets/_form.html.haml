@@ -1,5 +1,5 @@
 - content_for :document_ready do
-  showDetails('computer');
+  showDetails("#{@asset.kind || 'computer'}");
 
   $('#asset_kind').change(function() {
   var elementID = $('#asset_kind option:selected').attr('data-div-id');
@@ -9,7 +9,7 @@
 = semantic_form_for @asset do |form|
   = form.inputs :name => 'Asset', :id => 'asset' do
     = form.input :asset_number
-    = form.input :kind, :collection => options_for_kind, :include_blank => false
+    = form.input :kind, :collection => options_for_kind(@asset.kind), :include_blank => false
     = form.input :serial_number
     = form.input :name
     = form.input :model
