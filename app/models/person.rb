@@ -124,8 +124,10 @@ class Person < ActiveRecord::Base
         name.family    = self.last_name
       end
       maker.nickname   = self.nickname if self.nickname.present?
-      maker.add_photo do |photo|
-        photo.link     = self.avatar.micro.path
+      if self.avatar.micro.path && File.exists?(self.avatar.micro.path)
+        maker.add_photo do |photo|
+          photo.link   = File.read(self.avatar.micro.path)
+        end
       end
       maker.title      = self.job_title
       # maker.gender     = self.gender
