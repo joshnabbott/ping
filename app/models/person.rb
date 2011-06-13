@@ -49,20 +49,21 @@ class Person < ActiveRecord::Base
     self.build_work_profile  unless self.work_profile
   end
 
-  delegate :first_name,         :to => :hr_profile,         :allow_nil => true
-  delegate :last_name,          :to => :hr_profile,         :allow_nil => true
-  delegate :gender,             :to => :hr_profile,         :allow_nil => true
-  delegate :title,              :to => :hr_profile,         :allow_nil => true
-  delegate :job_title,          :to => :hr_profile,         :allow_nil => true
-  delegate :department,         :to => :hr_profile,         :allow_nil => true
-  delegate :email_address,      :to => :it_profile,         :allow_nil => true
-  delegate :work_phone_number,  :to => :work_profile,       :allow_nil => true
-  delegate :birthday,           :to => :hr_profile,         :allow_nil => true
-  delegate :default_username,   :to => :it_profile,         :allow_nil => true
-  delegate :bio,                :to => :public_profile,     :allow_nil => true
-  delegate :nickname,           :to => :public_profile,     :allow_nil => true
-  delegate :seating_floor,      :to => :facilities_profile, :allow_nil => true
-  delegate :seating_number,     :to => :facilities_profile, :allow_nil => true
+  delegate :first_name,                         :to => :hr_profile,         :allow_nil => true
+  delegate :last_name,                          :to => :hr_profile,         :allow_nil => true
+  delegate :gender,                             :to => :hr_profile,         :allow_nil => true
+  delegate :title,                              :to => :hr_profile,         :allow_nil => true
+  delegate :job_title,                          :to => :hr_profile,         :allow_nil => true
+  delegate :department,                         :to => :hr_profile,         :allow_nil => true
+  delegate :email_address,                      :to => :it_profile,         :allow_nil => true
+  delegate :work_phone_number,                  :to => :work_profile,       :allow_nil => true
+  delegate :work_phone_number_with_extension,   :to => :work_profile,       :allow_nil => true
+  delegate :birthday,                           :to => :hr_profile,         :allow_nil => true
+  delegate :default_username,                   :to => :it_profile,         :allow_nil => true
+  delegate :bio,                                :to => :public_profile,     :allow_nil => true
+  delegate :nickname,                           :to => :public_profile,     :allow_nil => true
+  delegate :seating_floor,                      :to => :facilities_profile, :allow_nil => true
+  delegate :seating_number,                     :to => :facilities_profile, :allow_nil => true
 
   define_index do
     indexes hr_profile.first_name, :sortable => true

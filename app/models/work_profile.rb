@@ -20,4 +20,12 @@
 class WorkProfile < ActiveRecord::Base
   belongs_to :person
   validates :work_country,      :inclusion => { :in => Person::COUNTRIES }
+
+  def work_phone_number_with_extension
+    if self.work_extension
+      [self.work_phone_number, " Ext. #{self.work_extension}"].join
+    else
+      self.work_phone_number
+    end
+  end
 end

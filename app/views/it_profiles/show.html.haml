@@ -1,6 +1,8 @@
 = render :partial => 'people/navigation'
 
 %dl{:class => 'details'}
+  %dt ID
+  %dd= value_with_placeholder @it_profile.id
   %dt Default Username
   %dd= value_with_placeholder @it_profile.default_username
   %dt E-mail Address

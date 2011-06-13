@@ -19,7 +19,7 @@
         %td= person.job_title
         %td= person.department
         %td= link_to person.email_address, "mailto:#{person.email_address}"
-        %td= value_with_placeholder(person.work_phone_number)
+        %td= value_with_placeholder(person.work_phone_number_with_extension)
         %td{:class => 'controls'}
           - if logged_in? and can?(:read, person)
             = link_to 'Details', person
