@@ -90,7 +90,7 @@ end
 Factory.define(:asset) do |f|
   f.association                     :employee, :factory => :person
   f.sequence(:asset_number)         { |n| n }
-  f.kind                            'Computer'
+  f.kind                            'computer'
   f.sequence(:serial_number)        { |n| n }
   f.name                            'Joshua Abbott'
   f.model                           'Macbook Pro'
