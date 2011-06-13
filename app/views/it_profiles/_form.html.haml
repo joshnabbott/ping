@@ -1,5 +1,6 @@
 - semantic_form_for [:person, @it_profile] do |form|
   = form.inputs :name => "IT Profile" do
+    = form.input :id, :label => 'ID', :input_html => { :disabled => true }
     = form.input :default_username, :label => 'Default Username'
     = form.input :email_address
     = form.input :email_account_active, :as => :boolean
