@@ -41,12 +41,13 @@ class Person < ActiveRecord::Base
   accepts_nested_attributes_for :work_profile
 
   after_initialize do
+    self.build_credential         unless self.credential
     self.build_hr_profile         unless self.hr_profile
     self.build_it_profile         unless self.it_profile
     self.build_facilities_profile unless self.facilities_profile
     self.build_public_profile     unless self.public_profile
     self.build_emergency_profile  unless self.emergency_profile
-    self.build_work_profile  unless self.work_profile
+    self.build_work_profile       unless self.work_profile
   end
 
   delegate :first_name,                         :to => :hr_profile,         :allow_nil => true

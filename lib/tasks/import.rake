@@ -13,11 +13,10 @@ namespace :import do
 
         computer                          = Asset.find_or_initialize_by_serial_number(casper_computer.general['serial_number'])
         computer.employee                 = person
-        computer.kind                     = 'Laptop' # This isn't always gonna be a laptop... It might be a desktop
+        computer.kind                     = 'computer'
         computer.asset_number             = casper_computer.general['id']
         computer.name                     = casper_computer.general['name']
         computer.model                    = casper_computer.hardware['model']
-        computer.manufacturer             = casper_computer.hardware['make']
         computer.manufacturer             = casper_computer.hardware['make']
         computer.status                   = 'Active'
         # computer.casper_serialized_data = casper_computer.to_json # results in Mysql max_allowed_packet error for now.
@@ -38,7 +37,8 @@ namespace :import do
 
   task :employee_list => :environment do
     FasterCSV.foreach('db/employee_list.csv', :headers => true) do |row|
-      first_name,
+        dummy_id,
+        first_name,
         last_name,
         email,
         job_title,
@@ -57,37 +57,43 @@ namespace :import do
         state,
         zip,
         country = row.fields
-      
+
       username = "#{first_name}.#{last_name}".downcase
-    
-      person = Person.new
 
-      person.build_hr_profile(        :first_name           => first_name,
-                                      :last_name            => last_name,
-                                      :job_title            => job_title,
-                                      :gender               => gender.downcase,
-                                      :work_email_address   => email,
-                                      :work_phone_number    => work_direct,
-                                      :work_extension       => work_extension,
-                                      :work_address         => address,
-                                      :work_city            => city,
-                                      :work_state           => state,
-                                      :work_zip             => zip,
-                                      :work_country         => 'USA',
-                                      :department           => department,
-                                      :pay_type             => 'salaried' )
-      person.build_public_profile(    :home_mobile_number   => mobile,
-                                      :home_country         => 'USA')
-      person.build_it_profile(        :email_account_active => true,
-                                      :chat_gtalk           => google_talk,
-                                      :chat_aim             => aim,
-                                      :chat_skype           => skype,
-                                      :default_username     => username )
-                                
-      person.build_credential(:username => username, :password => 'password', :password_confirmation => 'password')
+      person = Person.joins(:it_profile).readonly(false).where(:it_profiles => { :default_username => username }).first || Person.new
 
-      person.save!
-    
+      person.hr_profile.update_attributes(:first_name      => first_name,
+                                          :last_name       => last_name,
+                                          :job_title       => job_title || 'Missing',
+                                          :gender          => gender.downcase,
+                                          :department      => department,
+                                          :pay_type        => 'salaried',
+                                          :status          => 'Active',
+                                          :employment_type => 'Full Time')
+
+      person.work_profile.update_attributes(:work_country      => 'USA',
+                                            :work_state        => state,
+                                            :work_city         => city,
+                                            :work_zip          => zip,
+                                            :work_phone_number => work_direct,
+                                            :work_extension    => work_extension,
+                                            :work_address      => address)
+
+      person.public_profile.update_attributes(:home_mobile_number => mobile,
+                                              :home_country       => 'USA',
+                                              :chat_skype         => skype,
+                                              :chat_aim           => aim)
+
+      person.it_profile.update_attributes(:email_account_active => true,
+                                          :chat_gtalk           => google_talk,
+                                          :default_username     => username,
+                                          :email_address        => email)
+
+      if person.new_record?
+        person.credential.update_attributes(:username => username, :password => 'password', :password_confirmation => 'password')
+      end
+
+      puts person.save!
     end
   end
 end

@@ -21,8 +21,8 @@ class FacilitiesProfile < ActiveRecord::Base
 
   belongs_to :person
 
-  validates :seating_floor,   :inclusion => SEATING_FLOORS
-  validates :seating_number,  :inclusion => SEATING_NUMBERS
+  validates :seating_floor,   :inclusion => SEATING_FLOORS, :allow_blank => true
+  validates :seating_number,  :inclusion => SEATING_NUMBERS, :allow_blank => true
 #  validates :person_id,         :presence => true
 
   mount_uploader :avatar, AvatarUploader
