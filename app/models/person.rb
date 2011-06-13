@@ -65,6 +65,14 @@ class Person < ActiveRecord::Base
   delegate :nickname,                           :to => :public_profile,     :allow_nil => true
   delegate :seating_floor,                      :to => :facilities_profile, :allow_nil => true
   delegate :seating_number,                     :to => :facilities_profile, :allow_nil => true
+  delegate :home_phone_number,                  :to => :public_profile,     :allow_nil => true
+  delegate :home_mobile_number,                 :to => :public_profile,     :allow_nil => true
+  delegate :chat_aim,                           :to => :public_profile,     :allow_nil => true
+  delegate :home_address,                       :to => :public_profile,     :allow_nil => true
+  delegate :home_city,                          :to => :public_profile,     :allow_nil => true
+  delegate :home_state,                         :to => :public_profile,     :allow_nil => true
+  delegate :home_country,                       :to => :public_profile,     :allow_nil => true
+  
 
   define_index do
     indexes hr_profile.first_name, :sortable => true
@@ -107,30 +115,43 @@ class Person < ActiveRecord::Base
   end
 
   def to_vcard
+    # work address, city zip
+    # personal address, city, zip
+    
     Vpim::Vcard::Maker.make2 do |maker|
-
       maker.add_name do |name|
-        name.given = self.first_name
-        name.family = self.last_name
+        name.given     = self.first_name
+        name.family    = self.last_name
       end
-
-      # maker.add_addr do |addr|
-      #       addr.preferred = true
-      #       addr.location = 'work'
-      #       addr.street = '243 Felixstowe Road'
-      #       addr.locality = 'Ipswich'
-      #       addr.country = 'United Kingdom'
-      # end
-
-      maker.nickname  = self.nickname if self.nickname.present?
-      maker.title     = self.job_title
-      maker.org       = "Factory Design Labs"
-      maker.birthday  = self.birthday.to_date if self.birthday
-      maker.add_tel(self.work_phone_number) if self.work_phone_number.present?
+      maker.nickname   = self.nickname if self.nickname.present?
+      maker.add_photo do |photo|
+        photo.link     = self.avatar.micro.path
+      end
+      maker.title      = self.job_title
+      # maker.gender     = self.gender
+      # maker.department = self.department
+      maker.org        = "Factory Design Labs"
+      maker.birthday   = self.birthday.to_date if self.birthday
+      maker.add_tel(self.work_phone_number) { |t| t.location = 'work' } if self.work_phone_number.present?
+      maker.add_tel(self.home_phone_number) { |t| t.location = 'home' } if self.home_phone_number.present?
+      maker.add_tel(self.home_mobile_number) { |t| t.location = 'mobile' } if self.home_mobile_number.present?
       maker.add_email(self.email_address) { |e| e.location = 'work' }
-      
+      maker.add_x_aim(self.chat_aim)
+      maker.add_addr do |addr|
+        addr.preferred = true
+        addr.location  = 'work'
+        addr.street    = '158 Filmore St'
+        addr.locality  = 'Denver, CO'
+        addr.country   = 'USA'
+      end
+      maker.add_addr do |addr|
+        addr.preferred = false
+        addr.location  = 'home'
+        addr.street    = self.home_address if self.home_address
+        addr.locality  = [self.home_city, self.home_state].join(', ') if self.home_city || self.home_state
+        addr.country   = self.home_country if self.home_country
+      end
     end
-
   end
 
   def avatar?

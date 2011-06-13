@@ -36,5 +36,4 @@ class PublicProfile < ActiveRecord::Base
   validates :home_country,      :inclusion => { :in => Person::COUNTRIES }
 
   mount_uploader :avatar, AvatarUploader
-
 end
