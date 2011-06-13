@@ -2,7 +2,6 @@
 // This file is automatically included by javascript_include_tag :defaults
 
 (function($) {
-
   var delay = (function(){
     var timer = 0;
     return function(callback, ms){
@@ -12,20 +11,33 @@
   })();
 
   $(document).ready(function(){
-
     $('#search').keyup(function() {
       delay(function() {
         $('#search_form').submit();
       }, 150);
     });
-    $('#search_form').bind('ajax:success', function(event, xhr, status){
-      $('#people_container').html(xhr.responseText);
+
+    $('#search_form').bind('ajax:success', function(event, response, status){
+      $('#people_container').html(response);
     });
   });
 })( jQuery );
 
 function showDetails(id) {
   $('.details').hide();
-
   $('#' + id).show();
+}
+
+function observeForDuplicateFormFields() {
+  $('.details :input').each(function() {
+    var id = $(this).attr("id");
+
+    $(this).blur(function() {
+      var value = $(this).val();
+
+      $('.details :input[id='+id+']').each(function() {
+        $(this).val(value);
+      })
+    })
+  });
 }

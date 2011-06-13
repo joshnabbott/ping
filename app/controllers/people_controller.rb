@@ -76,5 +76,4 @@ class PeopleController < AuthenticatedController
   def search_for_people
     @people = Person.search(params[:search], :where => { :is_active => true }, :star => true, :retry_stale => true, :page => params[:page], :per_page => 50, :order => :last_name)
   end
-
 end

@@ -6,6 +6,8 @@
   showDetails(elementID);
   })
 
+  observeForDuplicateFormFields();
+
 = semantic_form_for @asset do |form|
   = form.inputs :name => 'Asset', :id => 'asset' do
     = form.input :asset_number
