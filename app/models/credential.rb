@@ -41,6 +41,8 @@ class Credential < ActiveRecord::Base
           
   # Associations
   belongs_to :person
+
+  delegate :groups, :group_names, :to => :person
           
   # Setup accessible (or protected) attributes for your model
   attr_accessible :username, 
