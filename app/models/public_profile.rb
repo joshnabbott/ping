@@ -32,8 +32,8 @@ class PublicProfile < ActiveRecord::Base
 
   belongs_to :person
 
-#  validates :person_id,         :presence => true
-  validates :home_country,      :inclusion => { :in => Person::COUNTRIES }
+  # validates :person_id,    :presence => true
+  validates :home_country, :inclusion => { :in => Person::COUNTRIES }
 
   mount_uploader :avatar, AvatarUploader
 end

@@ -19,5 +19,5 @@
 
 class WorkProfile < ActiveRecord::Base
   belongs_to :person
-  validates :work_country,      :inclusion => { :in => Person::COUNTRIES }
+  validates :work_country, :inclusion => { :in => Person::COUNTRIES }
 end
