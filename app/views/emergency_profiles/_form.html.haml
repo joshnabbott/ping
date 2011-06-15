@@ -1,4 +1,4 @@
-- semantic_form_for [:person, @emergency_profile] do |form|
+- semantic_form_for [@person, @emergency_profile], :url => person_emergency_profile_path(@person) do |form|
   = form.inputs :name => "Emergency Profile" do
     = form.input :name
     = form.input :phone_number

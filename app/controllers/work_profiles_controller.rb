@@ -1,5 +1,4 @@
 class WorkProfilesController < AuthenticatedController
-
   load_and_authorize_resource :person
   load_and_authorize_resource :work_profile, :through => :person, :singleton => true
 
@@ -22,7 +21,7 @@ class WorkProfilesController < AuthenticatedController
   def update
     respond_to do |format|
       if @work_profile.update_attributes(params[:work_profile])
-        format.html { redirect_to(@person, :notice => 'Work profile was successfully updated.') }
+        format.html { redirect_to([:edit, @person, :work_profile], :notice => 'Work profile was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -30,5 +29,4 @@ class WorkProfilesController < AuthenticatedController
       end
     end
   end
-
 end

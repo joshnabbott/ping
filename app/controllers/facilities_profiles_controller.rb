@@ -22,7 +22,7 @@ class FacilitiesProfilesController < AuthenticatedController
   def update
     respond_to do |format|
       if @facilities_profile.update_attributes(params[:facilities_profile])
-        format.html { redirect_to([:person, @facilities_profile], :notice => 'Facilities profile was successfully updated.') }
+        format.html { redirect_to([:edit, @person, :facilities_profile], :notice => 'Facilities profile was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

@@ -15,4 +15,3 @@ Feature: Manage my emergency contact
       | Relation      | Mother        |
     And I press "Update"
     Then I should see "Your emergency contact was successfully updated."
-    And I should be on my profile page

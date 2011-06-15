@@ -16,4 +16,3 @@ Feature: Manage a work profile
       | Work zip          | 80113         |
     And I press "Update"
     Then I should see "Work profile was successfully updated."
-    And I should be on my profile page

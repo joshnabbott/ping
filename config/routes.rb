@@ -22,5 +22,4 @@ Factorypeople::Application.routes.draw do
   authenticate :credential do
     mount Resque::Server.new, :at => "/resque"
   end
-
 end

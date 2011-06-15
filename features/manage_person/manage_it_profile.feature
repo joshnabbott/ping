@@ -14,4 +14,3 @@ Feature: Manage my IT profile
       | Default Username | Crazy       |
     And I press "Update"
     Then I should see "IT profile was successfully updated."
-    And I should be on my profile page

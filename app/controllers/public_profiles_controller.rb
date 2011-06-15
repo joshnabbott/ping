@@ -24,7 +24,7 @@ class PublicProfilesController < AuthenticatedController
   def update
     respond_to do |format|
       if @public_profile.update_attributes(params[:public_profile])
-        format.html { redirect_to(@public_profile.person, :notice => "#{pronoun_or_first_name(@public_profile.person)} public profile was successfully updated.") }
+        format.html { redirect_to([:edit, @person, :public_profile], :notice => "#{pronoun_or_first_name(@public_profile.person)} public profile was successfully updated.") }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

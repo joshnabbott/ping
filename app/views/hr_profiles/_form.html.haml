@@ -1,11 +1,11 @@
-- semantic_form_for [:person, @hr_profile] do |form|
+- semantic_form_for [@person, @hr_profile], :url => person_hr_profile_path(@person) do |form|
   = form.inputs :name => "Basic Information" do
     = form.input :first_name
     = form.input :middle_name
     = form.input :last_name
     = form.input :title
     = form.input :gender, :as => :select, :collection => HrProfile.genders_for_select, :include_blank => false
-    = form.input :birthday,  :as => :date
+    = form.input :birthday,  :as => :date, :start_year => 1900
     = form.input :status, :as => :select, :collection => HrProfile::STATUSES, :include_blank => false
 
   = form.inputs :name => "Personnel Information" do

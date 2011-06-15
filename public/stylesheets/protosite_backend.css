@@ -1368,7 +1368,8 @@ table.grid div.asset .controls .link-to-previous {
 #flash_messages {
   opacity: 0.9;
   overflow: hidden;
-  text-shadow: none; }
+  text-shadow: none;
+  margin-bottom: 20px; }
 
 #flash_messages .message {
   padding: 10px 12px 10px 53px;

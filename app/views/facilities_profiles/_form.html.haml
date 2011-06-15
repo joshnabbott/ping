@@ -1,4 +1,4 @@
-- semantic_form_for [:person, @facilities_profile] do |form|
+- semantic_form_for [@person, @facilities_profile], :url => person_facilities_profile_path(@person), :html => { :multipart => true } do |form|
   = form.inputs :name => "Facilities Profile" do
     = form.input :avatar, :label => 'Headshot', :as => :file
     = form.input :avatar_cache, :as => :hidden

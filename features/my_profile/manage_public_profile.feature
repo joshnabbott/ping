@@ -23,5 +23,4 @@ Feature: Manage my public profile
     And I select "USA" from "Home country"
     And I press "Update Public profile"
     Then I should see "Your public profile was successfully updated."
-    And I should be on my profile page
     And I should see "I am a developer"

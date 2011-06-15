@@ -15,7 +15,6 @@
 #
 
 class FacilitiesProfile < ActiveRecord::Base
-
   SEATING_NUMBERS = (1..50).to_a.map(&:to_s)
   SEATING_FLOORS  = [ 'Floor 2', 'Floor 3', 'Floor 4' ]
 
@@ -26,5 +25,4 @@ class FacilitiesProfile < ActiveRecord::Base
 #  validates :person_id,         :presence => true
 
   mount_uploader :avatar, AvatarUploader
-  
 end

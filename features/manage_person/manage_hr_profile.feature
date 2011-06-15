@@ -16,4 +16,3 @@ Feature: Manage my HR profile
       | Job title   | And Justice for All  |
     And I press "Update"
     Then I should see "HR profile was successfully updated."
-    And I should be on my profile page

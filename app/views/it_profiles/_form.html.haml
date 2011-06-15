@@ -1,4 +1,4 @@
-- semantic_form_for [:person, @it_profile] do |form|
+- semantic_form_for [@person, @it_profile], :url => person_it_profile_path(@person) do |form|
   = form.inputs :name => "IT Profile" do
     = form.input :id, :label => 'ID', :input_html => { :disabled => true }
     = form.input :default_username, :label => 'Default Username'
