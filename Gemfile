@@ -15,6 +15,7 @@ gem 'vpim'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'resque-scheduler',             '2.0.0.d',    :require => 'resque_scheduler'
+gem 'mime-types',                                 :require => 'mime/types'
 
 gem 'haml-rails'
 gem 'jquery-rails'

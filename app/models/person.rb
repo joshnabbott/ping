@@ -50,29 +50,30 @@ class Person < ActiveRecord::Base
     self.build_work_profile       unless self.work_profile
   end
 
-  delegate :first_name,         :to => :hr_profile,         :allow_nil => true
-  delegate :last_name,          :to => :hr_profile,         :allow_nil => true
-  delegate :gender,             :to => :hr_profile,         :allow_nil => true
-  delegate :title,              :to => :hr_profile,         :allow_nil => true
-  delegate :job_title,          :to => :hr_profile,         :allow_nil => true
-  delegate :department,         :to => :hr_profile,         :allow_nil => true
-  delegate :is_active,          :to => :hr_profile,         :allow_nil => true
-  delegate :email_address,      :to => :it_profile,         :allow_nil => true
-  delegate :work_phone_number,  :to => :work_profile,       :allow_nil => true
-  delegate :work_mobile_number, :to => :work_profile,       :allow_nil => true
-  delegate :birthday,           :to => :hr_profile,         :allow_nil => true
-  delegate :default_username,   :to => :it_profile,         :allow_nil => true
-  delegate :bio,                :to => :public_profile,     :allow_nil => true
-  delegate :nickname,           :to => :public_profile,     :allow_nil => true
-  delegate :seating_floor,      :to => :facilities_profile, :allow_nil => true
-  delegate :seating_number,     :to => :facilities_profile, :allow_nil => true
-  delegate :home_phone_number,  :to => :public_profile,     :allow_nil => true
-  delegate :home_mobile_number, :to => :public_profile,     :allow_nil => true
-  delegate :chat_aim,           :to => :public_profile,     :allow_nil => true
-  delegate :home_address,       :to => :public_profile,     :allow_nil => true
-  delegate :home_city,          :to => :public_profile,     :allow_nil => true
-  delegate :home_state,         :to => :public_profile,     :allow_nil => true
-  delegate :home_country,       :to => :public_profile,     :allow_nil => true
+  delegate :first_name,             :to => :hr_profile,         :allow_nil => true
+  delegate :last_name,              :to => :hr_profile,         :allow_nil => true
+  delegate :gender,                 :to => :hr_profile,         :allow_nil => true
+  delegate :title,                  :to => :hr_profile,         :allow_nil => true
+  delegate :job_title,              :to => :hr_profile,         :allow_nil => true
+  delegate :department,             :to => :hr_profile,         :allow_nil => true
+  delegate :is_active,              :to => :hr_profile,         :allow_nil => true
+  delegate :email_address,          :to => :it_profile,         :allow_nil => true
+  delegate :work_phone_number,      :to => :work_profile,       :allow_nil => true
+  delegate :work_mobile_number,     :to => :work_profile,       :allow_nil => true
+  delegate :birthday,               :to => :hr_profile,         :allow_nil => true
+  delegate :default_username,       :to => :it_profile,         :allow_nil => true
+  delegate :seating_floor,          :to => :facilities_profile, :allow_nil => true
+  delegate :seating_number,         :to => :facilities_profile, :allow_nil => true
+  delegate :bio,                    :to => :public_profile,     :allow_nil => true
+  delegate :nickname,               :to => :public_profile,     :allow_nil => true
+  delegate :home_phone_number,      :to => :public_profile,     :allow_nil => true
+  delegate :home_mobile_number,     :to => :public_profile,     :allow_nil => true
+  delegate :chat_aim,               :to => :public_profile,     :allow_nil => true
+  delegate :home_address,           :to => :public_profile,     :allow_nil => true
+  delegate :home_city,              :to => :public_profile,     :allow_nil => true
+  delegate :home_state,             :to => :public_profile,     :allow_nil => true
+  delegate :home_country,           :to => :public_profile,     :allow_nil => true
+  delegate :personal_email_address, :to => :public_profile,     :allow_nil => true
 
   define_index do
     indexes hr_profile.first_name, :sortable => true
@@ -115,44 +116,74 @@ class Person < ActiveRecord::Base
   end
 
   def to_vcard
+    # First Name
+    # Last Name
+    # Nickname
+    # Picture
+    # Title
+    # Gender
+    # Department
+    # Company
+    # work email
+    # work phone
+    # personal email
+    # AIM
+    # Skype
+    # GoogleTalk (same as email)
     # work address, city zip
     # personal address, city, zip
-    
+    # personal phone
+    # mobile phone
+
     Vpim::Vcard::Maker.make2 do |maker|
-      maker.add_name do |name|
-        name.given     = self.first_name
-        name.family    = self.last_name
+      maker.name do |name|
+        name.prefix = self.title
+        name.family = self.last_name
+        name.given  = self.first_name
       end
-      maker.nickname   = self.nickname if self.nickname.present?
-      if self.avatar.micro.path && File.exists?(self.avatar.micro.path)
-        maker.add_photo do |photo|
-          photo.link   = File.read(self.avatar.micro.path)
-        end
-      end
-      maker.title      = self.job_title
-      # maker.gender     = self.gender
-      # maker.department = self.department
-      maker.org        = "Factory Design Labs"
-      maker.birthday   = self.birthday.to_date if self.birthday
-      maker.add_tel(self.work_phone_number) { |t| t.location = 'work' } if self.work_phone_number.present?
-      maker.add_tel(self.home_phone_number) { |t| t.location = 'home' } if self.home_phone_number.present?
-      maker.add_tel(self.home_mobile_number) { |t| t.location = 'mobile' } if self.home_mobile_number.present?
-      maker.add_email(self.email_address) { |e| e.location = 'work' }
-      maker.add_x_aim(self.chat_aim)
-      maker.add_addr do |addr|
-        addr.preferred = true
-        addr.location  = 'work'
-        addr.street    = '158 Filmore St'
-        addr.locality  = 'Denver, CO'
-        addr.country   = 'USA'
-      end
-      maker.add_addr do |addr|
-        addr.preferred = false
-        addr.location  = 'home'
-        addr.street    = self.home_address if self.home_address
-        addr.locality  = [self.home_city, self.home_state].join(', ') if self.home_city || self.home_state
-        addr.country   = self.home_country if self.home_country
-      end
+
+      maker.nickname = self.nickname if self.nickname.present?
+
+      # This isn't working!
+      # if self.avatar? && File.exists?(self.avatar.path)
+      #   maker.add_photo do |photo|
+      #     photo.image = File.open(self.avatar.path) { |file| file.read }
+      #     photo.type  = MIME::Types.type_for(self.avatar.path).to_s
+      #   end
+      # end
+
+      maker.title = self.job_title if self.job_title
+      # maker.gender = self.gender NOT IMPLEMENTED
+      # maker.department = self.department NOT IMPLEMENTED
+      maker.org = 'Factory Design Labs'
+
+      maker.add_email(self.email_address) { |email| email.location = 'work' } if self.email_address.present?
+
+      maker.add_tel(self.work_phone_number) { |phone| phone.location = 'work' } if self.work_phone_number.present?
+
+      maker.add_email(self.personal_email_address) { |email| email.location = 'home' } if self.personal_email_address.present?
+
+
+      # maker.birthday   = self.birthday.to_date if self.birthday
+      # maker.add_tel(self.work_phone_number) { |t| t.location = 'work' } if self.work_phone_number.present?
+      # maker.add_tel(self.home_phone_number) { |t| t.location = 'home' } if self.home_phone_number.present?
+      # maker.add_tel(self.home_mobile_number) { |t| t.location = 'mobile' } if self.home_mobile_number.present?
+      # maker.add_email(self.email_address) { |e| e.location = 'work' }
+      # maker.add_x_aim(self.chat_aim)
+      # maker.add_addr do |addr|
+      #   addr.preferred = true
+      #   addr.location  = 'work'
+      #   addr.street    = '158 Filmore St'
+      #   addr.locality  = 'Denver, CO'
+      #   addr.country   = 'USA'
+      # end
+      # maker.add_addr do |addr|
+      #   addr.preferred = false
+      #   addr.location  = 'home'
+      #   addr.street    = self.home_address if self.home_address
+      #   addr.locality  = [self.home_city, self.home_state].join(', ') if self.home_city || self.home_state
+      #   addr.country   = self.home_country if self.home_country
+      # end
     end
   end
 
