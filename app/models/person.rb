@@ -56,6 +56,7 @@ class Person < ActiveRecord::Base
   delegate :title,              :to => :hr_profile,         :allow_nil => true
   delegate :job_title,          :to => :hr_profile,         :allow_nil => true
   delegate :department,         :to => :hr_profile,         :allow_nil => true
+  delegate :is_active,          :to => :hr_profile,         :allow_nil => true
   delegate :email_address,      :to => :it_profile,         :allow_nil => true
   delegate :work_phone_number,  :to => :work_profile,       :allow_nil => true
   delegate :work_mobile_number, :to => :work_profile,       :allow_nil => true
@@ -72,7 +73,6 @@ class Person < ActiveRecord::Base
   delegate :home_city,          :to => :public_profile,     :allow_nil => true
   delegate :home_state,         :to => :public_profile,     :allow_nil => true
   delegate :home_country,       :to => :public_profile,     :allow_nil => true
-  
 
   define_index do
     indexes hr_profile.first_name, :sortable => true
@@ -85,7 +85,7 @@ class Person < ActiveRecord::Base
     indexes public_profile.personal_email_address, :sortable => true
     indexes facilities_profile.seating_floor, :sortable => true
     indexes facilities_profile.seating_number, :sortable => true
-    has '1', :as => :is_active, :type => :boolean
+    has     hr_profile.is_active, :as => :is_active, :type => :boolean
   end
 
   def as_json( options = {} )

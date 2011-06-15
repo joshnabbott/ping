@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110606222744) do
+ActiveRecord::Schema.define(:version => 20110615195932) do
 
   create_table "assets", :force => true do |t|
     t.integer  "employee_id"
@@ -134,7 +134,6 @@ ActiveRecord::Schema.define(:version => 20110606222744) do
     t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "status"
     t.string   "employment_type"
     t.integer  "manager_id"
     t.integer  "replacing_id"
@@ -151,6 +150,7 @@ ActiveRecord::Schema.define(:version => 20110606222744) do
     t.text     "bonus_justification"
     t.decimal  "bonus_amount",                  :precision => 10, :scale => 0
     t.string   "fml_loa"
+    t.boolean  "is_active",                                                    :default => true
   end
 
   create_table "it_profiles", :force => true do |t|

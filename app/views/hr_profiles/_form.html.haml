@@ -6,7 +6,7 @@
     = form.input :title
     = form.input :gender, :as => :select, :collection => HrProfile.genders_for_select, :include_blank => false
     = form.input :birthday,  :as => :date, :start_year => 1900
-    = form.input :status, :as => :select, :collection => HrProfile::STATUSES, :include_blank => false
+    = form.input :is_active
 
   = form.inputs :name => "Personnel Information" do
     = form.input :department, :as => :select, :collection => HrProfile::DEPARTMENTS, :include_blank => false

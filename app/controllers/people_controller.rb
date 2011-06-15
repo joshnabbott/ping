@@ -76,7 +76,7 @@ protected
     @people = if current_user && (current_user.group_names.include?('IT') || current_user.group_names.include?('HR'))
       Person.search(params[:search], :star => true, :retry_stale => true, :page => params[:page], :per_page => 50, :order => :last_name)
     else
-      Person.search(params[:search], :where => { :is_active => true }, :star => true, :retry_stale => true, :page => params[:page], :per_page => 50, :order => :last_name)
+      Person.search(params[:search], :with => { :is_active => true }, :star => true, :retry_stale => true, :page => params[:page], :per_page => 50, :order => :last_name)
     end
   end
 end

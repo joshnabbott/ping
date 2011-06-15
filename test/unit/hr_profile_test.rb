@@ -18,7 +18,6 @@
 #  person_id                     :integer(4)
 #  created_at                    :datetime
 #  updated_at                    :datetime
-#  status                        :string(255)
 #  employment_type               :string(255)
 #  manager_id                    :integer(4)
 #  replacing_id                  :integer(4)
@@ -35,6 +34,7 @@
 #  bonus_justification           :text
 #  bonus_amount                  :integer(10)
 #  fml_loa                       :string(255)
+#  is_active                     :boolean(1)      default(TRUE)
 #
 
 require 'test_helper'

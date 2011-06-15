@@ -49,7 +49,7 @@ Factory.define(:hr_profile) do |f|
   f.hire_date_vacation_adjustment   Date.today
   f.departure_date                  Date.today
   f.pay_type                        HrProfile::PAY_TYPES.sample
-  f.status                          HrProfile::STATUSES.sample
+  f.is_active                       true
   f.employment_type                 HrProfile::EMPLOYMENT_TYPES.sample
   f.birthday                        30.years.ago
 end

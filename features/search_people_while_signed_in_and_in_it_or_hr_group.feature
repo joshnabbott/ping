@@ -1,10 +1,11 @@
-Feature: Search for people without signing in
-  In order to keep find information on active employees
-  A user should be able to search an employee directory
-  And the user should not see inactive employees
+Feature: Search for people while signed in and I belong to the IT or HR group
+  In order to keep find information on both active and inactive employees
+  A user who is in the IT or HR group should be able to search an employee directory
 
   Background:
-    Given the following hr profiles exist:
+    Given I am authenticated
+    And I am in the "IT" group
+    And the following hr profiles exist:
       | First Name  |  Last Name | Department | Job Title | Is Active |
       | Joe         |  Smith     | IS         | Developer | true      |
       | Jack        |  Smith     | IS         | Developer | false     |
@@ -23,12 +24,14 @@ Feature: Search for people without signing in
     And the Sphinx indexes are updated
   Scenario: Search for a person
     Given I am on the home page
-    Then I should see "Download All Contacts"
-    When I fill in "Search" with "Smith"
+    And I follow "Company Directory"
+    And I fill in "Search" with "Smith"
     And I press "Search"
     Then I should see "Joe Smith"
+    And I should see "Developer"
+    And I should see "IS"
     And I should see "joe.smith@factorylabs.com"
     And I should see "123-456-7891"
-    And I should not see "Jack Smith"
-    And I should not see "jack.smith@factorylabs.com"
-    And I should not see "234-567-8901"
+    And I should see "Jack Smith"
+    And I should see "jack.smith@factorylabs.com"
+    And I should see "234-567-8901"
