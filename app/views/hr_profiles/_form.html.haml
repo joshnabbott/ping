@@ -15,7 +15,7 @@
     = form.input :hire_date_vacation_adjustment,  :as => :date
     = form.input :employment_type, :as => :select, :collection => HrProfile::EMPLOYMENT_TYPES, :include_blank => false
     = form.input :manager,          :as => :select, :collection => Person.all, :include_blank => false
-    = form.input :replacing,          :as => :select, :collection => Person.all, :include_blank => false
+    = form.input :replacing,          :as => :select, :collection => Person.all
 
   = form.inputs :name => "Pay/Benefits Information" do
     = form.input :pay_type, :as => :select, :collection => HrProfile::PAY_TYPES, :include_blank => false
