@@ -69,6 +69,7 @@ class Person < ActiveRecord::Base
   delegate :home_phone_number,      :to => :public_profile,     :allow_nil => true
   delegate :home_mobile_number,     :to => :public_profile,     :allow_nil => true
   delegate :chat_aim,               :to => :public_profile,     :allow_nil => true
+  delegate :chat_skype,             :to => :public_profile,     :allow_nil => true
   delegate :home_address,           :to => :public_profile,     :allow_nil => true
   delegate :home_city,              :to => :public_profile,     :allow_nil => true
   delegate :home_state,             :to => :public_profile,     :allow_nil => true
@@ -116,25 +117,6 @@ class Person < ActiveRecord::Base
   end
 
   def to_vcard
-    # First Name
-    # Last Name
-    # Nickname
-    # Picture
-    # Title
-    # Gender
-    # Department
-    # Company
-    # work email
-    # work phone
-    # personal email
-    # AIM
-    # Skype
-    # GoogleTalk (same as email)
-    # work address, city zip
-    # personal address, city, zip
-    # personal phone
-    # mobile phone
-
     Vpim::Vcard::Maker.make2 do |maker|
       maker.name do |name|
         name.prefix = self.title
@@ -152,38 +134,47 @@ class Person < ActiveRecord::Base
       #   end
       # end
 
-      maker.title = self.job_title if self.job_title
-      # maker.gender = self.gender NOT IMPLEMENTED
-      # maker.department = self.department NOT IMPLEMENTED
-      maker.org = 'Factory Design Labs'
+      maker.title = self.job_title if self.job_title.present?
 
-      maker.add_email(self.email_address) { |email| email.location = 'work' } if self.email_address.present?
+      maker.gender = self.gender if self.gender.present?
 
-      maker.add_tel(self.work_phone_number) { |phone| phone.location = 'work' } if self.work_phone_number.present?
+      maker.org = "Factory Design Labs;#{self.department}"
+
+      maker.add_email(self.email_address) do |email|
+        email.location  = 'work'
+        email.preferred = true
+      end if self.email_address.present?
+
+      maker.add_tel(self.work_phone_number) do |phone|
+        phone.location  = 'work'
+        phone.preferred = true
+      end if self.work_phone_number.present?
 
       maker.add_email(self.personal_email_address) { |email| email.location = 'home' } if self.personal_email_address.present?
 
+      maker.aim   = self.chat_aim if self.chat_aim.present?
+      maker.skype = self.chat_skype if self.chat_skype.present?
+      maker.gtalk = self.email_address if self.email_address.present?
 
-      # maker.birthday   = self.birthday.to_date if self.birthday
-      # maker.add_tel(self.work_phone_number) { |t| t.location = 'work' } if self.work_phone_number.present?
-      # maker.add_tel(self.home_phone_number) { |t| t.location = 'home' } if self.home_phone_number.present?
-      # maker.add_tel(self.home_mobile_number) { |t| t.location = 'mobile' } if self.home_mobile_number.present?
-      # maker.add_email(self.email_address) { |e| e.location = 'work' }
-      # maker.add_x_aim(self.chat_aim)
-      # maker.add_addr do |addr|
-      #   addr.preferred = true
-      #   addr.location  = 'work'
-      #   addr.street    = '158 Filmore St'
-      #   addr.locality  = 'Denver, CO'
-      #   addr.country   = 'USA'
-      # end
-      # maker.add_addr do |addr|
-      #   addr.preferred = false
-      #   addr.location  = 'home'
-      #   addr.street    = self.home_address if self.home_address
-      #   addr.locality  = [self.home_city, self.home_state].join(', ') if self.home_city || self.home_state
-      #   addr.country   = self.home_country if self.home_country
-      # end
+      maker.add_addr do |addr|
+        addr.preferred = true
+        addr.location  = 'work'
+        addr.street    = '158 Filmore St'
+        addr.locality  = 'Denver, CO'
+        addr.country   = 'USA'
+      end
+
+      maker.add_addr do |addr|
+        addr.preferred = false
+        addr.location  = 'home'
+        addr.street    = self.home_address if self.home_address
+        addr.locality  = [self.home_city, self.home_state].join(', ') if self.home_city || self.home_state
+        addr.country   = self.home_country if self.home_country
+      end
+
+      maker.add_tel(self.home_phone_number) { |phone| phone.location = 'home' } if self.home_phone_number.present?
+
+      maker.add_tel(self.home_mobile_number) { |phone| phone.location = 'cell' } if self.home_mobile_number.present?
     end
   end
 
