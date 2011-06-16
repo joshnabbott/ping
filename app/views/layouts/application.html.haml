@@ -28,7 +28,7 @@
       #header
         #title
           #control{ :class => 'with-logo' }
-            %h1.title= site_title
+            / %h1.title=# site_title
             #controls
               - if logged_in?
                 %h2= "Welcome, #{current_credential.person.full_name}!"
