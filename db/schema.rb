@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110615195932) do
+ActiveRecord::Schema.define(:version => 20110616171647) do
 
   create_table "assets", :force => true do |t|
     t.integer  "employee_id"
@@ -156,11 +156,9 @@ ActiveRecord::Schema.define(:version => 20110615195932) do
   create_table "it_profiles", :force => true do |t|
     t.integer  "person_id"
     t.string   "default_username"
-    t.boolean  "email_account_active"
     t.string   "chat_gtalk"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email_address"
   end
 
   create_table "old_passwords", :force => true do |t|
@@ -229,6 +227,8 @@ ActiveRecord::Schema.define(:version => 20110615195932) do
     t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email_address"
+    t.boolean  "email_account_active", :default => false
   end
 
 end

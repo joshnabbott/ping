@@ -20,3 +20,7 @@
   %dd= value_with_placeholder  @work_profile.work_zip
   %dt Work Country
   %dd= value_with_placeholder  @work_profile.work_country
+  %dt E-mail Address
+  %dd= value_with_placeholder  @work_profile.email_address
+  %dt E-mail account active?
+  %dd= boolean_to_human(@work_profile.email_account_active).capitalize

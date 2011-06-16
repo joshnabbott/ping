@@ -9,18 +9,19 @@ Feature: Search for people without signing in
       | Joe         |  Smith     | IS         | Developer | true      |
       | Jack        |  Smith     | IS         | Developer | false     |
     And the following work profiles exist:
-      | Work Phone Number |
-      | 123-456-7891      |
-      | 234-567-8901      |
+      | Work Phone Number | Email address              |
+      | 123-456-7891      | joe.smith@factorylabs.com  |
+      | 234-567-8901      | jack.smith@factorylabs.com |
     And the following it profiles exist:
-      | Email Address              |
-      | joe.smith@factorylabs.com  |
-      | jack.smith@factorylabs.com |
+      | Default username |
+      | joe.smith        |
+      | jack.smith       |
     And the following people exist:
-      | HR Profile       | IT Profile                                | Work Profile                    |
-      | First Name: Joe  | Email Address: joe.smith@factorylabs.com  | Work Phone Number: 123-456-7891 |
-      | First Name: Jack | Email Address: jack.smith@factorylabs.com | Work Phone Number: 234-567-8901 |
+      | HR Profile       | IT Profile                   | Work Profile                    |
+      | First Name: Joe  | Default username: joe.smith  | Work Phone Number: 123-456-7891 |
+      | First Name: Jack | Default username: jack.smith | Work Phone Number: 234-567-8901 |
     And the Sphinx indexes are updated
+
   Scenario: Search for a person
     Given I am on the home page
     Then I should see "Download All Contacts"

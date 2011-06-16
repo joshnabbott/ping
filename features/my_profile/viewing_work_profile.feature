@@ -16,6 +16,7 @@ Feature: View my work profile
       | Work state                  | CO                          |
       | Work zip                    | 80206                       |
       | Work country                | USA                         |
+      | Email address               | joe.smith@factorylabs.com   |
     When I am on the home page
     And I follow "Manage My Information"
     And I follow "Work Contact Profile"
@@ -28,3 +29,4 @@ Feature: View my work profile
     And I should see "Work State CO"
     And I should see "Work Zip 80206"
     And I should see "Work Country USA"
+    And I should see "E-mail Address joe.smith@factorylabs.com"

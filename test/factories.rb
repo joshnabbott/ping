@@ -64,13 +64,13 @@ Factory.define(:work_profile) do |f|
   f.work_state                      'CO'
   f.work_zip                        '80206'
   f.work_country                    Person::COUNTRIES.sample
+  f.email_address                   'john.smith@factorylabs.com'
+  f.email_account_active            true
 end
 
 Factory.define(:it_profile) do |f|
   f.default_username                'john.smith'
-  f.email_address                   'john.smith@factorylabs.com'
   f.chat_gtalk                      'john.smith@factorylabs.com'
-  f.email_account_active            true
 end
 
 Factory.define(:group) do |f|

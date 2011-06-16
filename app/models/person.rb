@@ -57,7 +57,8 @@ class Person < ActiveRecord::Base
   delegate :job_title,              :to => :hr_profile,         :allow_nil => true
   delegate :department,             :to => :hr_profile,         :allow_nil => true
   delegate :is_active,              :to => :hr_profile,         :allow_nil => true
-  delegate :email_address,          :to => :it_profile,         :allow_nil => true
+  delegate :email_address,          :to => :work_profile,       :allow_nil => true
+  delegate :email_account_active,   :to => :work_profile,       :allow_nil => true
   delegate :work_phone_number,      :to => :work_profile,       :allow_nil => true
   delegate :work_mobile_number,     :to => :work_profile,       :allow_nil => true
   delegate :birthday,               :to => :hr_profile,         :allow_nil => true

@@ -9,6 +9,8 @@
     = form.input :work_state
     = form.input :work_zip
     = form.input :work_country, :as => :select, :collection => Person::COUNTRIES, :include_blank => false
+    = form.input :email_address
+    = form.input :email_account_active, :as => :boolean
 
   = form.buttons do
     = form.commit_button
