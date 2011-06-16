@@ -11,8 +11,8 @@
   - unless @people.empty?
     - @people.each do |person|
       %tr{ :id => dom_id(person) }
-        %td= image_tag(person.avatar.micro.url, :class => 'micro-thumb')
-        %td= person.full_name
+        %td= link_to(image_tag(person.avatar.micro.url, :class => 'micro-thumb'), person)
+        %td= link_to(person.full_name, person)
         %td= person.job_title
         %td= person.department
         %td= link_to person.email_address, "mailto:#{person.email_address}"
