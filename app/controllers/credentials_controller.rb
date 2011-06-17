@@ -1,5 +1,4 @@
 class CredentialsController < AuthenticatedController
-
   load_and_authorize_resource :person
   load_and_authorize_resource :credential, :through => :person, :singleton => true
 
@@ -32,5 +31,4 @@ class CredentialsController < AuthenticatedController
       end
     end
   end
-
 end

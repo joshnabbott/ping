@@ -25,29 +25,28 @@
 #
 
 class Credential < ActiveRecord::Base
-
   # Devise
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise  :database_authenticatable, 
           # :registerable,
           :recoverable,
-#          :rememberable,
+          # :rememberable,
           :trackable, 
           # :validatable,
           :encryptable,
           :password_expirable,
           :password_archivable
-          
+
   # Associations
   belongs_to :person
 
-  delegate :groups, :group_names, :to => :person
-          
+  delegate :email_address, :groups, :group_names, :to => :person, :allow_nil => true
+
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :username, 
-                  :password, 
-                  :password_confirmation, 
+  attr_accessible :username,
+                  :password,
+                  :password_confirmation,
                   :remember_me
 
   validates   :username,  :presence   => true,
@@ -59,9 +58,12 @@ class Credential < ActiveRecord::Base
                           :format       => /^.*(?=.{8,})(?=\w*\d)(?=\w*[a-z])(?=\w*[A-Z])\w*$/
 
   validates   :person_id, :presence => true
-  
+
   def decrypted_password
     ::Devise::Encryptors::Aes256.decrypt(encrypted_password, Devise.pepper)
   end
 
+  def email
+    self.email_address
+  end
 end
