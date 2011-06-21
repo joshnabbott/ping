@@ -27,21 +27,26 @@
   %dd= value_with_placeholder  @public_profile.chat_aim
   %dt Skype Username
   %dd= value_with_placeholder  @public_profile.chat_skype
-  - if @public_profile.twitter_url.present?
+  - if @public_profile.username_twitter.present?
     %dt Twitter
-    %dd= link_to @public_profile.twitter_url, @public_profile.twitter_url
-  - if @public_profile.linkedin_url.present?
+    %dd= link_to @public_profile.username_twitter, @public_profile.twitter_url
+
+  - if @public_profile.username_linkedin.present?
     %dt LinkedIn
-    %dd= link_to @public_profile.linkedin_url, @public_profile.linkedin_url
-  - if @public_profile.facebook_url.present?
+    %dd= link_to @public_profile.username_linkedin, @public_profile.linkedin_url
+
+  - if @public_profile.username_facebook.present?
     %dt Facebook
-    %dd= link_to @public_profile.facebook_url, @public_profile.facebook_url
-  - if @public_profile.flickr_url.present?
+    %dd= link_to @public_profile.username_facebook, @public_profile.facebook_url
+
+  - if @public_profile.username_flickr.present?
     %dt Flickr
-    %dd= link_to @public_profile.flickr_url, @public_profile.flickr_url
-  - if @public_profile.instagram_url.present?
+    %dd= link_to @public_profile.username_flickr, @public_profile.flickr_url
+
+  - if @public_profile.username_instagram.present?
     %dt Instagram
-    %dd= link_to @public_profile.instagram_url, @public_profile.instagram_url
+    %dd= link_to @public_profile.username_instagram, @public_profile.instagram_url
+
   - if @public_profile.website_url.present?
     %dt Website
     %dd= link_to @public_profile.website_url, @public_profile.website_url
