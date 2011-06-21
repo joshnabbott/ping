@@ -14,7 +14,6 @@ Feature: Manage my public profile
       | Bio                    | I am a developer            |
       | Personal email address | john.smith@factorylabs.com  |
       | Home phone number      | 123-567-7890                |
-      | Home fax number        | 123-567-7890                |
       | Mobile number          | 123-567-7890                |
       | Home address           | 158 Fillmore                |
       | Home city              | Denver                      |

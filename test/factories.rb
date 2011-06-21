@@ -20,7 +20,6 @@ Factory.define(:public_profile) do |f|
   f.bio                             'I am an employee'
   f.personal_email_address          'johnsmith@yahoo.com'
   f.home_phone_number               '123-456-7890'
-  f.home_fax_number                 '123-456-7890'
   f.home_mobile_number              '123-456-7890'
   f.home_address                    '1060 W. Addison St.'
   f.home_city                       'Chicago'

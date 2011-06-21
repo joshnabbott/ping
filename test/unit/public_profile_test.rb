@@ -8,7 +8,6 @@
 #  bio                    :text
 #  personal_email_address :string(255)
 #  home_phone_number      :string(255)
-#  home_fax_number        :string(255)
 #  home_mobile_number     :string(255)
 #  home_address           :string(255)
 #  home_city              :string(255)
