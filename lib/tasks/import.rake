@@ -1,4 +1,45 @@
 namespace :import do
+  desc 'Imports user passwords from db/accounts_master.csv file. Find users by their email or creates a new user if email address is not present.'
+  task :account_passwords => :environment do
+    FasterCSV.foreach('db/accounts_master.csv', :headers => true) do |row|
+
+      type, name, username, email_address, password = row.fields
+      first_name, last_name = name.split
+
+      person = Person.includes(:work_profile).where(:work_profiles => { :email_address => email_address }).first || Person.new
+
+      if person.new_record?
+        # Create a new person if this one didn't already exist.
+        person.hr_profile.first_name             = first_name
+        person.hr_profile.last_name              = last_name
+        person.hr_profile.is_active              = false
+        person.work_profile.work_country         = 'USA'
+        person.work_profile.work_state           = 'CO'
+        person.work_profile.work_city            = 'Denver'
+        person.work_profile.work_zip             = '80206'
+        person.work_profile.work_address         = '158 Filmore St.'
+        person.work_profile.email_account_active = false
+        person.work_profile.email_address        = email_address
+        person.public_profile.home_country       = 'USA'
+        person.it_profile.default_username       = username
+        person.credential.username               = username
+        person.credential.password               = password
+        person.credential.password_confirmation  = password
+      else
+        person.credential.password               = password
+        person.credential.password_confirmation  = password
+      end
+
+      person.hr_profile.save(:validate => false)
+      person.work_profile.save(:validate => false)
+      person.public_profile.save(:validate => false)
+      person.it_profile.save(:validate => false)
+      person.credential.save(:validate => false)
+
+      puts person.save(:validate => false)
+    end
+  end
+
   desc 'Imports asset data from casper using the casper_api gem'
   task :casper => :environment do
     casper = CasperApi::Casper.new('Development', 'test')
@@ -68,7 +109,7 @@ namespace :import do
                                           :gender          => gender.downcase,
                                           :department      => department,
                                           :pay_type        => 'salaried',
-                                          :status          => 'Active',
+                                          :is_active       => true,
                                           :employment_type => 'Full Time')
 
       person.work_profile.update_attributes(:work_country      => 'USA',
@@ -77,17 +118,17 @@ namespace :import do
                                             :work_zip          => zip,
                                             :work_phone_number => work_direct,
                                             :work_extension    => work_extension,
-                                            :work_address      => address)
+                                            :work_address      => address,
+                                            :email_account_active => true,
+                                            :email_address        => email)
 
       person.public_profile.update_attributes(:home_mobile_number => mobile,
                                               :home_country       => 'USA',
                                               :chat_skype         => skype,
                                               :chat_aim           => aim)
 
-      person.it_profile.update_attributes(:email_account_active => true,
-                                          :chat_gtalk           => google_talk,
-                                          :default_username     => username,
-                                          :email_address        => email)
+      person.it_profile.update_attributes(:chat_gtalk           => google_talk,
+                                          :default_username     => username)
 
       if person.new_record?
         person.credential.update_attributes(:username => username, :password => 'password', :password_confirmation => 'password')
