@@ -120,9 +120,9 @@ class Person < ActiveRecord::Base
   def to_vcard
     Vpim::Vcard::Maker.make2 do |maker|
       maker.name do |name|
-        name.prefix = self.title
-        name.family = self.last_name
-        name.given  = self.first_name
+        name.prefix = self.title if self.title.present?
+        name.family = self.last_name if self.last_name.present?
+        name.given  = self.first_name if self.first_name.present?
       end
 
       maker.nickname = self.nickname if self.nickname.present?

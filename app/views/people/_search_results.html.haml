@@ -6,6 +6,7 @@
     %th Department
     %th E-mail
     %th Work phone
+    %th Cell phone
     %th Actions
   - unless @people.empty?
     - @people.each do |person|
@@ -16,6 +17,7 @@
         %td= person.department
         %td= link_to person.email_address, "mailto:#{person.email_address}"
         %td= value_with_placeholder(person.work_phone_number)
+        %td= value_with_placeholder(person.home_mobile_number)
         %td{:class => 'controls'}
           - if logged_in? and can?(:read, person)
             = link_to 'Details', person

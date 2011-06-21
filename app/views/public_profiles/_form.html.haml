@@ -1,5 +1,6 @@
 - semantic_form_for [@person, @public_profile], :url => person_public_profile_path(@person), :html => { :multipart => true } do |form|
   = form.inputs :name => "Public Profile" do
+    = form.input :home_mobile_number
     = form.input :nickname
     = form.input :bio
     = form.input :avatar, :label => 'Headshot', :as => :file
@@ -14,7 +15,6 @@
     = form.input :username_flickr, :label => 'Flickr Username'
     = form.input :username_instagram, :label => 'Instagram Username'
     = form.input :website_url, :label => 'Website URL'
-    = form.input :home_mobile_number
     = form.input :home_phone_number
     = form.input :home_fax_number
     = form.input :home_address
