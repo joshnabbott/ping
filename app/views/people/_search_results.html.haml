@@ -22,8 +22,8 @@
           - if logged_in? and can?(:read, person)
             = link_to 'Details', person
           = link_to 'vCard', person_path(person, :format => 'vcf')
-          - if can? :edit, person
-            = link_to 'Edit', edit_person_path(person)
+          - if can?(:edit, person)
+            = link_to 'Edit', person_path(person)
   - else
     %tr{ :colspan => 8 }
       %td No people found

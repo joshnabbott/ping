@@ -36,3 +36,6 @@
     = n.item "HR Profile", :link => edit_person_hr_profile_path(@person)
   - elsif can?(:read, @person.hr_profile)
     = n.item "HR Profile", :link => person_hr_profile_path(@person)
+
+  - if can?(:edit, Group)
+    = n.item "Groups", :link => edit_person_path(@person)
