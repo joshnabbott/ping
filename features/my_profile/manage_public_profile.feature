@@ -10,16 +10,16 @@ Feature: Manage my public profile
     And I follow "Manage My Information"
     And I follow "Public Profile"
     When I fill in the following:
-      | Nickname                    | Johnny                      |
-      | Bio                         | I am a developer            |
-      | Personal email address      | john.smith@factorylabs.com  |
-      | Home phone number           | 123-567-7890                |
-      | Home fax number             | 123-567-7890                |
-      | Home mobile number          | 123-567-7890                |
-      | Home address                | 158 Fillmore                |
-      | Home city                   | Denver                      |
-      | Home state                  | CO                          |
-      | Home zip                    | 80206                       |
+      | Nickname               | Johnny                      |
+      | Bio                    | I am a developer            |
+      | Personal email address | john.smith@factorylabs.com  |
+      | Home phone number      | 123-567-7890                |
+      | Home fax number        | 123-567-7890                |
+      | Mobile number          | 123-567-7890                |
+      | Home address           | 158 Fillmore                |
+      | Home city              | Denver                      |
+      | Home state             | CO                          |
+      | Home zip               | 80206                       |
     And I select "USA" from "Home country"
     And I press "Update Public profile"
     Then I should see "Your public profile was successfully updated."
