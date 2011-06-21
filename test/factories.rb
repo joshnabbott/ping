@@ -57,7 +57,6 @@ end
 Factory.define(:work_profile) do |f|
   f.work_phone_number               '123-456-7890'
   f.work_fax_number                 '123-456-7890'
-  f.work_mobile_number              '123-456-7890'
   f.work_extension                  '456'
   f.work_address                    '158 Fillmore'
   f.work_city                       'Denver'

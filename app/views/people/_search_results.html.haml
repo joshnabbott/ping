@@ -5,7 +5,6 @@
     %th Title
     %th Department
     %th E-mail
-    %th Cell phone
     %th Work phone
     %th Actions
   - unless @people.empty?
@@ -16,7 +15,6 @@
         %td= person.job_title
         %td= person.department
         %td= link_to person.email_address, "mailto:#{person.email_address}"
-        %td= value_with_placeholder(person.work_mobile_number)
         %td= value_with_placeholder(person.work_phone_number)
         %td{:class => 'controls'}
           - if logged_in? and can?(:read, person)

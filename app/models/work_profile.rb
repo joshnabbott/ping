@@ -5,7 +5,6 @@
 #  id                   :integer(4)      not null, primary key
 #  work_phone_number    :string(255)
 #  work_fax_number      :string(255)
-#  work_mobile_number   :string(255)
 #  work_extension       :string(255)
 #  work_address         :string(255)
 #  work_city            :string(255)
