@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110621201732) do
+ActiveRecord::Schema.define(:version => 20110621204133) do
 
   create_table "assets", :force => true do |t|
     t.integer  "employee_id"
@@ -199,11 +199,11 @@ ActiveRecord::Schema.define(:version => 20110621201732) do
     t.datetime "updated_at"
     t.string   "chat_aim"
     t.string   "chat_skype"
-    t.string   "twitter_url"
-    t.string   "linkedin_url"
-    t.string   "facebook_url"
-    t.string   "flickr_url"
-    t.string   "instagram_url"
+    t.string   "username_twitter"
+    t.string   "username_linkedin"
+    t.string   "username_facebook"
+    t.string   "username_flickr"
+    t.string   "username_instagram"
     t.string   "website_url"
     t.string   "avatar"
   end
