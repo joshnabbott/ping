@@ -14,6 +14,8 @@
   %dd= link_to @person.email_address, "mailto:#{@person.email_address}"
   %dt Phone
   %dd= value_with_placeholder(@person.work_phone_number)
+  %dt Mobile Phone
+  %dd= value_with_placeholder(@person.home_mobile_number)
   %dt Floor
   %dd= value_with_placeholder(@person.seating_floor)
   %dt Seat
