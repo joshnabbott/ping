@@ -114,6 +114,15 @@ class Person < ActiveRecord::Base
     [ self.first_or_nickname, self.last_name ] * ' '
   end
 
+  def full_name_with_nickname
+    if self.nickname.present?
+      [self.nickname, "(#{self.first_name})", self.last_name] * ' '
+    else
+      self.full_name_without_nickname
+    end
+  end
+  alias_method_chain :full_name, :nickname
+
   def first_or_nickname
     (self.nickname.present? ? self.nickname : self.first_name)
   end
@@ -187,6 +196,4 @@ class Person < ActiveRecord::Base
   def avatar
     self.public_profile.avatar.presence || self.facilities_profile.avatar
   end
-
-
 end
