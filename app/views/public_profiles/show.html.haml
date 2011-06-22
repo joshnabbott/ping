@@ -27,23 +27,23 @@
   %dd= value_with_placeholder  @public_profile.chat_skype
   - if @public_profile.username_twitter.present?
     %dt Twitter
-    %dd= link_to @public_profile.username_twitter, @public_profile.twitter_url
+    %dd= @public_profile.username_twitter
 
   - if @public_profile.username_linkedin.present?
     %dt LinkedIn
-    %dd= link_to @public_profile.username_linkedin, @public_profile.linkedin_url
+    %dd= @public_profile.username_linkedin
 
   - if @public_profile.username_facebook.present?
     %dt Facebook
-    %dd= link_to @public_profile.username_facebook, @public_profile.facebook_url
+    %dd= @public_profile.username_facebook
 
   - if @public_profile.username_flickr.present?
     %dt Flickr
-    %dd= link_to @public_profile.username_flickr, @public_profile.flickr_url
+    %dd= @public_profile.username_flickr
 
   - if @public_profile.username_instagram.present?
     %dt Instagram
-    %dd= link_to @public_profile.username_instagram, @public_profile.instagram_url
+    %dd= @public_profile.username_instagram
 
   - if @public_profile.website_url.present?
     %dt Website
