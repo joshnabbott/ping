@@ -12,8 +12,8 @@
   %dd= value_with_placeholder(@person.department)
   %dt E-mail
   %dd= link_to @person.email_address, "mailto:#{@person.email_address}"
-  %dt Phone
-  %dd= value_with_placeholder(@person.work_phone_number)
+  %dt Work Phone
+  %dd= "#{value_with_placeholder(@person.work_phone_number)} (x#{value_with_placeholder(@person.work_extension)})"
   %dt Mobile Phone
   %dd= value_with_placeholder(@person.home_mobile_number)
   %dt Floor
