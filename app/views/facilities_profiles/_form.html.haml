@@ -1,3 +1,21 @@
+- content_for :document_ready do
+  setSeatingOptions = function(floor) {
+  $("#facilities_profile_seating_number").html(seatingOptions[floor]);
+  }
+
+  var seatingOptions = { 
+  'Floor 2': "#{escape_javascript(options_for_select((200..299).to_a, :selected => @facilities_profile.seating_number)).html_safe}",
+  'Floor 3': "#{escape_javascript(options_for_select((300..399).to_a, :selected => @facilities_profile.seating_number)).html_safe}",
+  'Floor 4': "#{escape_javascript(options_for_select((400..499).to_a, :selected => @facilities_profile.seating_number)).html_safe}"
+  };
+
+  $("#facilities_profile_seating_floor").change(function() {
+  var selectedFloor = $("#facilities_profile_seating_floor option:selected").text();
+  setSeatingOptions(selectedFloor);
+  })
+
+  setSeatingOptions('#{@facilities_profile.seating_floor}');
+
 - semantic_form_for [@person, @facilities_profile], :url => person_facilities_profile_path(@person), :html => { :multipart => true } do |form|
   = form.inputs :name => "Facilities Profile" do
     = form.input :avatar, :label => 'Headshot', :as => :file
