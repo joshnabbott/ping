@@ -1,13 +1,13 @@
 - semantic_navigation :primary, :html => {:class => 'navigation'} do |n|
   - if logged_in?
-    = n.group "Home" do
-      = n.item "My Dashboard", :link => root_path
-    = n.group "My Profile" do
-      = n.item "Manage My Information", :link => my_profile_path
-      = n.item "Change My Password", :link => edit_person_credential_path(current_credential.person)
+    / = n.group "Home" do
+    /   = n.item "My Dashboard", :link => root_path
     = n.group "People" do
       = n.item "Company Directory", :link => people_path if can?(:read, PublicProfile)
       = n.item "Download All Contacts", :link => people_path(:format => :vcf)
+    = n.group "My Profile" do
+      = n.item "Manage My Information", :link => my_profile_path
+      = n.item "Change My Password", :link => edit_person_credential_path(current_credential.person)
   - if can?(:manage, Group)
     = n.group "Groups" do
       = n.item "Manage Groups", :link => groups_path
