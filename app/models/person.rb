@@ -60,6 +60,7 @@ class Person < ActiveRecord::Base
   delegate :email_address,          :to => :work_profile,       :allow_nil => true
   delegate :email_account_active,   :to => :work_profile,       :allow_nil => true
   delegate :work_phone_number,      :to => :work_profile,       :allow_nil => true
+  delegate :work_extension,         :to => :work_profile,       :allow_nil => true
   delegate :work_mobile_number,     :to => :work_profile,       :allow_nil => true
   delegate :birthday,               :to => :hr_profile,         :allow_nil => true
   delegate :default_username,       :to => :it_profile,         :allow_nil => true
@@ -146,7 +147,7 @@ class Person < ActiveRecord::Base
         email.preferred = true
       end if self.email_address.present?
 
-      maker.add_tel(self.work_phone_number) do |phone|
+      maker.add_tel("#{self.work_phone_number} (x#{self.work_extension})") do |phone|
         phone.location  = 'work'
         phone.preferred = true
       end if self.work_phone_number.present?
