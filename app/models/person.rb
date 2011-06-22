@@ -190,10 +190,10 @@ class Person < ActiveRecord::Base
   end
 
   def avatar?
-    self.public_profile.avatar? || self.facilities_profile.avatar?
+    self.public_profile.avatar? # || self.facilities_profile.avatar?
   end
 
   def avatar
-    self.public_profile.avatar.presence || self.facilities_profile.avatar
+    self.public_profile.avatar # || self.facilities_profile.avatar
   end
 end
