@@ -1,3 +1,6 @@
+= content_for :document_ready do
+  setFocus('search');
+
 = content_for :title do
   %h1 Company Directory
 - if can?(:create, Person)
