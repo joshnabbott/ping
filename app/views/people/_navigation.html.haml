@@ -22,7 +22,7 @@
   - elsif can?(:read, @person.emergency_profile)
     = n.item "Emergency Contact", :link => person_emergency_profile_path(@person)
 
-  - if can?(:edit, @person.facilities_profile)
+  - if can?(:update, @person.facilities_profile)
     = n.item "Facilities Profile", :link => edit_person_facilities_profile_path(@person)
   - elsif can?(:read, @person.facilities_profile)
     = n.item "Facilities Profile", :link => person_facilities_profile_path(@person)

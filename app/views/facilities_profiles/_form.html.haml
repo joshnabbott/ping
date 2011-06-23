@@ -20,9 +20,15 @@
   = form.inputs :name => "Facilities Profile" do
     = form.input :seating_floor, :as => :select, :collection => FacilitiesProfile::SEATING_FLOORS
     = form.input :seating_number, :as => :select, :collection => FacilitiesProfile::SEATING_NUMBERS
-    = form.input :building_card
-    = form.input :garage_card
-    = form.input :fed_ex_account, :label => 'FedEx Account'
-  
+
+    - if @person.group_names.include?('HR') || @person.group_names.include?('IT')
+      = form.input :building_card
+      = form.input :garage_card
+      = form.input :fed_ex_account, :label => 'FedEx Account'
+    - else
+      = form.input :building_card, :input_html => { :disabled => true }
+      = form.input :garage_card, :input_html => { :disabled => true }
+      = form.input :fed_ex_account, :label => 'FedEx Account', :input_html => { :disabled => true }
+
   = form.buttons do
     = form.commit_button

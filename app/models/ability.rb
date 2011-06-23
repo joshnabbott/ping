@@ -21,11 +21,11 @@ class Ability
     can :update,  PublicProfile,     :person_id => person.id
     can :update,  EmergencyProfile,  :person_id => person.id
     can :update,  Credential,        :person_id => person.id
+    can :update,  FacilitiesProfile, :person_id => person.id # There's a terrible hack for this in facilities profile form
 
     # User can view their own IT, HR, and Facilities profiles
     can :read,    ItProfile,         :person_id => person.id
     can :read,    HrProfile,         :person_id => person.id
-    can :read,    FacilitiesProfile, :person_id => person.id
     can :read,    WorkProfile,       :person_id => person.id
 
     # IT can manage groups and IT/Facilities profiles
