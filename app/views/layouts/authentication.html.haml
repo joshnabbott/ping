@@ -14,6 +14,7 @@
     = javascript_include_tag 'protosite_common', 'protosite_backend'
 
     = content_for :head
+
   %body{ :id => "#{controller.controller_name.underscore}_controller", :class => "#{controller.action_name.dasherize}-action not-logged-in without-javascript" }
     #background= image_tag('protosite/client-background.jpg', :size => '1555x1050', :class => 'retain-aspect')
     #body

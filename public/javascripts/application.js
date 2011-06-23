@@ -41,3 +41,7 @@ function observeForDuplicateFormFields() {
     })
   });
 }
+
+function setFocus(id) {
+  $(':input[id=' + id + ']').focus();
+}
