@@ -4,9 +4,9 @@
   }
 
   var seatingOptions = { 
-  'Floor 2': "#{escape_javascript(options_for_select((200..299).to_a, :selected => @facilities_profile.seating_number)).html_safe}",
-  'Floor 3': "#{escape_javascript(options_for_select((300..399).to_a, :selected => @facilities_profile.seating_number)).html_safe}",
-  'Floor 4': "#{escape_javascript(options_for_select((400..499).to_a, :selected => @facilities_profile.seating_number)).html_safe}"
+  'Floor 2': "<option></option>#{escape_javascript(options_for_select((200..299).to_a, :selected => @facilities_profile.seating_number)).html_safe}",
+  'Floor 3': "<option></option>#{escape_javascript(options_for_select((300..399).to_a, :selected => @facilities_profile.seating_number)).html_safe}",
+  'Floor 4': "<option></option>#{escape_javascript(options_for_select((400..499).to_a, :selected => @facilities_profile.seating_number)).html_safe}"
   };
 
   $("#facilities_profile_seating_floor").change(function() {
@@ -18,8 +18,8 @@
 
 - semantic_form_for [@person, @facilities_profile], :url => person_facilities_profile_path(@person), :html => { :multipart => true } do |form|
   = form.inputs :name => "Facilities Profile" do
-    = form.input :seating_floor, :as => :select, :collection => FacilitiesProfile::SEATING_FLOORS, :include_blank => false
-    = form.input :seating_number, :as => :select, :collection => FacilitiesProfile::SEATING_NUMBERS, :include_blank => false
+    = form.input :seating_floor, :as => :select, :collection => FacilitiesProfile::SEATING_FLOORS
+    = form.input :seating_number, :as => :select, :collection => FacilitiesProfile::SEATING_NUMBERS
     = form.input :building_card
     = form.input :garage_card
     = form.input :fed_ex_account, :label => 'FedEx Account'
