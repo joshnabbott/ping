@@ -78,63 +78,71 @@ namespace :import do
 
   task :employee_list => :environment do
     FasterCSV.foreach('db/employee_list.csv', :headers => true) do |row|
-        dummy_id,
+        status,
         first_name,
         last_name,
+        username,
+        password,
         email,
         job_title,
         company,
+        floor,
+        seat_number,
         department,
         gender,
-        work_extension,
         work_direct,
+        work_extension,
         mobile,
         fax,
         google_talk,
         aim,
         skype,
         address,
-        city, 
+        city,
         state,
         zip,
         country = row.fields
 
       username = "#{first_name}.#{last_name}".downcase
 
-      person = Person.joins(:it_profile).readonly(false).where(:it_profiles => { :default_username => username }).first || Person.new
+      person = Person.includes(:it_profile).where(:it_profiles => { :default_username => username }).first || Person.new
 
-      person.hr_profile.update_attributes(:first_name      => first_name,
-                                          :last_name       => last_name,
-                                          :job_title       => job_title || 'Missing',
-                                          :gender          => gender.downcase,
-                                          :department      => department,
-                                          :pay_type        => 'salaried',
-                                          :is_active       => true,
-                                          :employment_type => 'Full Time')
+      person.hr_profile.first_name             = first_name
+      person.hr_profile.last_name              = last_name
+      person.hr_profile.job_title              = job_title || 'Missing'
+      person.hr_profile.gender                 = gender.downcase
+      person.hr_profile.department             = department
+      person.hr_profile.pay_type               = 'salaried'
+      person.hr_profile.is_active              = status == 'Active' ? true : false
+      person.hr_profile.employment_type        = 'Full Time'
 
-      person.work_profile.update_attributes(:work_country      => 'USA',
-                                            :work_state        => state,
-                                            :work_city         => city,
-                                            :work_zip          => zip,
-                                            :work_phone_number => work_direct,
-                                            :work_extension    => work_extension,
-                                            :work_address      => address,
-                                            :email_account_active => true,
-                                            :email_address        => email)
+      person.work_profile.work_country         = 'USA'
+      person.work_profile.work_state           = state
+      person.work_profile.work_city            = city
+      person.work_profile.work_zip             = zip
+      person.work_profile.work_phone_number    = work_direct
+      person.work_profile.work_extension       = work_extension
+      person.work_profile.work_address         = address
+      person.work_profile.email_account_active = true
+      person.work_profile.email_address        = email
 
-      person.public_profile.update_attributes(:home_mobile_number => mobile,
-                                              :home_country       => 'USA',
-                                              :chat_skype         => skype,
-                                              :chat_aim           => aim)
+      person.public_profile.home_mobile_number = mobile
+      person.public_profile.home_country       = 'USA'
+      person.public_profile.chat_skype         = skype
+      person.public_profile.chat_aim           = aim
 
-      person.it_profile.update_attributes(:chat_gtalk           => google_talk,
-                                          :default_username     => username)
+      person.it_profile.chat_gtalk             = google_talk
+      person.it_profile.default_username       = username
 
-      if person.new_record?
-        person.credential.update_attributes(:username => username, :password => 'password', :password_confirmation => 'password')
-      end
+      person.facilities_profile.seating_floor  = floor
+      person.facilities_profile.seating_number = seat_number
 
-      puts person.save!
+      person.credential.username               = username
+      person.credential.password               = password
+      person.credential.password_confirmation  = password
+
+      # Don't validate cuz passwords won't match criteria
+      puts person.save(:validate => false)
     end
   end
 end
