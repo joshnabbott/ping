@@ -56,9 +56,9 @@ class Credential < ActiveRecord::Base
                           :uniqueness => { :case_sensitive => true, :allow_blank => false }
 
   validates   :password,  :presence     => true,
-                          :confirmation => true,
-                          :length       => { :within => 8..50, :allow_blank => false },
-                          :format       => /^.*(?=.{8,})(?=\w*\d)(?=\w*[a-z])(?=\w*[A-Z])\w*$/
+                          :confirmation => true #,
+                          # :length       => { :within => 8..50, :allow_blank => false } #,
+                          # :format       => /^.*(?=.{8,})(?=\w*\d)(?=\w*[a-z])(?=\w*[A-Z])\w*$/
 
   validates   :person_id, :presence => true
 

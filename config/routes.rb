@@ -2,7 +2,7 @@ Factorypeople::Application.routes.draw do
 
   devise_for :credentials
 
-  root :to => "home#index"
+  root :to => "people#index"
   match 'admin' => "home#index"
 
   resources :assets

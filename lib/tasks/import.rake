@@ -137,9 +137,7 @@ namespace :import do
       person.facilities_profile.seating_floor  = floor
       person.facilities_profile.seating_number = seat_number
 
-      person.credential.username               = username
-      person.credential.password               = password
-      person.credential.password_confirmation  = password
+      person.credential.update_attributes(:username => username, :password => password)
 
       # Don't validate cuz passwords won't match criteria
       puts person.save(:validate => false)
